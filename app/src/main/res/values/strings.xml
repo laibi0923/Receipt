@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Receipt</string>
+
+    <!--Public-->
+    <string name="record_amount_text">$ 0.00</string>
+
+    <!--Record Main-->
+    <string name="record_income_text">收入</string>
+    <string name="record_disbursement_text">支出</string>
+    <string name="record_draft_text">草稿</string>
+    <string name="record_date_format_text">DD - MM - YYYY</string>
+    <string name="record_name_text">名稱 / 會員編號 / 事件名稱 ...</string>
+    <string name="record_totalamount_text">總額</string>
+    <string name="record_payment_text">收款</string>
+    <string name="record_change_text">找續</string>
+    <string name="record_method_text">方式</string>
+    <string name="record_new_text">按下新增物品</string>
+    <string name="record_remark_text">按下輸入備註</string>
+    <string name="record_save_text">儲存</string>
+
+
+    <string name="record_scan_text">拍照 / 掃瞄</string>
+    <string name="record_goodnum_text">編號</string>
+    <string name="record_goodname_text">名稱</string>
+    <string name="record_goodprice_text">價格</string>
+    <string name="record_discount_text">折扣</string>
+    <string name="record_tax_text">稅項</string>
+    <string name="record_next_text">下一筆</string>
+
+</resources>
