@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.lpc.receipt.R;
@@ -42,11 +43,17 @@ public class Record_Item_Adapter extends RecyclerView.Adapter<Record_Item_Adapte
 
         viewHolder.listitem_finalprice.setText(mData.get(position).getProduct_final_price());
 
-        viewHolder.listitem_discount.setText(mData.get(position).getProduct_discount());
+        if(mData.get(position).getProduct_discount().isEmpty()){
+           viewHolder.listitem_discount.setVisibility(View.GONE);
+        }else {
+            viewHolder.listitem_discount_textview.setText(mData.get(position).getProduct_discount());
+        }
 
-        viewHolder.listitem_tax.setText(mData.get(position).getProduct_tax());
-
-
+        if (mData.get(position).getProduct_tax().isEmpty()){
+            viewHolder.listitem_tax.setVisibility(View.GONE);
+        }else {
+            viewHolder.listitem_tax_textview.setText(mData.get(position).getProduct_tax());
+        }
     }
 
     @Override
@@ -60,7 +67,9 @@ public class Record_Item_Adapter extends RecyclerView.Adapter<Record_Item_Adapte
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
 
-        TextView listitem_productno, listitem_name, listitem_finalprice, listitem_discount, listitem_tax;
+        LinearLayout listitem_discount, listitem_tax;
+
+        TextView listitem_productno, listitem_name, listitem_finalprice, listitem_discount_textview, listitem_tax_textview;
 
         ViewHolder(View itemView) {
 
@@ -74,7 +83,11 @@ public class Record_Item_Adapter extends RecyclerView.Adapter<Record_Item_Adapte
 
             listitem_discount = itemView.findViewById(R.id.listitem_discount);
 
+            listitem_discount_textview = itemView.findViewById(R.id.listitem_discount_textview);
+
             listitem_tax = itemView.findViewById(R.id.listitem_tax);
+
+            listitem_tax_textview = itemView.findViewById(R.id.listitem_tax_textview);
 
             //temView.setOnClickListener(this);
         }

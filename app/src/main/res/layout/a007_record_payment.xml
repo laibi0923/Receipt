@@ -257,6 +257,7 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:background="@android:color/transparent"
+					android:enabled="false"
 					android:gravity="right|center"
 					android:hint="$0.00"
 					android:imeOptions="actionNext"
@@ -264,7 +265,7 @@
 					android:padding="10dp"
 					android:singleLine="true"
 					android:textColor="@color/text_color_1"
-					android:textColorHint="@color/text_color_1"/>
+					android:textColorHint="@color/text_color_1" />
 
 			</LinearLayout>
 

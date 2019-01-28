@@ -63,49 +63,69 @@
 
 	</LinearLayout>
 
+
+
+
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content">
 
-		<TextView
-			android:layout_height="wrap_content"
-			android:layout_width="wrap_content"
-			android:text="折扣"
-			android:textColor="#FFFFFF"
-			android:gravity="center"
-			android:layout_marginRight="5dp"/>
-
-		<TextView
+		<LinearLayout
 			android:id="@+id/listitem_discount"
 			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:gravity="center"
-			android:text="80"
-			android:textColor="@color/text_color_1" />
+			android:layout_height="match_parent"
+			android:orientation="horizontal">
 
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:gravity="center"
-			android:text="%"
-			android:textColor="@color/text_color_1" />
+			<TextView
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:text="折扣"
+				android:textColor="#FFFFFF"
+				android:gravity="center"
+				android:layout_marginRight="5dp"/>
 
-		<TextView
-			android:layout_height="wrap_content"
-			android:layout_width="wrap_content"
-			android:text="稅項"
-			android:layout_marginLeft="30dp"
-			android:gravity="center"
-			android:textColor="#FFFFFF"
-			android:layout_marginRight="5dp"/>
+			<TextView
+				android:id="@+id/listitem_discount_textview"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+				android:text="80"
+				android:textColor="@color/text_color_1" />
 
-		<TextView
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+                android:layout_marginRight="30dp"
+				android:text="%"
+				android:textColor="@color/text_color_1" />
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:id="@+id/listitem_tax"
 			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="$ 100.00"
-			android:textColor="@color/text_color_1"
-			android:gravity="center"
-			android:id="@+id/listitem_tax"/>
+			android:layout_height="match_parent"
+			android:orientation="horizontal">
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:text="稅項"
+				android:gravity="center"
+				android:textColor="#FFFFFF"
+				android:layout_marginRight="5dp"/>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="$ 100.00"
+				android:textColor="@color/text_color_1"
+				android:gravity="center"
+				android:id="@+id/listitem_tax_textview"/>
+
+		</LinearLayout>
+
 
 	</LinearLayout>
 
