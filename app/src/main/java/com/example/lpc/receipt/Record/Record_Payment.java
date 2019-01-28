@@ -45,43 +45,43 @@ public class Record_Payment extends AppCompatActivity {
 
     private void Find_View(){
 
-        back_btn = findViewById(R.id.back_btn);
+        back_btn = (LinearLayout) findViewById(R.id.back_btn);
         back_btn.setOnClickListener(View_OnclickListener);
 
-        total_payment_textview = findViewById(R.id.total_payment_textview);
+        total_payment_textview = (TextView) findViewById(R.id.total_payment_textview);
 
-        payment_method_btn = findViewById(R.id.payment_method_btn);
+        payment_method_btn = (LinearLayout) findViewById(R.id.payment_method_btn);
         payment_method_btn.setOnClickListener(View_OnclickListener);
 
-        payment_method_list = findViewById(R.id.payment_method_list);
+        payment_method_list = (LinearLayout) findViewById(R.id.payment_method_list);
 
-        payment_method_textview = findViewById(R.id.payment_method_textview);
+        payment_method_textview = (TextView) findViewById(R.id.payment_method_textview);
         payment_method_textview.setOnClickListener(View_OnclickListener);
 
-        payment_method_cash = findViewById(R.id.payment_method_cash);
+        payment_method_cash = (LinearLayout) findViewById(R.id.payment_method_cash);
         payment_method_cash.setOnClickListener(Payment_MethodClick_Listener);
 
-        payment_method_card = findViewById(R.id.payment_method_card);
+        payment_method_card = (LinearLayout) findViewById(R.id.payment_method_card);
         payment_method_card.setOnClickListener(Payment_MethodClick_Listener);
 
-        payment_method_octopus = findViewById(R.id.payment_method_octopus);
+        payment_method_octopus = (LinearLayout) findViewById(R.id.payment_method_octopus);
         payment_method_octopus.setOnClickListener(Payment_MethodClick_Listener);
 
-        payment_method_epayment = findViewById(R.id.payment_method_epayment);
+        payment_method_epayment = (LinearLayout) findViewById(R.id.payment_method_epayment);
         payment_method_epayment.setOnClickListener(Payment_MethodClick_Listener);
 
-        payment_method_other = findViewById(R.id.payment_method_other);
+        payment_method_other = (LinearLayout) findViewById(R.id.payment_method_other);
         payment_method_other.setOnClickListener(Payment_MethodClick_Listener);
 
-        payment_edittext = findViewById(R.id.payment_edittext);
+        payment_edittext = (EditText) findViewById(R.id.payment_edittext);
         payment_method_cash.setOnClickListener(Payment_MethodClick_Listener);
 
-        exchange_amount_edittext = findViewById(R.id.exchange_amount_edittext);
+        exchange_amount_edittext = (EditText) findViewById(R.id.exchange_amount_edittext);
         exchange_amount_edittext.setOnClickListener(View_OnclickListener);
 
-        remark_edittext = findViewById(R.id.remark_edittext);
+        remark_edittext = (EditText) findViewById(R.id.remark_edittext);
 
-        save_btn = findViewById(R.id.save_btn);
+        save_btn = (LinearLayout) findViewById(R.id.save_btn);
         save_btn.setOnClickListener(View_OnclickListener);
 
 

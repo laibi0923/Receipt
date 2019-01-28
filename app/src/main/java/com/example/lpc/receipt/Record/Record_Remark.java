@@ -31,12 +31,12 @@ public class Record_Remark extends AppCompatActivity {
 
     private void Find_View(){
 
-        back_btn = findViewById(R.id.back_btn);
+        back_btn = (LinearLayout) findViewById(R.id.back_btn);
         back_btn.setOnClickListener(View_Click_Listener);
 
-        remark_edittext = findViewById(R.id.remark_edittext);
+        remark_edittext = (EditText) findViewById(R.id.remark_edittext);
 
-        remark_save_btn = findViewById(R.id.remark_save_btn);
+        remark_save_btn = (LinearLayout) findViewById(R.id.remark_save_btn);
         remark_save_btn.setOnClickListener(View_Click_Listener);
     }
 

@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("WrongViewCast")
     private void Find_View(){
 
-        mViewPager = findViewById(R.id.main_activity_viewpager);
+        mViewPager = (ViewPager) findViewById(R.id.main_activity_viewpager);
 
         mViewPager.setOffscreenPageLimit(3);
 
