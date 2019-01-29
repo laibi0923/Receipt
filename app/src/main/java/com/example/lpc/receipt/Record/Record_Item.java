@@ -14,7 +14,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.lpc.receipt.Public.Amount_TextWatcher;
+
 import com.example.lpc.receipt.R;
 
 import java.text.DecimalFormat;
@@ -80,7 +80,7 @@ public class Record_Item extends AppCompatActivity {
         discount_edittext.addTextChangedListener(Discount_TextWatcher);
 
         tax_edittext = (EditText) findViewById(R.id.tax_edittext);
-        tax_edittext.addTextChangedListener(new Amount_TextWatcher(tax_edittext));
+        //tax_edittext.addTextChangedListener(new Amount_TextWatcher(tax_edittext));
         tax_edittext.setOnClickListener(View_Click_Listener);
         tax_edittext.addTextChangedListener(Tax_TextWatcher);
 
@@ -249,7 +249,7 @@ public class Record_Item extends AppCompatActivity {
         public void onTextChanged(CharSequence s, int p2, int p3, int p4)
         {
             // TODO: Implement this method
-            if(s.length() >0){
+            if(s.length() > 0){
 
                 change_Amount(s, tax_edittext);
 

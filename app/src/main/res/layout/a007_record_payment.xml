@@ -38,7 +38,8 @@
 					android:text="合共7個消費項目"
 					android:textColor="@color/text_color_1"
 					android:gravity="center"
-					android:textSize="20sp"/>
+					android:textSize="20sp"
+					android:id="@+id/record_size"/>
 
 			</LinearLayout>
 
@@ -265,7 +266,7 @@
 					android:padding="10dp"
 					android:singleLine="true"
 					android:textColor="@color/text_color_1"
-					android:textColorHint="@color/text_color_1" />
+					android:textColorHint="@color/text_color_1"/>
 
 			</LinearLayout>
 

@@ -16,9 +16,13 @@ import android.widget.TextView;
 import com.example.lpc.receipt.R;
 
 import java.text.DecimalFormat;
+import com.example.lpc.receipt.Public.*;
+import android.widget.*;
 
 public class Record_Payment extends AppCompatActivity {
 
+	private TextView record_size;
+	
     private  LinearLayout back_btn;
 
     private TextView total_payment_textview;
@@ -30,6 +34,8 @@ public class Record_Payment extends AppCompatActivity {
     private LinearLayout payment_method_list;
 
     private EditText payment_edittext;
+	
+	private LinearLayout exchange_amount;
 
     private EditText exchange_amount_edittext;
 
@@ -39,7 +45,11 @@ public class Record_Payment extends AppCompatActivity {
 
     private LinearLayout payment_method_cash, payment_method_card, payment_method_octopus, payment_method_epayment, payment_method_other;
 
+	Change_Amount mChange_Amount;
+	
     DecimalFormat dec = new DecimalFormat("#,##0.00");
+	
+	private Integer Recoed_Size = 0;
 
     private Double Total_Amount = 0.0;
 
@@ -53,19 +63,36 @@ public class Record_Payment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.a007_record_payment);
-
-        Total_Amount = 500.0;
+		
+		mChange_Amount = new Change_Amount();
+		
+		Bundle extras = getIntent().getExtras();
+		
+		if(!extras.isEmpty()){
+			
+			Integer extras_record_size = extras.getInt("Record_Size", 0);
+			
+			Recoed_Size = extras_record_size;
+			
+			String extras_total_amount = extras.getString("Total_Amount");
+			
+			Total_Amount = Double.parseDouble(extras_total_amount.replaceAll("[^0-9.]", ""));
+			
+		}
 
         Find_View();
     }
 
     private void Find_View(){
 
+		record_size = (TextView) findViewById(R.id.record_size);
+		record_size.setText("合共" + Recoed_Size + "個消費項目");
+		
         back_btn = (LinearLayout) findViewById(R.id.back_btn);
         back_btn.setOnClickListener(View_OnclickListener);
 
         total_payment_textview = (TextView) findViewById(R.id.total_payment_textview);
-        total_payment_textview.setText(Total_Amount.toString());
+        total_payment_textview.setText("$" + dec.format(Total_Amount));
 
         payment_method_btn = (LinearLayout) findViewById(R.id.payment_method_btn);
         payment_method_btn.setOnClickListener(View_OnclickListener);
@@ -94,6 +121,8 @@ public class Record_Payment extends AppCompatActivity {
         payment_edittext.setOnClickListener(View_OnclickListener);
         payment_edittext.addTextChangedListener(Payment_Textwatch);
 
+		exchange_amount = (LinearLayout) findViewById(R.id.exchange_amount);
+		
         exchange_amount_edittext = (EditText) findViewById(R.id.exchange_amount_edittext);
         exchange_amount_edittext.setOnClickListener(View_OnclickListener);
 
@@ -114,14 +143,19 @@ public class Record_Payment extends AppCompatActivity {
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
+			
+			if(s.length() > 0){
+				
+				mChange_Amount.Change_Amount(s.toString(), payment_edittext);
 
-            change_Amount(s, payment_edittext);
+				String Price_ReplaceText = payment_edittext.getText().toString().replaceAll("[^0-9.]","");
 
-            String Price_ReplaceText = payment_edittext.getText().toString().replaceAll("[^0-9.]","");
+				Payment_Amount = Double.parseDouble(Price_ReplaceText);
 
-            Payment_Amount = Double.parseDouble(Price_ReplaceText);
-
-            Sum_Value();
+				Sum_Value();
+				
+			}
+			
         }
 
         @Override
@@ -140,30 +174,66 @@ public class Record_Payment extends AppCompatActivity {
                 case R.id.payment_method_cash:
 
                     payment_method_textview.setText("現金");
+					
+					payment_edittext.setText("");
+					
+					payment_edittext.setEnabled(true);
+					
+					exchange_amount.setVisibility(View.VISIBLE);
 
                     break;
 
                 case R.id.payment_method_card:
 
                     payment_method_textview.setText("信用卡");
+					
+					payment_edittext.setText("$" + dec.format(Total_Amount));
+					
+					payment_edittext.setEnabled(false);
+					
+					exchange_amount_edittext.setText("");
+					
+					exchange_amount.setVisibility(View.GONE);
 
                     break;
 
                 case R.id.payment_method_octopus:
 
                     payment_method_textview.setText("八達通");
+					
+					payment_edittext.setText("$" + dec.format(Total_Amount));
+					
+					payment_edittext.setEnabled(false);
+					
+					exchange_amount_edittext.setText("");
+
+					exchange_amount.setVisibility(View.GONE);
 
                     break;
 
                 case R.id.payment_method_epayment:
 
                     payment_method_textview.setText("電子支付");
+					
+					payment_edittext.setText("$" + dec.format(Total_Amount));
+					
+					payment_edittext.setEnabled(false);
+					
+					exchange_amount_edittext.setText("");
+
+					exchange_amount.setVisibility(View.GONE);
 
                     break;
 
                 case R.id.payment_method_other:
 
                     payment_method_textview.setText("其他");
+					
+					payment_edittext.setText("");
+					
+					payment_edittext.setEnabled(true);
+					
+					exchange_amount.setVisibility(View.VISIBLE);
 
                     break;
 
@@ -184,6 +254,7 @@ public class Record_Payment extends AppCompatActivity {
                 case R.id.back_btn:
 
                     close_keybord();
+					
                     finish();
 
                     break;
@@ -207,8 +278,20 @@ public class Record_Payment extends AppCompatActivity {
                     break;
 
                 case R.id.save_btn:
-
+					
+					if(payment_edittext.getText().toString().isEmpty()){
+						Payment_Amount = 0.0;
+					}else{
+						Payment_Amount = Double.parseDouble(payment_edittext.getText().toString().replaceAll("[^0-9.]", ""));
+					}
+					
+					
+					if(Payment_Amount < Total_Amount){					
+						payment_edittext.setText("$" + dec.format(Total_Amount));
+					}
+					
                     close_keybord();
+					
                     finish();
 
                     break;
@@ -218,39 +301,26 @@ public class Record_Payment extends AppCompatActivity {
         }
     };
 
-    private void change_Amount(CharSequence s, EditText mEditText){
-
-        if(!s.toString().matches("^\\$(\\d{1,3}(\\,\\d{3})*|(\\d+))(\\.\\d{2})?$"))
-        {
-            String userInput= "" + s.toString().replaceAll("[^\\d]", "");
-
-            if (userInput.length() > 0) {
-
-                Double in = Double.parseDouble(userInput);
-
-                double percen = in / 100;
-
-                mEditText.setText("$" + dec.format(percen));
-
-                mEditText.setSelection(mEditText.getText().length());
-
-            }
-        }
-    }
-
     private void Sum_Value(){
 
         Exchange_Amount = Payment_Amount - Total_Amount;
-
-        DecimalFormat mDecimalFormat = new DecimalFormat("#,##0.00");
-
-        exchange_amount_edittext.setText("$" + mDecimalFormat.format(Exchange_Amount));
-
+		
+		Log.e("Payment_Amount", Payment_Amount + "");
+		
+		Log.e("Total_Amount", Total_Amount + "");
+		
+		Log.e("Exchange_Amount", Exchange_Amount + "");
+		
+		exchange_amount_edittext.setText("$" + dec.format(Exchange_Amount));
+	
     }
 
     private void close_keybord(){
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
     }
-
+	
+	
+	
+	
 }

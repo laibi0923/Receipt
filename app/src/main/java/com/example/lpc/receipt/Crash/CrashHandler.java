@@ -40,12 +40,17 @@ public class CrashHandler implements UncaughtExceptionHandler {
 
     public static final String TAG = "CrashHandler";  
 
+	private String Package_Patch ="com.example.lpc.receipt";
+	
     //系统默认的UncaughtException处理类   
     private Thread.UncaughtExceptionHandler mDefaultHandler;  
+	
     //CrashHandler实例  
     private static CrashHandler INSTANCE = new CrashHandler();  
+	
     //程序的Context对象  
     private Context mContext;  
+	
     //用来存储设备信息和异常信息  
     private Map<String, String> infos = new HashMap<String, String>();  
 
@@ -183,7 +188,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
 				String path = Environment.getExternalStorageDirectory() + File.separator 
 															+ "Android" + File.separator 
 															+ "data" + File.separator 
-															+ "com.paycheckeasy.www.paycheck" + File.separator 
+															+ Package_Patch + File.separator 
 															+ "crash" + File.separator;
 				Log.e("Crash", "Docuemnt save to : " + path);
                 //String path = "/sdcard/crash/";  

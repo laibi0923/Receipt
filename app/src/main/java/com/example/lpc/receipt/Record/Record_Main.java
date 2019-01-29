@@ -20,8 +20,13 @@ import com.example.lpc.receipt.Review.Review_Calendar;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import android.support.design.widget.*;
+import android.support.v4.widget.*;
+import android.widget.NumberPicker.*;
 
 public class Record_Main extends Fragment {
+	
+	private NestedScrollView recordmain_scrollview;
 
     private EditText recordmain_name_edittext;
 
@@ -50,6 +55,8 @@ public class Record_Main extends Fragment {
     private LinearLayout recordmain_remark_btn;
 
     private TextView recordmain_remark_textview;
+	
+	private FloatingActionButton recordmain_fab;
 
     private Record_Item_Adapter adapter;
 
@@ -72,9 +79,7 @@ public class Record_Main extends Fragment {
 
         xx_list.add(record);
 
-        Double xTotal = Double.parseDouble(Final_Price.replaceAll("[$,]", ""));
-
-        Total_Amount = Total_Amount + xTotal;
+        Total_Amount = Total_Amount + Double.parseDouble(Final_Price.replaceAll("[$,]", ""));
 
         recordmain_total_amount_textview.setText("$" + dec.format(Total_Amount));
 
@@ -127,6 +132,9 @@ public class Record_Main extends Fragment {
 
 
     private void Find_View(View v){
+		
+		recordmain_scrollview = v.findViewById(R.id.recordmain_scrollview);
+		recordmain_scrollview.setOnScrollChangeListener(NestedScrollView_OnScrollChangeListener);
 
         recordmain_name_edittext = v.findViewById(R.id.recordmain_name_edittext);
         recordmain_name_edittext.setText("");
@@ -164,11 +172,28 @@ public class Record_Main extends Fragment {
         recordmain_remark_btn.setOnClickListener(View_Click_Listener);
 
         recordmain_remark_textview = v.findViewById(R.id.recordmain_remark_textview);
+		
+		recordmain_fab = v.findViewById(R.id.recordmain_fab);
+		recordmain_fab.setOnClickListener(View_Click_Listener);
 
     }
 
 
+	private NestedScrollView.OnScrollChangeListener NestedScrollView_OnScrollChangeListener = new NestedScrollView.OnScrollChangeListener(){
 
+		@Override
+		public void onScrollChange(NestedScrollView v, int scrollx, int scrolly, int oldx, int oldy)
+		{
+			// TODO: Implement this method
+			if(scrolly > oldy){
+				recordmain_fab.hide();
+			}else{
+				recordmain_fab.show();
+			}
+		}
+		
+		
+	};
 
 
     private View.OnClickListener View_Click_Listener = new View.OnClickListener(){
@@ -201,8 +226,8 @@ public class Record_Main extends Fragment {
 
                 case R.id.recordmain_newitem_btn:
 
-                    Intent open_a002_activity = new Intent(getActivity(), Record_Item.class);
-                    startActivityForResult(open_a002_activity, 2);
+//                    Intent open_a002_activity = new Intent(getActivity(), Record_Item.class);
+//                    startActivityForResult(open_a002_activity, 2);
 
                     break;
 
@@ -217,9 +242,22 @@ public class Record_Main extends Fragment {
                 case R.id.recordmain_payment_btn:
 
                     Intent open_a007_activity = new Intent(getActivity(), Record_Payment.class);
+					
+					open_a007_activity.putExtra("Record_Size", xx_list.size());
+					
+					open_a007_activity.putExtra("Total_Amount", recordmain_total_amount_textview.getText().toString());
+					
                     startActivity(open_a007_activity);
 
                     break;
+					
+					
+				case R.id.recordmain_fab:
+					
+					Intent open_a002_activity = new Intent(getActivity(), Record_Item.class);
+                    startActivityForResult(open_a002_activity, 2);
+					
+					break;
 
             }
 
