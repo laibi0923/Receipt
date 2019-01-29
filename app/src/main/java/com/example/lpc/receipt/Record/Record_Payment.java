@@ -100,7 +100,6 @@ public class Record_Payment extends AppCompatActivity {
         payment_method_list = (LinearLayout) findViewById(R.id.payment_method_list);
 
         payment_method_textview = (TextView) findViewById(R.id.payment_method_textview);
-        payment_method_textview.setOnClickListener(View_OnclickListener);
 
         payment_method_cash = (LinearLayout) findViewById(R.id.payment_method_cash);
         payment_method_cash.setOnClickListener(Payment_MethodClick_Listener);

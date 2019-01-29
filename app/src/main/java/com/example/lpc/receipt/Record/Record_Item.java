@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
+import com.example.lpc.receipt.Public.Change_Amount;
 import com.example.lpc.receipt.R;
 
 import java.text.DecimalFormat;
@@ -42,7 +43,7 @@ public class Record_Item extends AppCompatActivity {
 
     DecimalFormat dec = new DecimalFormat("#,##0.00");
 
-    Record_Main mRecord_Main;
+    Change_Amount mChange_Amount;
 
 
     @Override
@@ -80,7 +81,6 @@ public class Record_Item extends AppCompatActivity {
         discount_edittext.addTextChangedListener(Discount_TextWatcher);
 
         tax_edittext = (EditText) findViewById(R.id.tax_edittext);
-        //tax_edittext.addTextChangedListener(new Amount_TextWatcher(tax_edittext));
         tax_edittext.setOnClickListener(View_Click_Listener);
         tax_edittext.addTextChangedListener(Tax_TextWatcher);
 
@@ -183,7 +183,7 @@ public class Record_Item extends AppCompatActivity {
             // TODO: Implement this method
             if(s.length() > 0){
 
-                change_Amount(s, price_edittext);
+                new Change_Amount().Change_Amount(s.toString(), price_edittext);
 
                 String Price_ReplaceText = price_edittext.getText().toString().replaceAll("[^0-9.]","");
 
@@ -251,7 +251,7 @@ public class Record_Item extends AppCompatActivity {
             // TODO: Implement this method
             if(s.length() > 0){
 
-                change_Amount(s, tax_edittext);
+                new Change_Amount().Change_Amount(s.toString(),tax_edittext);
 
                 String Tax_ReplaceText = tax_edittext.getText().toString().replaceAll("[^0-9.]","");
 
@@ -294,25 +294,25 @@ public class Record_Item extends AppCompatActivity {
     }
 
 
-    private void change_Amount(CharSequence s, EditText mEditText){
-
-        if(!s.toString().matches("^\\$(\\d{1,3}(\\,\\d{3})*|(\\d+))(\\.\\d{2})?$"))
-        {
-            String userInput= "" + s.toString().replaceAll("[^\\d]", "");
-
-            if (userInput.length() > 0) {
-
-                Double in = Double.parseDouble(userInput);
-
-                double percen = in / 100;
-
-                mEditText.setText("$" + dec.format(percen));
-
-                mEditText.setSelection(mEditText.getText().length());
-
-            }
-        }
-    }
+//    private void change_Amount(CharSequence s, EditText mEditText){
+//
+//        if(!s.toString().matches("^\\$(\\d{1,3}(\\,\\d{3})*|(\\d+))(\\.\\d{2})?$"))
+//        {
+//            String userInput= "" + s.toString().replaceAll("[^\\d]", "");
+//
+//            if (userInput.length() > 0) {
+//
+//                Double in = Double.parseDouble(userInput);
+//
+//                double percen = in / 100;
+//
+//                mEditText.setText("$" + dec.format(percen));
+//
+//                mEditText.setSelection(mEditText.getText().length());
+//
+//            }
+//        }
+//    }
 
     private void close_keybord(){
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
