@@ -197,7 +197,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:gravity="center"
-				android:minHeight="150dp"
+				android:minHeight="50dp"
 				android:orientation="vertical"
 				android:visibility="gone">
 
@@ -346,14 +346,14 @@
 					android:layout_width="match_parent"
 					android:layout_height="1dp"
 					android:background="#444444"
-					android:visibility="visible"/>
+					android:visibility="gone"/>
 
 				<LinearLayout
 					android:id="@+id/recordmain_remark_btn"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:gravity="center"
-					android:minHeight="150dp"
+					android:minHeight="50dp"
 					android:orientation="vertical"
 					android:visibility="visible">
 
