@@ -39,28 +39,55 @@ public class Record_Item extends AppCompatActivity {
 
     private LinearLayout next_record_btn;
 
+    private String Product_No, Product_Name, Product_Price, Product_Discount, Product_Tax, Product_FinalPrice;
+
     private Double Price, Discount, Tax;
 
-    DecimalFormat dec = new DecimalFormat("#,##0.00");
+    private Bundle extras;
+
+    private int Position;
 
     Change_Amount mChange_Amount;
 
+    DecimalFormat mDecimalFormat = new DecimalFormat("#,##0.00");
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
+        super.onCreate(savedInstanceState);
+
         setContentView(R.layout.a002_record_item);
 
-        super.onCreate(savedInstanceState);
+        Price = 0.00;
+        Discount = 1.00;
+        Tax = 0.00;
+
+        extras = getIntent().getExtras();
+
+        if (extras == null){
+
+            Product_No = "";
+            Product_Name = "";
+            Product_Price = "";
+            Product_Discount = "";
+            Product_Tax = "";
+            Product_FinalPrice = "$0.00";
+
+        }else {
+
+            Position = extras.getInt("extras_position", 0);
+            Product_No = extras.getString("extras_product_no");
+            Product_Name = extras.getString("extras_product_name");
+            Product_Price = extras.getString("extras_product_price");
+            Product_Discount = extras.getString("extras_product_discount");
+            Product_Tax = extras.getString("extras_product_tax");
+            Product_FinalPrice = extras.getString("extras_product_finalprice");
+
+        }
 
         Find_View();
 
-        Price = 0.00;
-
-        Discount = 1.00;
-
-        Tax = 0.00;
-
+        mChange_Amount = new Change_Amount();
     }
 
     private void Find_View(){
@@ -69,22 +96,28 @@ public class Record_Item extends AppCompatActivity {
         back_btn.setOnClickListener(View_Click_Listener);
 
         productno_edittext = (EditText) findViewById(R.id.productno_edittext);
+        productno_edittext.setText(Product_No);
 
         name_edittext = (EditText) findViewById(R.id.name_edittext);
+        name_edittext.setText(Product_Name);
 
         price_edittext = (EditText) findViewById(R.id.price_edittext);
+        price_edittext.setText(Product_Price);
         price_edittext.setOnClickListener(View_Click_Listener);
         price_edittext.addTextChangedListener(Price_TextWatcher);
 
         discount_edittext = (EditText) findViewById(R.id.discount_edittext);
+        discount_edittext.setText(Product_Discount);
         discount_edittext.setOnClickListener(View_Click_Listener);
         discount_edittext.addTextChangedListener(Discount_TextWatcher);
 
         tax_edittext = (EditText) findViewById(R.id.tax_edittext);
+        tax_edittext.setText(Product_Tax);
         tax_edittext.setOnClickListener(View_Click_Listener);
         tax_edittext.addTextChangedListener(Tax_TextWatcher);
 
         total_amount_textview = (TextView) findViewById(R.id.total_amount_textview);
+        total_amount_textview.setText(Product_FinalPrice);
 
         next_record_btn = (LinearLayout) findViewById(R.id.next_record_btn);
         next_record_btn.setOnClickListener(View_Click_Listener);
@@ -109,9 +142,7 @@ public class Record_Item extends AppCompatActivity {
                 case R.id.price_edittext:
 
                     price_edittext.setText("");
-
                     Price = 0.0;
-
                     Sum_Value();
 
                     break;
@@ -119,9 +150,7 @@ public class Record_Item extends AppCompatActivity {
                 case R.id.discount_edittext:
 
                     discount_edittext.setText("");
-
                     Discount = 1.0;
-
                     Sum_Value();
 
                     break;
@@ -129,9 +158,7 @@ public class Record_Item extends AppCompatActivity {
                 case R.id.tax_edittext:
 
                     tax_edittext.setText("");
-
                     Tax = 0.0;
-
                     Sum_Value();
 
                     break;
@@ -143,24 +170,28 @@ public class Record_Item extends AppCompatActivity {
                         Intent mIntent = new Intent();
 
                         mIntent.putExtra("Product_No",productno_edittext.getText().toString());
-
                         mIntent.putExtra("Product_Name", name_edittext.getText().toString());
-
                         mIntent.putExtra("Product_Price", price_edittext.getText().toString());
-
                         mIntent.putExtra("Product_Discount", discount_edittext.getText().toString());
-
                         mIntent.putExtra("Product_Tax", tax_edittext.getText().toString());
-
                         mIntent.putExtra("Product_FianlPrice", total_amount_textview.getText().toString());
 
-                        setResult(2, mIntent);
+                        if (extras == null){
+
+                            setResult(2, mIntent);
+                            close_keybord();
+                            finish();
+
+                        }else {
+
+                            mIntent.putExtra("Position", Position);
+                            setResult(1, mIntent);
+                            close_keybord();
+                            finish();
+
+                        }
 
                     }
-
-                    close_keybord();
-
-                    finish();
 
                     break;
 
@@ -183,7 +214,7 @@ public class Record_Item extends AppCompatActivity {
             // TODO: Implement this method
             if(s.length() > 0){
 
-                new Change_Amount().Change_Amount(s.toString(), price_edittext);
+                mChange_Amount.Change_Amount(s.toString(), price_edittext);
 
                 String Price_ReplaceText = price_edittext.getText().toString().replaceAll("[^0-9.]","");
 
@@ -251,7 +282,7 @@ public class Record_Item extends AppCompatActivity {
             // TODO: Implement this method
             if(s.length() > 0){
 
-                new Change_Amount().Change_Amount(s.toString(),tax_edittext);
+                mChange_Amount.Change_Amount(s.toString(),tax_edittext);
 
                 String Tax_ReplaceText = tax_edittext.getText().toString().replaceAll("[^0-9.]","");
 
@@ -272,48 +303,15 @@ public class Record_Item extends AppCompatActivity {
 
     };
 
-
-
+    //    計算總銀碼
     private void Sum_Value(){
 
         Double Result = Price * Discount + Tax;
 
-        Log.e("Price", Price + "");
-
-        Log.e("Discount", Discount + "");
-
-        Log.e("Tax", Tax + "");
-
-        Log.e("Result", Result + "");
-
-        DecimalFormat mDecimalFormat = new DecimalFormat("#,##0.00");
-
-        String x = mDecimalFormat.format(Result);
-
-        total_amount_textview.setText("$" + x);
+        total_amount_textview.setText("$" + mDecimalFormat.format(Result));
     }
 
-
-//    private void change_Amount(CharSequence s, EditText mEditText){
-//
-//        if(!s.toString().matches("^\\$(\\d{1,3}(\\,\\d{3})*|(\\d+))(\\.\\d{2})?$"))
-//        {
-//            String userInput= "" + s.toString().replaceAll("[^\\d]", "");
-//
-//            if (userInput.length() > 0) {
-//
-//                Double in = Double.parseDouble(userInput);
-//
-//                double percen = in / 100;
-//
-//                mEditText.setText("$" + dec.format(percen));
-//
-//                mEditText.setSelection(mEditText.getText().length());
-//
-//            }
-//        }
-//    }
-
+    //    關閉鍵盤
     private void close_keybord(){
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);

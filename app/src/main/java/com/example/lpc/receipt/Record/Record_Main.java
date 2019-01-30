@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,6 +68,12 @@ public class Record_Main extends Fragment {
     DecimalFormat dec = new DecimalFormat("#,##0.00");
 
 
+    public void remove_data(int position){
+
+        xx_list.remove(position);
+
+    }
+
     public void my_add_data(String Product_No, String Product_Name, String Price, String Discount, String Tax, String Final_Price){
 
         Record_Item_Model record = new Record_Item_Model(
@@ -79,27 +86,25 @@ public class Record_Main extends Fragment {
 
         xx_list.add(record);
 
-        Total_Amount = Total_Amount + Double.parseDouble(Final_Price.replaceAll("[$,]", ""));
-
-        recordmain_total_amount_textview.setText("$" + dec.format(Total_Amount));
-
         adapter.notifyDataSetChanged();
 
         if (xx_list.isEmpty()){
 
             recordmain_total_amount.setVisibility(View.GONE);
-
             recordmain_payment_btn.setVisibility(View.GONE);
-
             recordmain_remark.setVisibility(View.GONE);
 
         }else {
 
             recordmain_total_amount.setVisibility(View.VISIBLE);
-
             recordmain_payment_btn.setVisibility(View.VISIBLE);
-
             recordmain_remark.setVisibility(View.VISIBLE);
+
+            Total_Amount = 0.0;
+            for (int i = 0; i < xx_list.size(); i++){
+                Total_Amount = Total_Amount + Double.parseDouble(xx_list.get(i).getProduct_final_price().replaceAll("[$,]", ""));
+            }
+            recordmain_total_amount_textview.setText("$" + dec.format(Total_Amount));
         }
 
     }
@@ -121,8 +126,28 @@ public class Record_Main extends Fragment {
 
         // set up the RecyclerView
         recordmain_item_recyclerview.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+
         adapter = new Record_Item_Adapter(this.getActivity(), xx_list);
-//        adapter.setClickListener(this.getActivity());
+        adapter.setClickListener(new Record_Item_Adapter.ItemClickListener(){
+
+            @Override
+            public void onItemClick(View view, int position) {
+
+                Intent open_a002_activity = new Intent(getActivity(), Record_Item.class);
+
+                open_a002_activity.putExtra("extras_position", adapter.getItemId(position));
+                open_a002_activity.putExtra("extras_product_no", adapter.get_Product_No(position));
+                open_a002_activity.putExtra("extras_product_name", adapter.get_Product_Name(position));
+                open_a002_activity.putExtra("extras_product_price", adapter.get_Product_Price(position));
+                open_a002_activity.putExtra("extras_product_discount", adapter.get_Product_Discount(position));
+                open_a002_activity.putExtra("extras_product_tax", adapter.get_Product_Tax(position));
+                open_a002_activity.putExtra("extras_product_finalprice", adapter.get_Product_FinalPrice(position));
+
+                startActivityForResult(open_a002_activity, 1);
+
+            }
+        });
+
         recordmain_item_recyclerview.setAdapter(adapter);
 
         return v;
@@ -177,7 +202,6 @@ public class Record_Main extends Fragment {
 		recordmain_fab.setOnClickListener(View_Click_Listener);
 
     }
-
 
 	private NestedScrollView.OnScrollChangeListener NestedScrollView_OnScrollChangeListener = new NestedScrollView.OnScrollChangeListener(){
 
@@ -244,7 +268,6 @@ public class Record_Main extends Fragment {
                     Intent open_a007_activity = new Intent(getActivity(), Record_Payment.class);
 					
 					open_a007_activity.putExtra("Record_Size", xx_list.size());
-					
 					open_a007_activity.putExtra("Total_Amount", recordmain_total_amount_textview.getText().toString());
 					
                     startActivity(open_a007_activity);

@@ -2,11 +2,11 @@ package com.example.lpc.receipt.Record;
 
 public class Record_Item_Model {
 
-    String product_no, product_noname, product_price, product_discount, product_tax, product_final_price;
+    String product_no, product_name, product_price, product_discount, product_tax, product_final_price;
 
-    public Record_Item_Model(String product_no, String product_noname, String product_price, String product_discount, String product_tax, String product_final_price) {
+    public Record_Item_Model(String product_no, String product_name, String product_price, String product_discount, String product_tax, String product_final_price) {
         this.product_no = product_no;
-        this.product_noname = product_noname;
+        this.product_name = product_name;
         this.product_price = product_price;
         this.product_discount = product_discount;
         this.product_tax = product_tax;
@@ -22,11 +22,11 @@ public class Record_Item_Model {
     }
 
     public String getProduct_noname() {
-        return product_noname;
+        return product_name;
     }
 
     public void setProduct_noname(String product_noname) {
-        this.product_noname = product_noname;
+        this.product_name = product_noname;
     }
 
     public String getProduct_price() {

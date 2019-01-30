@@ -25,6 +25,6 @@
     <string name="record_goodprice_text">價格</string>
     <string name="record_discount_text">折扣</string>
     <string name="record_tax_text">稅項</string>
-    <string name="record_next_text">下一筆</string>
+    <string name="record_next_text">完成</string>
 
 </resources>

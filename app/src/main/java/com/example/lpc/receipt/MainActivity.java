@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.lpc.receipt.Record.Record_Main;
 import com.example.lpc.receipt.Review.Review_Main;
@@ -42,7 +43,27 @@ public class MainActivity extends AppCompatActivity {
 
         switch(resultCode){
 
+            case 1:
+                /***
+                                暫時用黎示範修改一條紀錄, 會用 Firebase 取代
+                                 ***/
+
+                Fragment_Record.remove_data(data.getIntExtra("Position", 0));
+
+                Fragment_Record.my_add_data(
+                        data.getStringExtra("Product_No"),
+                        data.getStringExtra("Product_Name"),
+                        data.getStringExtra("Product_Price"),
+                        data.getStringExtra("Product_Discount"),
+                        data.getStringExtra("Product_Tax"),
+                        data.getStringExtra("Product_FianlPrice"));
+
+                break;
+
             case 2:
+                /***
+                                暫時用黎示範新增一條紀錄, 會用 Firebase 取代
+                                 ***/
 
                 Fragment_Record.my_add_data(
                         data.getStringExtra("Product_No"),

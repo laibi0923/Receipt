@@ -56,14 +56,25 @@
 				android:padding="5dp"
 				android:visibility="visible">
 
+
+				<TextView
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_gravity="center"
+					android:gravity="center"
+					android:padding="0dp"
+					android:text="2019"
+					android:textColor="@color/text_color_1"
+					android:visibility="visible"/>
+
 				<TextView
 					android:id="@+id/recordmain_date_textview"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:layout_gravity="center"
 					android:gravity="center"
-					android:padding="10dp"
-					android:text="20 JAN"
+					android:padding="5dp"
+					android:text="1 月 20 "
 					android:textColor="@color/text_color_1"
 					android:visibility="visible"/>
 

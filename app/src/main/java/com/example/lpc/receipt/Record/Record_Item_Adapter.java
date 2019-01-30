@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -17,7 +18,9 @@ import java.util.List;
 public class Record_Item_Adapter extends RecyclerView.Adapter<Record_Item_Adapter.ViewHolder> {
 
     private List<Record_Item_Model> mData;
+
     private LayoutInflater mInflater;
+
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
@@ -69,6 +72,8 @@ public class Record_Item_Adapter extends RecyclerView.Adapter<Record_Item_Adapte
 
         LinearLayout listitem_discount, listitem_tax;
 
+        EditText listitem_productprice;
+
         TextView listitem_productno, listitem_name, listitem_finalprice, listitem_discount_textview, listitem_tax_textview;
 
         ViewHolder(View itemView) {
@@ -79,7 +84,7 @@ public class Record_Item_Adapter extends RecyclerView.Adapter<Record_Item_Adapte
 
             listitem_name = itemView.findViewById(R.id.listitem_name);
 
-            listitem_finalprice = itemView.findViewById(R.id.listitem_finalprice);
+//            listitem_productprice = itemView.findViewById(R.id.listitem_productprice);
 
             listitem_discount = itemView.findViewById(R.id.listitem_discount);
 
@@ -89,7 +94,9 @@ public class Record_Item_Adapter extends RecyclerView.Adapter<Record_Item_Adapte
 
             listitem_tax_textview = itemView.findViewById(R.id.listitem_tax_textview);
 
-            //temView.setOnClickListener(this);
+            listitem_finalprice = itemView.findViewById(R.id.listitem_finalprice);
+
+            itemView.setOnClickListener(this);
         }
 
         @Override
@@ -101,9 +108,30 @@ public class Record_Item_Adapter extends RecyclerView.Adapter<Record_Item_Adapte
     }
 
     // convenience method for getting data at click position
-    String getItem(int id) {
+    String get_Product_No(int id){
+        return mData.get(id).getProduct_no();
+    }
+
+    String get_Product_Name(int id){
+        return mData.get(id).getProduct_noname();
+    }
+
+    String get_Product_Price(int id){
+        return mData.get(id).getProduct_price();
+    }
+
+    String get_Product_Discount(int id){
         return mData.get(id).getProduct_discount();
     }
+
+    String get_Product_Tax(int id){
+        return mData.get(id).getProduct_tax();
+    }
+
+    String get_Product_FinalPrice(int id){
+        return mData.get(id).getProduct_final_price();
+    }
+
 
     // allows clicks events to be caught
     void setClickListener(ItemClickListener itemClickListener) {
