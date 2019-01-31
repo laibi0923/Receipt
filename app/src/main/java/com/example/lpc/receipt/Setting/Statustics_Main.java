@@ -32,12 +32,11 @@ public class Statustics_Main extends AppCompatActivity {
 
         for (int i = 0; i < line_count; i++){
 
+            // 主要容器
             RelativeLayout mRelativeLayout = new RelativeLayout(this);
-
-//            mRelativeLayout.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-
-            RelativeLayout.LayoutParams mRelativeLayout_LayoutParams = new RelativeLayout.LayoutParams(30, 400);
-
+            // 設定長度 寬度
+            RelativeLayout.LayoutParams mRelativeLayout_LayoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, 450);
+            //置中
             mRelativeLayout_LayoutParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
 
             mRelativeLayout.setLayoutParams(mRelativeLayout_LayoutParams);
@@ -123,6 +122,9 @@ public class Statustics_Main extends AppCompatActivity {
 
             // Set the rotation of the view.
             mRelativeLayout.setRotation(angleDeg + 90.0f);
+
+            // 將文字旋轉到岩位
+            mTextView.setRotation(-angleDeg + 270.0f);
 
             main.addView(mRelativeLayout);
 
