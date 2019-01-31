@@ -171,6 +171,7 @@
 			android:paddingBottom="15dp">
 
 			<LinearLayout
+				android:id="@+id/setting_statistics_btn"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:gravity="center"
@@ -182,14 +183,14 @@
 					android:gravity="center"
 					android:text="報表檢視"
 					android:textColor="@color/text_color_1"
-					android:textStyle="bold"/>
+					android:textStyle="bold" />
 
 				<TextView
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:gravity="center"
 					android:text="檢視過去收入及支出 (需密碼)"
-					android:textColor="@color/text_color_1"/>
+					android:textColor="@color/text_color_1" />
 
 			</LinearLayout>
 

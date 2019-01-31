@@ -43,6 +43,11 @@
 
         </activity>
 
+        <activity
+            android:name=".Setting.Statustics_Main">
+
+        </activity>
+
 
     </application>
 
