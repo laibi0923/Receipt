@@ -18,11 +18,11 @@ public class Statustics_Main extends AppCompatActivity {
     // 統計項目數
     private int line_count = 12;
 	// 最大高度
-	private int statustics_bar_maxheight = 500;
+	private int statustics_bar_maxheight = 400;
 	// 底線寬度
     private int base_line_width = 1;
     // 底線高度
-    private int base_line_height = 400;
+    private int base_line_height = 50;
 	// 標題文字
 	private String[] mths_text = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
@@ -59,7 +59,7 @@ public class Statustics_Main extends AppCompatActivity {
 
             Textview_LayoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
 			
-			Textview_LayoutParams.setMargins(0, 10, 0, 0);
+			Textview_LayoutParams.setMargins(0, 20, 0, 0);
 
             mTextView.setLayoutParams(Textview_LayoutParams);
 
@@ -72,7 +72,7 @@ public class Statustics_Main extends AppCompatActivity {
 			
             statustics_line.setBackgroundColor(getResources().getColor(R.color.text_color_1));
 
-            RelativeLayout.LayoutParams line_LayoutParams = new RelativeLayout.LayoutParams(1, 300);
+            RelativeLayout.LayoutParams line_LayoutParams = new RelativeLayout.LayoutParams(1, 250);
 			
             line_LayoutParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
 
@@ -86,11 +86,11 @@ public class Statustics_Main extends AppCompatActivity {
 			
             statustics_bar1.setBackgroundColor(getResources().getColor(R.color.colorAccent));
 
-            int Random_Num1 = (int) (Math.random() * 99 + 299);
+            int Random_Num1 = (int) (Math.random() * 99 + 199);
 			
             Log.e("RandomNum", Random_Num1 + "");
 
-            RelativeLayout.LayoutParams statustics_bar1_LayoutPams = new RelativeLayout.LayoutParams(35, Random_Num1);
+            RelativeLayout.LayoutParams statustics_bar1_LayoutPams = new RelativeLayout.LayoutParams(30, Random_Num1);
 			
             statustics_bar1_LayoutPams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
 			
@@ -106,11 +106,11 @@ public class Statustics_Main extends AppCompatActivity {
 			
             statustics_bar2.setBackgroundColor(getResources().getColor(R.color.text_color_1));
 
-            int R2 = (int) (Math.random() * 99 + 99);
+            int R2 = (int) (Math.random() * 99 + 50);
 			
             Log.e("RandomNum", R2 + "");
 
-            RelativeLayout.LayoutParams statustics_bar2_LayoutPams = new RelativeLayout.LayoutParams(35, R2);
+            RelativeLayout.LayoutParams statustics_bar2_LayoutPams = new RelativeLayout.LayoutParams(30, R2);
 			
             statustics_bar2_LayoutPams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
 			
@@ -132,9 +132,9 @@ public class Statustics_Main extends AppCompatActivity {
 
             // Calculate the position of the view, offset from center (300 px from
             // center). Again, this should be done in a display size independent way.
-            mRelativeLayout.setTranslationX(350 * (float)Math.cos(angleRad));
+            mRelativeLayout.setTranslationX(250 * (float)Math.cos(angleRad));
 			
-            mRelativeLayout.setTranslationY(350 * (float)Math.sin(angleRad));
+            mRelativeLayout.setTranslationY(250 * (float)Math.sin(angleRad));
 
             // Set the rotation of the view.
             mRelativeLayout.setRotation(angleDeg + 90.0f);
