@@ -17,10 +17,14 @@ public class Statustics_Main extends AppCompatActivity {
 
     // 統計項目數
     private int line_count = 12;
+	// 最大高度
+	private int statustics_bar_maxheight = 500;
+	// 底線寬度
+    private int base_line_width = 1;
     // 底線高度
     private int base_line_height = 400;
-    // 底線長度
-    private int base_line_width = 1;
+	// 標題文字
+	private String[] mths_text = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,83 +32,93 @@ public class Statustics_Main extends AppCompatActivity {
 
         setContentView(R.layout.y002_statistics_parts);
 
-        final RelativeLayout main = findViewById(R.id.main);
+        final RelativeLayout main = (RelativeLayout) findViewById(R.id.main);
 
         for (int i = 0; i < line_count; i++){
 
             // 主要容器
             RelativeLayout mRelativeLayout = new RelativeLayout(this);
             // 設定長度 寬度
-            RelativeLayout.LayoutParams mRelativeLayout_LayoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, 450);
-            //置中
+            RelativeLayout.LayoutParams mRelativeLayout_LayoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, statustics_bar_maxheight);
+            // 置中
             mRelativeLayout_LayoutParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
 
             mRelativeLayout.setLayoutParams(mRelativeLayout_LayoutParams);
 
 
-            // TextView
+            // 標題
             TextView mTextView = new TextView(this);
 
-            int mths = i + 1;
-
-            mTextView.setText(String.valueOf(mths));
+            mTextView.setText(mths_text[i]);
 
             mTextView.setTextColor(getResources().getColor(R.color.text_color_1));
 
-            RelativeLayout.LayoutParams lp0 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+            RelativeLayout.LayoutParams Textview_LayoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 
-            lp0.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+            Textview_LayoutParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
 
-            lp0.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
+            Textview_LayoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
+			
+			Textview_LayoutParams.setMargins(0, 10, 0, 0);
 
-            mTextView.setLayoutParams(lp0);
+            mTextView.setLayoutParams(Textview_LayoutParams);
 
             mRelativeLayout.addView(mTextView);
 
 
 
-            // Line 1
-            View base_line = new View(this);
-            base_line.setBackgroundColor(getResources().getColor(R.color.text_color_1));
+            // Statustics Line
+            View statustics_line = new View(this);
+			
+            statustics_line.setBackgroundColor(getResources().getColor(R.color.text_color_1));
 
-            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(1, 300);
-            lp.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+            RelativeLayout.LayoutParams line_LayoutParams = new RelativeLayout.LayoutParams(1, 300);
+			
+            line_LayoutParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
 
-            base_line.setLayoutParams(lp);
+            statustics_line.setLayoutParams(line_LayoutParams);
 
-            mRelativeLayout.addView(base_line);
-
-
-            // Line 2
-            View base_line2 = new View(this);
-            base_line2.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-
-            int R1 = (int) (Math.random() * 99 +200);
-            Log.e("RandomNum", R1 + "");
-
-            RelativeLayout.LayoutParams lp2 = new RelativeLayout.LayoutParams(30, R1);
-            lp2.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
-            lp2.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
-
-            base_line2.setLayoutParams(lp2);
-
-            mRelativeLayout.addView(base_line2);
+            mRelativeLayout.addView(statustics_line);
 
 
-            // Line 3
-            View base_line3 = new View(this);
-            base_line3.setBackgroundColor(getResources().getColor(R.color.text_color_1));
+            // Statustics Bar1
+            View statustics_bar1 = new View(this);
+			
+            statustics_bar1.setBackgroundColor(getResources().getColor(R.color.colorAccent));
 
-            int R2 = (int) (Math.random() * 99 + 100);
+            int Random_Num1 = (int) (Math.random() * 99 + 299);
+			
+            Log.e("RandomNum", Random_Num1 + "");
+
+            RelativeLayout.LayoutParams statustics_bar1_LayoutPams = new RelativeLayout.LayoutParams(35, Random_Num1);
+			
+            statustics_bar1_LayoutPams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+			
+            statustics_bar1_LayoutPams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
+
+            statustics_bar1.setLayoutParams(statustics_bar1_LayoutPams);
+
+            mRelativeLayout.addView(statustics_bar1);
+
+
+            // Statustics Bar2
+            View statustics_bar2 = new View(this);
+			
+            statustics_bar2.setBackgroundColor(getResources().getColor(R.color.text_color_1));
+
+            int R2 = (int) (Math.random() * 99 + 99);
+			
             Log.e("RandomNum", R2 + "");
 
-            RelativeLayout.LayoutParams lp3 = new RelativeLayout.LayoutParams(30, R2);
-            lp3.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
-            lp3.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
+            RelativeLayout.LayoutParams statustics_bar2_LayoutPams = new RelativeLayout.LayoutParams(35, R2);
+			
+            statustics_bar2_LayoutPams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+			
+            statustics_bar2_LayoutPams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
 
-            base_line3.setLayoutParams(lp3);
+            statustics_bar2.setLayoutParams(statustics_bar2_LayoutPams);
 
-            mRelativeLayout.addView(base_line3);
+            mRelativeLayout.addView(statustics_bar2);
 
 
 
@@ -113,12 +127,14 @@ public class Statustics_Main extends AppCompatActivity {
             // Calculate the angle of the current view. Adjust by 90 degrees to
             // get View 0 at the top. We need the angle in degrees and radians.
             float angleDeg = i * 250.0f / line_count - 90.0f;
+			
             float angleRad = (float)(angleDeg * Math.PI / 180.0f);
 
             // Calculate the position of the view, offset from center (300 px from
             // center). Again, this should be done in a display size independent way.
-            mRelativeLayout.setTranslationX(300 * (float)Math.cos(angleRad));
-            mRelativeLayout.setTranslationY(300 * (float)Math.sin(angleRad));
+            mRelativeLayout.setTranslationX(350 * (float)Math.cos(angleRad));
+			
+            mRelativeLayout.setTranslationY(350 * (float)Math.sin(angleRad));
 
             // Set the rotation of the view.
             mRelativeLayout.setRotation(angleDeg + 90.0f);
@@ -131,13 +147,17 @@ public class Statustics_Main extends AppCompatActivity {
 
         }
 
+		
+		
+		
+		
+		
 
     }
 
 
 
-    //
-//            // Create some quick TextViews that can be placed.
+//            // Crea>te some quick TextViews that can be placed.
 //            TextView v = new TextView(this);
 //            // Set a text and center it in each view.
 //            v.setText("View " + i);
