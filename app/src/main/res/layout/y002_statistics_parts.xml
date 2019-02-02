@@ -13,25 +13,49 @@
 
 		<LinearLayout
 			android:layout_height="wrap_content"
-			android:layout_width="wrap_content"
+			android:layout_width="match_parent"
 			android:orientation="vertical"
+            android:gravity="center"
 			android:paddingLeft="40dp"
 			android:paddingRight="40dp">
 
 			<LinearLayout
 				android:layout_height="wrap_content"
-				android:layout_width="wrap_content"
+				android:layout_width="match_parent"
+				android:padding="20dp"
 				android:orientation="vertical"
 				android:gravity="center">
 
 				<TextView
-					android:layout_width="match_parent"
+					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:textColor="@color/text_color_1"
 					android:text="收入"/>
 
 				<TextView
-					android:layout_width="match_parent"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textColor="@color/text_color_1"
+					android:text="2019"/>
+
+			</LinearLayout>
+
+
+			<LinearLayout
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:padding="20dp"
+				android:orientation="vertical"
+				android:gravity="center">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textColor="@color/text_color_1"
+					android:text="收入"/>
+
+				<TextView
+					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:textColor="@color/text_color_1"
 					android:text="2019"/>
@@ -42,8 +66,7 @@
 				android:id="@+id/main"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:minHeight="300dp"
-				android:padding="20dp">
+				android:minHeight="400dp">
 
 				<TextView
 					android:layout_width="wrap_content"
@@ -54,6 +77,144 @@
 					android:text="2019"/>
 
 			</RelativeLayout>
+
+			<LinearLayout
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:padding="20dp"
+				android:orientation="vertical"
+				android:gravity="center">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textColor="@color/text_color_1"
+					android:text="收入"/>
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textColor="@color/text_color_1"
+					android:text="2019"/>
+
+			</LinearLayout>
+
+
+			<LinearLayout
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:padding="20dp"
+				android:orientation="vertical"
+				android:gravity="center">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textColor="@color/text_color_1"
+					android:text="收入"/>
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textColor="@color/text_color_1"
+					android:text="2019"/>
+
+			</LinearLayout>
+
+			<LinearLayout
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:padding="20dp"
+				android:orientation="vertical"
+				android:gravity="center">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textColor="@color/text_color_1"
+					android:text="收入"/>
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textColor="@color/text_color_1"
+					android:text="2019"/>
+
+			</LinearLayout>
+
+
+			<LinearLayout
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:padding="20dp"
+				android:orientation="vertical"
+				android:gravity="center">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textColor="@color/text_color_1"
+					android:text="收入"/>
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textColor="@color/text_color_1"
+					android:text="2019"/>
+
+			</LinearLayout>
+
+			<LinearLayout
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:padding="20dp"
+				android:orientation="vertical"
+				android:gravity="center">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textColor="@color/text_color_1"
+					android:text="收入"/>
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textColor="@color/text_color_1"
+					android:text="2019"/>
+
+			</LinearLayout>
+
+
+			<LinearLayout
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:padding="20dp"
+				android:orientation="vertical"
+				android:gravity="center">
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textColor="@color/text_color_1"
+					android:text="收入"/>
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textColor="@color/text_color_1"
+					android:text="2019"/>
+
+			</LinearLayout>
+
+			<LinearLayout
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:padding="20dp"
+				android:orientation="vertical"
+				android:gravity="center"
+				android:layout_marginBottom="100dp"/>
+
 
 		</LinearLayout>
 
