@@ -15,16 +15,24 @@ import com.example.lpc.receipt.R;
 
 public class Statustics_Main extends AppCompatActivity {
 
-    // 統計項目數
+    // 中心部份圓的大小
+    private int center_circle_size = 250;
+    // 統計項目數 (1 - 12月)
     private int line_count = 12;
 	// 最大高度
-	private int statustics_bar_maxheight = 300;
+	private int statustics_bar_maxheight = 350;
 	// 底線寬度
     private int base_line_width = 1;
     // 底線高度
-    private int base_line_height = 50;
+    private int base_line_height = 270;
+    // 統計條寬 (白)
+    private int statustics_bar1_width = 30;
+    // 統計條寬 (綠)
+    private int statustics_bar2_width = 30;
+
 	// 標題文字
 	private String[] mths_text = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+    private String[] mths_text_cht = new String[]{"1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,9 +57,9 @@ public class Statustics_Main extends AppCompatActivity {
             // 標題
             TextView mTextView = new TextView(this);
 
-            mTextView.setText(mths_text[i]);
+            mTextView.setText(mths_text_cht[i]);
 
-            mTextView.setTextColor(getResources().getColor(R.color.text_color_1));
+            mTextView.setTextColor(getResources().getColor(R.color.text_color_2));
 
             RelativeLayout.LayoutParams Textview_LayoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 
@@ -70,9 +78,9 @@ public class Statustics_Main extends AppCompatActivity {
             // Statustics Line
             View statustics_line = new View(this);
 			
-            statustics_line.setBackgroundColor(getResources().getColor(R.color.text_color_1));
+            statustics_line.setBackgroundColor(getResources().getColor(R.color.text_color_2));
 
-            RelativeLayout.LayoutParams line_LayoutParams = new RelativeLayout.LayoutParams(1, 200);
+            RelativeLayout.LayoutParams line_LayoutParams = new RelativeLayout.LayoutParams(base_line_width, base_line_height);
 			
             line_LayoutParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
 
@@ -83,16 +91,16 @@ public class Statustics_Main extends AppCompatActivity {
             mRelativeLayout.addView(statustics_line);
 
 
-            // Statustics Bar1
+            // 統計條 (白)
             View statustics_bar1 = new View(this);
 			
             statustics_bar1.setBackgroundColor(getResources().getColor(R.color.colorAccent));
 
-            int Random_Num1 = (int) (Math.random() * 100 * 2);
+            int Random_Num1 = (int) (Math.random() * 100 * 2.5);
 			
             Log.e("RandomNum", Random_Num1 + "");
 
-            RelativeLayout.LayoutParams statustics_bar1_LayoutPams = new RelativeLayout.LayoutParams(30, Random_Num1);
+            RelativeLayout.LayoutParams statustics_bar1_LayoutPams = new RelativeLayout.LayoutParams(statustics_bar1_width, Random_Num1);
 			
             statustics_bar1_LayoutPams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
 			
@@ -103,7 +111,7 @@ public class Statustics_Main extends AppCompatActivity {
             mRelativeLayout.addView(statustics_bar1);
 
 
-            // Statustics Bar2
+            // 統計條 (綠)
             View statustics_bar2 = new View(this);
 			
             statustics_bar2.setBackgroundColor(getResources().getColor(R.color.text_color_1));
@@ -112,7 +120,7 @@ public class Statustics_Main extends AppCompatActivity {
 			
             Log.e("RandomNum", Random_Num2 + "");
 
-            RelativeLayout.LayoutParams statustics_bar2_LayoutPams = new RelativeLayout.LayoutParams(30, Random_Num2);
+            RelativeLayout.LayoutParams statustics_bar2_LayoutPams = new RelativeLayout.LayoutParams(statustics_bar2_width, Random_Num2);
 			
             statustics_bar2_LayoutPams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
 			
@@ -134,9 +142,9 @@ public class Statustics_Main extends AppCompatActivity {
 
             // Calculate the position of the view, offset from center (300 px from
             // center). Again, this should be done in a display size independent way.
-            mRelativeLayout.setTranslationX(250 * (float)Math.cos(angleRad));
+            mRelativeLayout.setTranslationX(center_circle_size * (float)Math.cos(angleRad));
 			
-            mRelativeLayout.setTranslationY(250 * (float)Math.sin(angleRad));
+            mRelativeLayout.setTranslationY(center_circle_size * (float)Math.sin(angleRad));
 
             // Set the rotation of the view.
             mRelativeLayout.setRotation(angleDeg + 90.0f);
@@ -188,3 +196,4 @@ public class Statustics_Main extends AppCompatActivity {
 
 
 }
+
