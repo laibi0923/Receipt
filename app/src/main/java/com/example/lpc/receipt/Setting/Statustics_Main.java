@@ -18,7 +18,7 @@ public class Statustics_Main extends AppCompatActivity {
     // 統計項目數
     private int line_count = 12;
 	// 最大高度
-	private int statustics_bar_maxheight = 400;
+	private int statustics_bar_maxheight = 300;
 	// 底線寬度
     private int base_line_width = 1;
     // 底線高度
@@ -72,9 +72,11 @@ public class Statustics_Main extends AppCompatActivity {
 			
             statustics_line.setBackgroundColor(getResources().getColor(R.color.text_color_1));
 
-            RelativeLayout.LayoutParams line_LayoutParams = new RelativeLayout.LayoutParams(1, 250);
+            RelativeLayout.LayoutParams line_LayoutParams = new RelativeLayout.LayoutParams(1, 200);
 			
             line_LayoutParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+
+            line_LayoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
 
             statustics_line.setLayoutParams(line_LayoutParams);
 
@@ -86,7 +88,7 @@ public class Statustics_Main extends AppCompatActivity {
 			
             statustics_bar1.setBackgroundColor(getResources().getColor(R.color.colorAccent));
 
-            int Random_Num1 = (int) (Math.random() * 99 + 199);
+            int Random_Num1 = (int) (Math.random() * 100 * 2);
 			
             Log.e("RandomNum", Random_Num1 + "");
 
@@ -106,11 +108,11 @@ public class Statustics_Main extends AppCompatActivity {
 			
             statustics_bar2.setBackgroundColor(getResources().getColor(R.color.text_color_1));
 
-            int R2 = (int) (Math.random() * 99 + 50);
+            int Random_Num2 = (int) (Math.random() * 100  );
 			
-            Log.e("RandomNum", R2 + "");
+            Log.e("RandomNum", Random_Num2 + "");
 
-            RelativeLayout.LayoutParams statustics_bar2_LayoutPams = new RelativeLayout.LayoutParams(30, R2);
+            RelativeLayout.LayoutParams statustics_bar2_LayoutPams = new RelativeLayout.LayoutParams(30, Random_Num2);
 			
             statustics_bar2_LayoutPams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
 			
@@ -132,9 +134,9 @@ public class Statustics_Main extends AppCompatActivity {
 
             // Calculate the position of the view, offset from center (300 px from
             // center). Again, this should be done in a display size independent way.
-            mRelativeLayout.setTranslationX(300 * (float)Math.cos(angleRad));
+            mRelativeLayout.setTranslationX(250 * (float)Math.cos(angleRad));
 			
-            mRelativeLayout.setTranslationY(300 * (float)Math.sin(angleRad));
+            mRelativeLayout.setTranslationY(250 * (float)Math.sin(angleRad));
 
             // Set the rotation of the view.
             mRelativeLayout.setRotation(angleDeg + 90.0f);
