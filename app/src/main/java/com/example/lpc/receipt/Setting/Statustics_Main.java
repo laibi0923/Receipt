@@ -132,9 +132,9 @@ public class Statustics_Main extends AppCompatActivity {
 
             // Calculate the position of the view, offset from center (300 px from
             // center). Again, this should be done in a display size independent way.
-            mRelativeLayout.setTranslationX(250 * (float)Math.cos(angleRad));
+            mRelativeLayout.setTranslationX(300 * (float)Math.cos(angleRad));
 			
-            mRelativeLayout.setTranslationY(250 * (float)Math.sin(angleRad));
+            mRelativeLayout.setTranslationY(300 * (float)Math.sin(angleRad));
 
             // Set the rotation of the view.
             mRelativeLayout.setRotation(angleDeg + 90.0f);
