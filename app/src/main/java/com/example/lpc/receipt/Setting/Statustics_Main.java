@@ -1,5 +1,6 @@
 package com.example.lpc.receipt.Setting;
 
+import android.graphics.Color;
 import android.os.*;
 import android.support.annotation.*;
 import android.support.v7.app.*;
@@ -10,63 +11,84 @@ import com.example.lpc.receipt.*;
 
 public class Statustics_Main extends AppCompatActivity {
 
-    // 中心部份圓的大小
-    private int center_circle_size = 300;
-    // 統計項目數 (1 - 12月)
-    private int line_count = 12;
-	// 最大高度
-	private int statustics_bar_maxheight = 400;
-	// 底線寬度
-    private int base_line_width = 1;
-    // 底線高度
-    private int base_line_height = 270;
-    // 統計條寬 (白)
-    private int statustics_bar1_width = 30;
-    // 統計條寬 (綠)
-    private int statustics_bar2_width = 30;
-
-	// 標題文字
+    // 標題文字
 	private String[] mths_text = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
     private String[] mths_text_cht = new String[]{"1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"};
 
-	
-	private RelativeLayout main777;
-	
-	
+
+    private DisplayMetrics displayMetrics;
+
+
+	private RelativeLayout statustics_view;
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.y002_statistics_parts);
 
+        displayMetrics = new DisplayMetrics();
+
         Find_View();
 
     }
-	
-	
+
+
 	private void Find_View(){
-		
-		main777 = (RelativeLayout) findViewById(R.id.main);
-		
-		
+
+        statustics_view = (RelativeLayout) findViewById(R.id.statustics_view);
+
 		Circle_Statustics();
-		
-		
 	}
+
+	private int  PX_convert_DP(int width_px){
+        return Math.round(width_px / displayMetrics.density);
+    }
+
+
+    private int  DP_convert_PX(int width_dp){
+        return Math.round(width_dp * displayMetrics.density);
+    }
+
+
+    // 得知手機寬度
+    private int Get_Window_Width(){
+        WindowManager mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
+        mWindowManager.getDefaultDisplay().getMetrics(displayMetrics);
+
+        return displayMetrics.widthPixels;
+    }
 
 
 	private void Circle_Statustics(){
+		// 螢幕長度
+		int phone_width = Get_Window_Width();
+		// 螢幕長度 - 80dp (marginLeft, marginRight)
+		int setup_height_width = phone_width - DP_convert_PX(80);
+		// 中心部份圓的大小
+		int center_circle_size = 280;
+		// 統計項目數 (1 - 12月)
+		int line_count = 12;
+		// 最大高度
+		int statustics_bar_maxheight = 350;
+		// 底線寬度
+		int base_line_width = 1;
+		// 底線高度
+		int base_line_height = DP_convert_PX(100);
+		// 統計條寬 (白)
+		int statustics_bar1_width = 30;
+		// 統計條寬 (綠)
+		int statustics_bar2_width = 30;
 
 
-		DisplayMetrics displayMetrics = new DisplayMetrics();
-		getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-		int height = displayMetrics.heightPixels;
-		int width = displayMetrics.widthPixels;
 
+		statustics_view.getLayoutParams().height = setup_height_width;
+		statustics_view.getLayoutParams().width = setup_height_width;
 
-		Log.e("display_width", width +"");
+        Log.e("Phone_Width", phone_width + "px, " + PX_convert_DP(phone_width) + "dp");
+        Log.e("setup_height_width", setup_height_width + "px, " + PX_convert_DP(setup_height_width) + "dp");
 
-		Log.e("display_height", height +"");
 
 
 
@@ -126,7 +148,7 @@ public class Statustics_Main extends AppCompatActivity {
 
 			int Random_Num1 = (int) (Math.random() * 100 +100);
 
-			Log.e("RandomNum", Random_Num1 + "");
+//			Log.e("RandomNum", Random_Num1 + "");
 
 			RelativeLayout.LayoutParams statustics_bar1_LayoutPams = new RelativeLayout.LayoutParams(statustics_bar1_width, Random_Num1);
 
@@ -146,7 +168,7 @@ public class Statustics_Main extends AppCompatActivity {
 
 			int Random_Num2 = (int) (Math.random() * 100  );
 
-			Log.e("RandomNum", Random_Num2 + "");
+//			Log.e("RandomNum", Random_Num2 + "");
 
 			RelativeLayout.LayoutParams statustics_bar2_LayoutPams = new RelativeLayout.LayoutParams(statustics_bar2_width, Random_Num2);
 
@@ -180,10 +202,10 @@ public class Statustics_Main extends AppCompatActivity {
 			// 將文字旋轉到岩位
 			mTextView.setRotation(-angleDeg + 270.0f);
 
-			main777.addView(mRelativeLayout);
-			
+            statustics_view.addView(mRelativeLayout);
+
 		}
-	
+
 	}
 
 //            // Crea>te some quick TextViews that can be placed.
