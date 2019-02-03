@@ -67,12 +67,13 @@ public class Statustics_Main extends AppCompatActivity {
 		int phone_width = Get_Window_Width();
 		// 螢幕長度 - 80dp (marginLeft, marginRight)
 		int setup_height_width = phone_width - DP_convert_PX(80);
+		Log.e("Height", setup_height_width + "");
 		// 中心部份圓的大小
-		int center_circle_size = 280;
+		int center_circle_size = 250;
 		// 統計項目數 (1 - 12月)
 		int line_count = 12;
 		// 最大高度
-		int statustics_bar_maxheight = 350;
+		int statustics_bar_maxheight = (setup_height_width - center_circle_size) / 2;
 		// 底線寬度
 		int base_line_width = 1;
 		// 底線高度
@@ -98,10 +99,11 @@ public class Statustics_Main extends AppCompatActivity {
 
 
 		for (int i = 0; i < line_count; i++){
-			
+
+		    // 主容器
 			LinearLayout mLinearLayout = new LinearLayout(this);
 			mLinearLayout.setOrientation(LinearLayout.VERTICAL);
-			RelativeLayout.LayoutParams pp1 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, statustics_bar_maxheight);
+			RelativeLayout.LayoutParams pp1 = new RelativeLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, statustics_bar_maxheight);
 			pp1.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
 			mLinearLayout.setLayoutParams(pp1);
 			statustics_view.addView(mLinearLayout);
@@ -109,23 +111,22 @@ public class Statustics_Main extends AppCompatActivity {
 			// 標題
 			TextView mTextView = new TextView(this);
 			mTextView.setText(mths_text_cht[i]);
+			mTextView.setPadding(20, 20,20,20);
 			mTextView.setTextColor(getResources().getColor(R.color.text_color_2));
-			RelativeLayout.LayoutParams Textview_LayoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-			Textview_LayoutParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
-			Textview_LayoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
-			Textview_LayoutParams.setMargins(0, 20, 0, 0);
-			mTextView.setLayoutParams(Textview_LayoutParams);
+			LinearLayout.LayoutParams mTextView_LayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+			mTextView.setLayoutParams(mTextView_LayoutParams);
 			mLinearLayout.addView(mTextView);
 
-			
+			//
 			RelativeLayout mRelativeLayout = new RelativeLayout(this);
 			RelativeLayout.LayoutParams mRelativeLayout_LayoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
 			mRelativeLayout_LayoutParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
-			mRelativeLayout.setLayoutParams(mRelativeLayout_LayoutParams);
+			mRelativeLayout_LayoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
+            mRelativeLayout.setLayoutParams(mRelativeLayout_LayoutParams);
 			mLinearLayout.addView(mRelativeLayout);
 			
 
-			// Statustics Line
+			// 統計線 (Heigt 100dp)
 			View statustics_line = new View(this);
 			statustics_line.setBackgroundColor(getResources().getColor(R.color.text_color_2));
 			RelativeLayout.LayoutParams line_LayoutParams = new RelativeLayout.LayoutParams(base_line_width, base_line_height);
@@ -139,7 +140,6 @@ public class Statustics_Main extends AppCompatActivity {
 			View statustics_bar1 = new View(this);
 			statustics_bar1.setBackgroundColor(getResources().getColor(R.color.colorAccent));
 			int Random_Num1 = (int) (Math.random() * 100 +100);
-//			Log.e("RandomNum", Random_Num1 + "");
 			RelativeLayout.LayoutParams statustics_bar1_LayoutPams = new RelativeLayout.LayoutParams(statustics_bar1_width, Random_Num1);
 			statustics_bar1_LayoutPams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
 			statustics_bar1_LayoutPams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
@@ -151,16 +151,11 @@ public class Statustics_Main extends AppCompatActivity {
 			View statustics_bar2 = new View(this);
 			statustics_bar2.setBackgroundColor(getResources().getColor(R.color.text_color_1));
 			int Random_Num2 = (int) (Math.random() * 100  );
-//			Log.e("RandomNum", Random_Num2 + "");
 			RelativeLayout.LayoutParams statustics_bar2_LayoutPams = new RelativeLayout.LayoutParams(statustics_bar2_width, Random_Num2);
 			statustics_bar2_LayoutPams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
 			statustics_bar2_LayoutPams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
 			statustics_bar2.setLayoutParams(statustics_bar2_LayoutPams);
 			mRelativeLayout.addView(statustics_bar2);
-
-
-
-
 
 			// Calculate the angle of the current view. Adjust by 90 degrees to
 			// get View 0 at the top. We need the angle in degrees and radians.
