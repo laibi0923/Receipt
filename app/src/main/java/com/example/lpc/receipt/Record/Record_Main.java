@@ -24,8 +24,9 @@ import java.util.ArrayList;
 import android.support.design.widget.*;
 import android.support.v4.widget.*;
 import android.widget.NumberPicker.*;
+import android.support.v7.app.*;
 
-public class Record_Main extends Fragment {
+public class Record_Main extends AppCompatActivity {
 	
 	private NestedScrollView recordmain_scrollview;
 
@@ -73,6 +74,8 @@ public class Record_Main extends Fragment {
         xx_list.remove(position);
 
     }
+	
+	/*
 
     public void my_add_data(String Product_No, String Product_Name, String Price, String Discount, String Tax, String Final_Price){
 
@@ -108,97 +111,96 @@ public class Record_Main extends Fragment {
         }
 
     }
+	*/
 
     public void add_remark(String remark){
 
         recordmain_remark_textview.setText(remark);
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        View v = inflater.inflate(R.layout.a001_record_main, container, false);
-
-        Find_View(v);
-
-        xx_list = new ArrayList<>();
+	@Override
+	protected void onCreate(Bundle savedInstanceState)
+	{
+		// TODO: Implement this method
+		super.onCreate(savedInstanceState);
+		
+		setContentView(R.layout.a001_record_main);
+		
+		Find_View();
+		
+		xx_list = new ArrayList<>();
 
         // set up the RecyclerView
-        recordmain_item_recyclerview.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        recordmain_item_recyclerview.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter = new Record_Item_Adapter(this.getActivity(), xx_list);
+        adapter = new Record_Item_Adapter(this, xx_list);
         adapter.setClickListener(new Record_Item_Adapter.ItemClickListener(){
 
-            @Override
-            public void onItemClick(View view, int position) {
+				@Override
+				public void onItemClick(View view, int position) {
 
-                Intent open_a002_activity = new Intent(getActivity(), Record_Item.class);
+					Intent open_a002_activity = new Intent(Record_Main.this, Record_Item.class);
 
-                open_a002_activity.putExtra("extras_position", adapter.getItemId(position));
-                open_a002_activity.putExtra("extras_product_no", adapter.get_Product_No(position));
-                open_a002_activity.putExtra("extras_product_name", adapter.get_Product_Name(position));
-                open_a002_activity.putExtra("extras_product_price", adapter.get_Product_Price(position));
-                open_a002_activity.putExtra("extras_product_discount", adapter.get_Product_Discount(position));
-                open_a002_activity.putExtra("extras_product_tax", adapter.get_Product_Tax(position));
-                open_a002_activity.putExtra("extras_product_finalprice", adapter.get_Product_FinalPrice(position));
+					open_a002_activity.putExtra("extras_position", adapter.getItemId(position));
+					open_a002_activity.putExtra("extras_product_no", adapter.get_Product_No(position));
+					open_a002_activity.putExtra("extras_product_name", adapter.get_Product_Name(position));
+					open_a002_activity.putExtra("extras_product_price", adapter.get_Product_Price(position));
+					open_a002_activity.putExtra("extras_product_discount", adapter.get_Product_Discount(position));
+					open_a002_activity.putExtra("extras_product_tax", adapter.get_Product_Tax(position));
+					open_a002_activity.putExtra("extras_product_finalprice", adapter.get_Product_FinalPrice(position));
 
-                startActivityForResult(open_a002_activity, 1);
+					startActivityForResult(open_a002_activity, 1);
 
-            }
-        });
+				}
+			});
 
         recordmain_item_recyclerview.setAdapter(adapter);
-
-        return v;
-    }
+	}
 
 
-
-
-    private void Find_View(View v){
+    private void Find_View(){
 		
-		recordmain_scrollview = v.findViewById(R.id.recordmain_scrollview);
+		recordmain_scrollview = (NestedScrollView) findViewById(R.id.recordmain_scrollview);
 		recordmain_scrollview.setOnScrollChangeListener(NestedScrollView_OnScrollChangeListener);
 
-        recordmain_name_edittext = v.findViewById(R.id.recordmain_name_edittext);
+        recordmain_name_edittext = (EditText) findViewById(R.id.recordmain_name_edittext);
         recordmain_name_edittext.setText("");
 
-        recordmain_date_textview = v.findViewById(R.id.recordmain_date_textview);
+        recordmain_date_textview = (TextView) findViewById(R.id.recordmain_date_textview);
         recordmain_date_textview.setOnClickListener(View_Click_Listener);
 
-        recordmain_income_btn = v.findViewById(R.id.recordmain_income_btn);
+        recordmain_income_btn = (LinearLayout) findViewById(R.id.recordmain_income_btn);
         recordmain_income_btn.setOnClickListener(View_Click_Listener);
 
-        recordmain_disbursement_btn = v.findViewById(R.id.recordmain_disbursement_btn);
+        recordmain_disbursement_btn = (LinearLayout) findViewById(R.id.recordmain_disbursement_btn);
         recordmain_disbursement_btn.setOnClickListener(View_Click_Listener);
 
-        recordmain_newitem_btn = v.findViewById(R.id.recordmain_newitem_btn);
+        recordmain_newitem_btn = (LinearLayout) findViewById(R.id.recordmain_newitem_btn);
         recordmain_newitem_btn.setOnClickListener(View_Click_Listener);
 
-        recordmain_item_recyclerview = v.findViewById(R.id.recordmain_item_recyclerview);
+        recordmain_item_recyclerview = (RecyclerView) findViewById(R.id.recordmain_item_recyclerview);
         recordmain_item_recyclerview.setHasFixedSize(true);
         recordmain_item_recyclerview.setNestedScrollingEnabled(false);
 
-        recordmain_total_amount = v.findViewById(R.id.recordmain_total_amount);
+        recordmain_total_amount = (LinearLayout) findViewById(R.id.recordmain_total_amount);
 
-        recordmain_total_amount_textview = v.findViewById(R.id.recordmain_total_amount_textview);
+        recordmain_total_amount_textview = (TextView) findViewById(R.id.recordmain_total_amount_textview);
 
-        recordmain_payment = v.findViewById(R.id.recordmain_payment);
+        recordmain_payment = (LinearLayout) findViewById(R.id.recordmain_payment);
 
-        recordmain_payment_btn = v.findViewById(R.id.recordmain_payment_btn);
+        recordmain_payment_btn = (LinearLayout) findViewById(R.id.recordmain_payment_btn);
         recordmain_payment_btn.setOnClickListener(View_Click_Listener);
 
-        recordmain_payment_textview = v.findViewById(R.id.recordmain_payment_textview);
+        recordmain_payment_textview = (TextView) findViewById(R.id.recordmain_payment_textview);
 
-        recordmain_remark = v.findViewById(R.id.recordmain_remark);
+        recordmain_remark = (LinearLayout) findViewById(R.id.recordmain_remark);
 
-        recordmain_remark_btn = v.findViewById(R.id.recordmain_remark_btn);
+        recordmain_remark_btn = (LinearLayout) findViewById(R.id.recordmain_remark_btn);
         recordmain_remark_btn.setOnClickListener(View_Click_Listener);
 
-        recordmain_remark_textview = v.findViewById(R.id.recordmain_remark_textview);
+        recordmain_remark_textview = (TextView) findViewById(R.id.recordmain_remark_textview);
 		
-		recordmain_fab = v.findViewById(R.id.recordmain_fab);
+		recordmain_fab = (FloatingActionButton) findViewById(R.id.recordmain_fab);
 		recordmain_fab.setOnClickListener(View_Click_Listener);
 
     }
@@ -229,7 +231,7 @@ public class Record_Main extends Fragment {
 
                 case R.id.recordmain_date_textview:
 
-                    Intent open_b003_activity = new Intent(getActivity(), Review_Calendar.class);
+                    Intent open_b003_activity = new Intent(Record_Main.this, Review_Calendar.class);
                     startActivity(open_b003_activity);
 
                     break;
@@ -257,7 +259,7 @@ public class Record_Main extends Fragment {
 
                 case R.id.recordmain_remark_btn:
 
-                    Intent open_a005_activity = new Intent(getActivity(), Record_Remark.class);
+                    Intent open_a005_activity = new Intent(Record_Main.this, Record_Remark.class);
                     startActivityForResult(open_a005_activity, 3);
 
                     break;
@@ -265,7 +267,7 @@ public class Record_Main extends Fragment {
 
                 case R.id.recordmain_payment_btn:
 
-                    Intent open_a007_activity = new Intent(getActivity(), Record_Payment.class);
+                    Intent open_a007_activity = new Intent(Record_Main.this, Record_Payment.class);
 					
 					open_a007_activity.putExtra("Record_Size", xx_list.size());
 					open_a007_activity.putExtra("Total_Amount", recordmain_total_amount_textview.getText().toString());
@@ -277,7 +279,7 @@ public class Record_Main extends Fragment {
 					
 				case R.id.recordmain_fab:
 					
-					Intent open_a002_activity = new Intent(getActivity(), Record_Item.class);
+					Intent open_a002_activity = new Intent(Record_Main.this, Record_Item.class);
                     startActivityForResult(open_a002_activity, 2);
 					
 					break;

@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
+ 
 import com.example.lpc.receipt.R;
 
 import java.util.List;

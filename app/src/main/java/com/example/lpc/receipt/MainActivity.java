@@ -1,30 +1,28 @@
 package com.example.lpc.receipt;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
-
-import com.example.lpc.receipt.Record.Record_Main;
-import com.example.lpc.receipt.Review.Review_Main;
-import com.example.lpc.receipt.Setting.Setting_Main;
-
-import java.util.ArrayList;
-import java.util.List;
+import android.annotation.*;
+import android.content.*;
+import android.os.*;
+import android.support.annotation.*;
+import android.support.v4.app.*;
+import android.support.v4.view.*;
+import android.support.v7.app.*;
+import android.view.*;
+import android.widget.*;
+import com.example.lpc.receipt.Review.*;
+import com.example.lpc.receipt.Setting.*;
+import java.util.*;
+import com.example.lpc.receipt.Record.*;
 
 public class MainActivity extends AppCompatActivity {
 
     private ViewPager mViewPager;
 
-    private Record_Main Fragment_Record = new Record_Main();
+    //private Record_Main Fragment_Record = new Record_Main();
     private Review_Main Fragment_Review = new Review_Main();
-    private Setting_Main Fragment_Setting = new Setting_Main();
+    //private Setting_Main Fragment_Setting = new Setting_Main();
+	
+	private LinearLayout New_btn, Setting_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         Find_View();
     }
 
+	/*
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
@@ -44,9 +43,9 @@ public class MainActivity extends AppCompatActivity {
         switch(resultCode){
 
             case 1:
-                /***
-                                暫時用黎示範修改一條紀錄, 會用 Firebase 取代
-                                 ***/
+                
+                // 暫時用黎示範修改一條紀錄, 會用 Firebase 取代
+                                 
 
                 Fragment_Record.remove_data(data.getIntExtra("Position", 0));
 
@@ -61,9 +60,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case 2:
-                /***
-                                暫時用黎示範新增一條紀錄, 會用 Firebase 取代
-                                 ***/
+                
+                // 暫時用黎示範新增一條紀錄, 會用 Firebase 取代
+                                 
 
                 Fragment_Record.my_add_data(
                         data.getStringExtra("Product_No"),
@@ -82,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
-
+***/
 
     @SuppressLint("WrongViewCast")
     private void Find_View(){
@@ -92,18 +91,48 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.setOffscreenPageLimit(3);
 
         Setup_Viewpager();
-
+		
+		New_btn = (LinearLayout) findViewById(R.id.new_btn);
+		New_btn.setOnClickListener(View_OnClickListeren);
+		
+		Setting_btn = (LinearLayout) findViewById(R.id.setting_btn);
+		Setting_btn.setOnClickListener(View_OnClickListeren);
+		
     }
+	
+	private View.OnClickListener View_OnClickListeren = new View.OnClickListener(){
+
+		@Override
+		public void onClick(View v)
+		{
+			// TODO: Implement this method
+			switch(v.getId()){
+				
+				case R.id.new_btn:
+					Intent open_y001_activity2 = new Intent(MainActivity.this, Record_Main.class);
+					startActivity(open_y001_activity2);
+					break;
+					
+				case R.id.setting_btn:
+					Intent open_y001_activity = new Intent(MainActivity.this, Setting_Main.class);
+					startActivity(open_y001_activity);
+					break;
+			}
+		}
+		
+		
+		
+	};
 
     private void Setup_Viewpager(){
 
         List<Fragment> fragmentList = new ArrayList<Fragment>();
 
-        fragmentList.add(Fragment_Record);
+        //fragmentList.add(Fragment_Review);
 
         fragmentList.add(Fragment_Review);
 
-        fragmentList.add(Fragment_Setting);
+        //fragmentList.add(Fragment_Review);
 
 //        Setup Adapter
         final ViewPager_Adapter mViewPager_Adapter = new ViewPager_Adapter(this.getSupportFragmentManager(), fragmentList);

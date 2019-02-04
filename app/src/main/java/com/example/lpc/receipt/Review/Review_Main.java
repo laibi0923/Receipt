@@ -14,7 +14,7 @@ import com.example.lpc.receipt.R;
 
 public class Review_Main extends Fragment {
 
-    private LinearLayout calendar_btn;
+    
 
     @Nullable
     @Override
@@ -30,28 +30,9 @@ public class Review_Main extends Fragment {
 
     private void Find_View(View v){
 
-        calendar_btn = v.findViewById(R.id.calendar_btn);
-
-        calendar_btn.setOnClickListener(ViewClickListener);
     }
 
 
-    private View.OnClickListener ViewClickListener = new View.OnClickListener(){
-
-        @Override
-        public void onClick(View v) {
-
-            switch (v.getId()){
-
-                case R.id.calendar_btn:
-
-                    Intent open_b003_activity = new Intent(getActivity(), Review_Calendar.class);
-                    startActivity(open_b003_activity);
-
-                    break;
-            }
-
-        }
-    };
+    
 
 }

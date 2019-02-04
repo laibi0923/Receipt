@@ -11,25 +11,28 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.example.lpc.receipt.R;
+import android.support.v7.app.*;
 
-public class Setting_Main extends Fragment {
+public class Setting_Main extends AppCompatActivity {
 
     private LinearLayout setting_statistics_btn;
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+	@Override
+	protected void onCreate(Bundle savedInstanceState)
+	{
+		// TODO: Implement this method
+		super.onCreate(savedInstanceState);
+		
+		setContentView(R.layout.z001_setting_main);
+		
+		Find_View();
+	}
+	
 
-        View v = inflater.inflate(R.layout.z001_setting_main, container, false);
+    private void Find_View(){
 
-        Find_View(v);
-
-        return v;
-    }
-
-    private void Find_View(View v){
-
-        setting_statistics_btn = v.findViewById(R.id.setting_statistics_btn);
+        setting_statistics_btn = (LinearLayout) findViewById(R.id.setting_statistics_btn);
+		
         setting_statistics_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,7 +41,7 @@ public class Setting_Main extends Fragment {
 
                     case R.id.setting_statistics_btn:
 
-                        Intent open_y001_activity = new Intent(getActivity(), Statustics_Main.class);
+                        Intent open_y001_activity = new Intent(Setting_Main.this, Statustics_Main.class);
                         startActivity(open_y001_activity);
 
                         break;
