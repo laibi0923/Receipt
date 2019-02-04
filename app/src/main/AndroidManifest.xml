@@ -23,6 +23,13 @@
         </activity>
 
         <activity
+            android:name=".Record.Record_Main"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
+
+        </activity>
+
+
+        <activity
             android:name=".Record.Record_Item"
             android:windowSoftInputMode="stateHidden|adjustResize" >
 
@@ -42,6 +49,12 @@
         <activity android:name=".Review.Review_Calendar">
 
         </activity>
+
+        <activity
+            android:name=".Setting.Setting_Main">
+
+        </activity>
+
 
         <activity
             android:name=".Setting.Statustics_Main">

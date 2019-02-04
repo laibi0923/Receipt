@@ -74,8 +74,59 @@ public class Record_Main extends AppCompatActivity {
         xx_list.remove(position);
 
     }
-	
-	/*
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+
+            case 1:
+
+                if (data != null){
+                    remove_data(data.getIntExtra("Postion", 0));
+
+                    my_add_data(
+                            data.getStringExtra("Product_No"),
+                            data.getStringExtra("Product_Name"),
+                            data.getStringExtra("Product_Price"),
+                            data.getStringExtra("Product_Discount"),
+                            data.getStringExtra("Product_Tax"),
+                            data.getStringExtra("Product_FianlPrice"));
+                }
+
+
+                break;
+
+
+            case 2:
+
+                if (data != null){
+
+                    my_add_data(
+                            data.getStringExtra("Product_No"),
+                            data.getStringExtra("Product_Name"),
+                            data.getStringExtra("Product_Price"),
+                            data.getStringExtra("Product_Discount"),
+                            data.getStringExtra("Product_Tax"),
+                            data.getStringExtra("Product_FianlPrice"));
+
+                }
+
+                break;
+
+            case 3:
+
+                if (data != null){
+                    add_remark(data.getStringExtra("remark_msg"));
+                }
+
+                break;
+        }
+
+
+    }
+
 
     public void my_add_data(String Product_No, String Product_Name, String Price, String Discount, String Tax, String Final_Price){
 
@@ -111,7 +162,7 @@ public class Record_Main extends AppCompatActivity {
         }
 
     }
-	*/
+
 
     public void add_remark(String remark){
 

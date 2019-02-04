@@ -58,10 +58,6 @@ public class Record_Item extends AppCompatActivity {
 
         setContentView(R.layout.a002_record_item);
 
-        Price = 0.00;
-        Discount = 1.00;
-        Tax = 0.00;
-
         extras = getIntent().getExtras();
 
         if (extras == null){
@@ -73,6 +69,10 @@ public class Record_Item extends AppCompatActivity {
             Product_Tax = "";
             Product_FinalPrice = "$0.00";
 
+            Price = 0.00;
+            Discount = 1.00;
+            Tax = 0.00;
+
         }else {
 
             Position = extras.getInt("extras_position", 0);
@@ -82,6 +82,10 @@ public class Record_Item extends AppCompatActivity {
             Product_Discount = extras.getString("extras_product_discount");
             Product_Tax = extras.getString("extras_product_tax");
             Product_FinalPrice = extras.getString("extras_product_finalprice");
+
+            Price = Double.parseDouble(Product_Price.replaceAll("[^0-9.]", ""));
+            Discount = Double.parseDouble(Product_Discount.replaceAll("[^0-9.]", ""));;
+            Tax = Double.parseDouble(Product_Tax.replaceAll("[^0-9.]", ""));;
 
         }
 
@@ -166,6 +170,14 @@ public class Record_Item extends AppCompatActivity {
                 case R.id.next_record_btn:
 
                     if (!name_edittext.getText().toString().trim().isEmpty() && !price_edittext.getText().toString().trim().isEmpty()){
+
+                        if (discount_edittext.getText().toString().trim().isEmpty()){
+                            discount_edittext.setText("-");
+                        }
+
+                        if (tax_edittext.getText().toString().trim().isEmpty()){
+                            mChange_Amount.Change_Amount("0.0", tax_edittext);
+                        }
 
                         Intent mIntent = new Intent();
 
@@ -291,7 +303,6 @@ public class Record_Item extends AppCompatActivity {
                 Sum_Value();
 
             }
-
         }
 
         @Override

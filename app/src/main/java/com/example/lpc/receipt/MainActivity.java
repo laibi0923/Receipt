@@ -33,56 +33,6 @@ public class MainActivity extends AppCompatActivity {
         Find_View();
     }
 
-	/*
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        // TODO: Implement this method
-        super.onActivityResult(requestCode, resultCode, data);
-
-        switch(resultCode){
-
-            case 1:
-                
-                // 暫時用黎示範修改一條紀錄, 會用 Firebase 取代
-                                 
-
-                Fragment_Record.remove_data(data.getIntExtra("Position", 0));
-
-                Fragment_Record.my_add_data(
-                        data.getStringExtra("Product_No"),
-                        data.getStringExtra("Product_Name"),
-                        data.getStringExtra("Product_Price"),
-                        data.getStringExtra("Product_Discount"),
-                        data.getStringExtra("Product_Tax"),
-                        data.getStringExtra("Product_FianlPrice"));
-
-                break;
-
-            case 2:
-                
-                // 暫時用黎示範新增一條紀錄, 會用 Firebase 取代
-                                 
-
-                Fragment_Record.my_add_data(
-                        data.getStringExtra("Product_No"),
-                        data.getStringExtra("Product_Name"),
-                        data.getStringExtra("Product_Price"),
-                        data.getStringExtra("Product_Discount"),
-                        data.getStringExtra("Product_Tax"),
-                        data.getStringExtra("Product_FianlPrice"));
-
-                break;
-
-            case 3:
-
-                Fragment_Record.add_remark(data.getStringExtra("remark_msg"));
-
-                break;
-        }
-    }
-***/
-
     @SuppressLint("WrongViewCast")
     private void Find_View(){
 
@@ -109,13 +59,13 @@ public class MainActivity extends AppCompatActivity {
 			switch(v.getId()){
 				
 				case R.id.new_btn:
-					Intent open_y001_activity2 = new Intent(MainActivity.this, Record_Main.class);
-					startActivity(open_y001_activity2);
+					Intent open_a001_activity = new Intent(MainActivity.this, Record_Main.class);
+					startActivity(open_a001_activity);
 					break;
 					
 				case R.id.setting_btn:
-					Intent open_y001_activity = new Intent(MainActivity.this, Setting_Main.class);
-					startActivity(open_y001_activity);
+					Intent open_z001_activity = new Intent(MainActivity.this, Setting_Main.class);
+					startActivity(open_z001_activity);
 					break;
 			}
 		}
