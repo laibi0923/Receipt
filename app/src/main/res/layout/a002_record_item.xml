@@ -175,14 +175,13 @@
 				android:layout_height="wrap_content"
 				android:background="@android:color/transparent"
 				android:gravity="right"
-				android:hint="@string/record_amount_text"
 				android:imeOptions="actionNext"
 				android:inputType="numberDecimal"
+				android:maxLength="14"
 				android:padding="10dp"
 				android:singleLine="true"
 				android:textColor="@color/text_color_1"
-				android:textColorHint="@color/text_color_1"
-				android:maxLength="14"/>
+				android:textColorHint="@color/text_color_1" />
 
 		</LinearLayout>
 
@@ -214,15 +213,14 @@
 				android:layout_height="wrap_content"
 				android:layout_weight="1"
 				android:background="@android:color/transparent"
-				android:maxLength="2"
 				android:gravity="right"
-				android:hint="-"
 				android:imeOptions="actionNext"
 				android:inputType="numberDecimal"
+				android:maxLength="3"
 				android:padding="10dp"
 				android:singleLine="true"
 				android:textColor="@color/text_color_1"
-				android:textColorHint="@color/text_color_1"/>
+				android:textColorHint="@color/text_color_1" />
 
 			<TextView
 				android:layout_width="wrap_content"
@@ -263,14 +261,13 @@
 				android:layout_height="wrap_content"
 				android:background="@android:color/transparent"
 				android:gravity="right"
-				android:hint="@string/record_amount_text"
 				android:imeOptions="actionDone"
 				android:inputType="numberDecimal"
+				android:maxLength="14"
 				android:padding="10dp"
 				android:singleLine="true"
 				android:textColor="@color/text_color_1"
-				android:textColorHint="@color/text_color_1"
-				android:maxLength="14"/>
+				android:textColorHint="@color/text_color_1" />
 
 		</LinearLayout>
 

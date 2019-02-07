@@ -68,13 +68,6 @@ public class Record_Main extends AppCompatActivity {
 
     DecimalFormat dec = new DecimalFormat("#,##0.00");
 
-
-    public void remove_data(int position){
-
-        xx_list.remove(position);
-
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -83,18 +76,25 @@ public class Record_Main extends AppCompatActivity {
 
             case 1:
 
+                // 全新資料
                 if (data != null){
-                    remove_data(data.getIntExtra("Postion", 0));
 
-                    my_add_data(
+                    Record_Item_Model record = new Record_Item_Model(
                             data.getStringExtra("Product_No"),
                             data.getStringExtra("Product_Name"),
                             data.getStringExtra("Product_Price"),
                             data.getStringExtra("Product_Discount"),
                             data.getStringExtra("Product_Tax"),
                             data.getStringExtra("Product_FianlPrice"));
+
+
+                    xx_list.add(record);
+//                    adapter.addData(data.getIntExtra("Postion", 0), record);
+                    adapter.notifyDataSetChanged();
+
                 }
 
+                toggle_view();
 
                 break;
 
@@ -103,15 +103,39 @@ public class Record_Main extends AppCompatActivity {
 
                 if (data != null){
 
-                    my_add_data(
-                            data.getStringExtra("Product_No"),
-                            data.getStringExtra("Product_Name"),
-                            data.getStringExtra("Product_Price"),
-                            data.getStringExtra("Product_Discount"),
-                            data.getStringExtra("Product_Tax"),
-                            data.getStringExtra("Product_FianlPrice"));
+                    Log.e("Action_Type", data.getStringExtra("Action_Type"));
+
+                    String Action_Type = data.getStringExtra("Action_Type");
+
+                    if (Action_Type.equals("DEL_APPLICATION")){
+                        int DEL_POSITION = data.getIntExtra("Position", 0);
+                        xx_list.remove(DEL_POSITION);
+                        adapter.notifyItemRemoved(DEL_POSITION);
+                    }
+
+                    if (Action_Type.equals("UPDATE_APPLICATION")) {
+
+                        int UPDATE_POSITION = data.getIntExtra("Position", 0);
+                        xx_list.remove(UPDATE_POSITION);
+                        adapter.notifyItemRemoved(UPDATE_POSITION);
+
+                        Record_Item_Model record = new Record_Item_Model(
+                                data.getStringExtra("Product_No"),
+                                data.getStringExtra("Product_Name"),
+                                data.getStringExtra("Product_Price"),
+                                data.getStringExtra("Product_Discount"),
+                                data.getStringExtra("Product_Tax"),
+                                data.getStringExtra("Product_FianlPrice"));
+
+                        xx_list.add(record);
+                        adapter.notifyDataSetChanged();
+
+                    }
 
                 }
+
+                toggle_view();
+
 
                 break;
 
@@ -122,25 +146,14 @@ public class Record_Main extends AppCompatActivity {
                 }
 
                 break;
+
         }
 
 
     }
 
 
-    public void my_add_data(String Product_No, String Product_Name, String Price, String Discount, String Tax, String Final_Price){
-
-        Record_Item_Model record = new Record_Item_Model(
-                Product_No,
-                Product_Name,
-                Price,
-                Discount,
-                Tax,
-                Final_Price);
-
-        xx_list.add(record);
-
-        adapter.notifyDataSetChanged();
+    public void toggle_view(){
 
         if (xx_list.isEmpty()){
 
@@ -162,6 +175,7 @@ public class Record_Main extends AppCompatActivity {
         }
 
     }
+
 
 
     public void add_remark(String remark){
@@ -190,6 +204,8 @@ public class Record_Main extends AppCompatActivity {
 				@Override
 				public void onItemClick(View view, int position) {
 
+				    Log.e("Now Position : ",  position + "");
+
 					Intent open_a002_activity = new Intent(Record_Main.this, Record_Item.class);
 
 					open_a002_activity.putExtra("extras_position", adapter.getItemId(position));
@@ -200,7 +216,9 @@ public class Record_Main extends AppCompatActivity {
 					open_a002_activity.putExtra("extras_product_tax", adapter.get_Product_Tax(position));
 					open_a002_activity.putExtra("extras_product_finalprice", adapter.get_Product_FinalPrice(position));
 
-					startActivityForResult(open_a002_activity, 1);
+					Log.e("String", "Positoin :" + adapter.getItemId(position) + "," + "Discount" + adapter.get_Product_Discount(position));
+
+					startActivityForResult(open_a002_activity, 2);
 
 				}
 			});
@@ -331,7 +349,7 @@ public class Record_Main extends AppCompatActivity {
 				case R.id.recordmain_fab:
 					
 					Intent open_a002_activity = new Intent(Record_Main.this, Record_Item.class);
-                    startActivityForResult(open_a002_activity, 2);
+                    startActivityForResult(open_a002_activity, 1);
 					
 					break;
 

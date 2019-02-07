@@ -143,4 +143,17 @@ public class Record_Item_Adapter extends RecyclerView.Adapter<Record_Item_Adapte
         void onItemClick(View view, int position);
     }
 
+
+    public void addData(int Position, Record_Item_Model Model){
+        mData.add(Position, Model);
+        notifyItemInserted(Position);
+    }
+
+    public void removeData(int Position){
+        mData.remove(Position);
+        notifyItemRemoved(Position);
+    }
+
+
+
 }
