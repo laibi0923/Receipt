@@ -80,9 +80,9 @@ public class Record_Item extends AppCompatActivity {
 
             Product_No_Text = "";
             Product_Name_Text = "";
-            Product_Price_Text = "";
-            Product_Discount_Text = "";
-            Product_Tax_Text = "";
+            Product_Price_Text = "$0.00";
+            Product_Discount_Text = "0";
+            Product_Tax_Text = "$0.00";
             Product_FinalPrice_Text = "$0.00";
 
             Price = 0.00;
@@ -92,6 +92,8 @@ public class Record_Item extends AppCompatActivity {
         }else {
 
             Item_Position = extras.getInt("extras_position", 0);
+			
+			Log.e("recorditeam", Item_Position +"");
             Product_No_Text = extras.getString("extras_product_no");
             Product_Name_Text = extras.getString("extras_product_name");
             Product_Price_Text = extras.getString("extras_product_price");
@@ -100,8 +102,8 @@ public class Record_Item extends AppCompatActivity {
             Product_FinalPrice_Text = extras.getString("extras_product_finalprice");
 
             Price = Double.parseDouble(Product_Price_Text.replaceAll("[^0-9.]", ""));
-            Discount = Double.parseDouble(Product_Discount_Text.replaceAll("[^0-9.]", ""));;
-            Tax = Double.parseDouble(Product_Tax_Text.replaceAll("[^0-9.]", ""));;
+            Discount = Double.parseDouble(Product_Discount_Text.replaceAll("[^0-9.]", "")) / 100;
+            Tax = Double.parseDouble(Product_Tax_Text.replaceAll("[^0-9.]", ""));
 
         }
 
@@ -122,7 +124,7 @@ public class Record_Item extends AppCompatActivity {
         back_btn = (LinearLayout) findViewById(R.id.back_btn);
         back_btn.setOnClickListener(View_Click_Listener);
 
-        del_btn = findViewById(R.id.del_btn);
+        del_btn = (LinearLayout) findViewById(R.id.del_btn);
         del_btn.setOnClickListener(View_Click_Listener);
 
         productno_edittext = (EditText) findViewById(R.id.productno_edittext);
@@ -173,7 +175,7 @@ public class Record_Item extends AppCompatActivity {
                     Intent del_item_Intent = new Intent();
 
                     del_item_Intent.putExtra("Action_Type", "DEL_APPLICATION");
-                    del_item_Intent.putExtra("Postion", Item_Position);
+                    del_item_Intent.putExtra("Del_Postion", Item_Position);
 
                     setResult(2, del_item_Intent);
                     close_keybord();
@@ -211,13 +213,15 @@ public class Record_Item extends AppCompatActivity {
                     if (!name_edittext.getText().toString().trim().isEmpty() && !price_edittext.getText().toString().trim().isEmpty()){
 
                         if (discount_edittext.getText().toString().trim().isEmpty()){
-                            discount_edittext.setText("100");
+                            discount_edittext.setText("0");
                         }
 
                         if (tax_edittext.getText().toString().trim().isEmpty()){
                             mChange_Amount.Change_Amount("0.0", tax_edittext);
                         }
 
+						Sum_Value();
+						
                         Intent mIntent = new Intent();
 
                         mIntent.putExtra("Position", Item_Position);
@@ -264,10 +268,6 @@ public class Record_Item extends AppCompatActivity {
 
                 mChange_Amount.Change_Amount(s.toString(), price_edittext);
 
-                String Price_ReplaceText = price_edittext.getText().toString().replaceAll("[^0-9.]","");
-
-                Price = Double.parseDouble(Price_ReplaceText);
-
                 Sum_Value();
 
             }
@@ -301,12 +301,11 @@ public class Record_Item extends AppCompatActivity {
                 String Discount_ReplaceText = discount_edittext.getText().toString().replaceAll("[^0-9.]","");
 
                 if (Discount_ReplaceText.isEmpty() || Discount_ReplaceText == null || Double.parseDouble(Discount_ReplaceText) > 100){
-                    Discount = 1.0;
-                    discount_edittext.setText("100");
-                }else {
-                    Discount = Double.parseDouble(Discount_ReplaceText) / 100;
+					
+                    discount_edittext.setText("0");
+					
                 }
-
+				
                 Sum_Value();
             }
 
@@ -338,10 +337,6 @@ public class Record_Item extends AppCompatActivity {
 
                 mChange_Amount.Change_Amount(s.toString(),tax_edittext);
 
-                String Tax_ReplaceText = tax_edittext.getText().toString().replaceAll("[^0-9.]","");
-
-                Tax = Double.parseDouble(Tax_ReplaceText);
-
                 Sum_Value();
 
             }
@@ -358,10 +353,21 @@ public class Record_Item extends AppCompatActivity {
 
     //    計算總銀碼
     private void Sum_Value(){
+		
+			
+		if(!price_edittext.getText().toString().isEmpty() && !discount_edittext.getText().toString().isEmpty() && !tax_edittext.getText().toString().isEmpty()){
+			
+			Price = Double.parseDouble(price_edittext.getText().toString().replaceAll("[^0-9.]", ""));
 
-        Double Result = Price * Discount + Tax;
+			Discount = 1 - Double.parseDouble(discount_edittext.getText().toString()) / 100;
 
-        total_amount_textview.setText("$" + mDecimalFormat.format(Result));
+			Tax = Double.parseDouble(tax_edittext.getText().toString().replaceAll("[^0-9.]",""));
+
+			Double Result = Price * Discount + Tax;
+
+			total_amount_textview.setText("$" + mDecimalFormat.format(Result));
+			
+		}
     }
 
     //    關閉鍵盤

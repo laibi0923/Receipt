@@ -1,6 +1,6 @@
 package com.example.lpc.receipt.Record;
 
-public class Record_Item_Model {
+public class Record_Item_Model { 
 
     String product_no, product_name, product_price, product_discount, product_tax, product_final_price;
 

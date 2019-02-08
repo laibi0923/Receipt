@@ -103,14 +103,14 @@ public class Record_Main extends AppCompatActivity {
 
                 if (data != null){
 
-                    Log.e("Action_Type", data.getStringExtra("Action_Type"));
-
                     String Action_Type = data.getStringExtra("Action_Type");
 
                     if (Action_Type.equals("DEL_APPLICATION")){
-                        int DEL_POSITION = data.getIntExtra("Position", 0);
+						
+                        int DEL_POSITION = data.getIntExtra("Del_Postion", 0);
                         xx_list.remove(DEL_POSITION);
                         adapter.notifyItemRemoved(DEL_POSITION);
+						
                     }
 
                     if (Action_Type.equals("UPDATE_APPLICATION")) {
@@ -204,19 +204,17 @@ public class Record_Main extends AppCompatActivity {
 				@Override
 				public void onItemClick(View view, int position) {
 
-				    Log.e("Now Position : ",  position + "");
+				    Log.e("Adapter Action", "You click Position : " + position);
 
 					Intent open_a002_activity = new Intent(Record_Main.this, Record_Item.class);
 
-					open_a002_activity.putExtra("extras_position", adapter.getItemId(position));
+					open_a002_activity.putExtra("extras_position", position);
 					open_a002_activity.putExtra("extras_product_no", adapter.get_Product_No(position));
 					open_a002_activity.putExtra("extras_product_name", adapter.get_Product_Name(position));
 					open_a002_activity.putExtra("extras_product_price", adapter.get_Product_Price(position));
 					open_a002_activity.putExtra("extras_product_discount", adapter.get_Product_Discount(position));
 					open_a002_activity.putExtra("extras_product_tax", adapter.get_Product_Tax(position));
 					open_a002_activity.putExtra("extras_product_finalprice", adapter.get_Product_FinalPrice(position));
-
-					Log.e("String", "Positoin :" + adapter.getItemId(position) + "," + "Discount" + adapter.get_Product_Discount(position));
 
 					startActivityForResult(open_a002_activity, 2);
 
@@ -248,7 +246,6 @@ public class Record_Main extends AppCompatActivity {
         recordmain_newitem_btn.setOnClickListener(View_Click_Listener);
 
         recordmain_item_recyclerview = (RecyclerView) findViewById(R.id.recordmain_item_recyclerview);
-        recordmain_item_recyclerview.setHasFixedSize(true);
         recordmain_item_recyclerview.setNestedScrollingEnabled(false);
 
         recordmain_total_amount = (LinearLayout) findViewById(R.id.recordmain_total_amount);

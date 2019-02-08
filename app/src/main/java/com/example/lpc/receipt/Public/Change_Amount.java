@@ -1,7 +1,7 @@
 package com.example.lpc.receipt.Public;
 
 import java.text.*;
-import android.widget.*;
+import android.widget.*; 
 
 public class Change_Amount
 {
