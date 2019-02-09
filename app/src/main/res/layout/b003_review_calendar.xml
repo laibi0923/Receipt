@@ -38,8 +38,7 @@ android:weekSeparatorLineColor  设置日历每行之间分割线的颜色;-->
 		android:layout_height="wrap_content"
 		android:theme="@style/CalenderViewCustom"
 		android:dateTextAppearance="@style/CalenderViewDateCustomText"
-		android:weekDayTextAppearance="@style/CalenderViewWeekCustomText"
-		/>
+		android:weekDayTextAppearance="@style/CalenderViewWeekCustomText" />
 
 </LinearLayout>
 

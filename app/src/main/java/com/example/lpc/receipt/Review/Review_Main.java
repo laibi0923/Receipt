@@ -9,12 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.lpc.receipt.R;
 
 public class Review_Main extends Fragment {
 
-    
+    private TextView reviewmain_date;
 
     @Nullable
     @Override
@@ -30,9 +31,15 @@ public class Review_Main extends Fragment {
 
     private void Find_View(View v){
 
+        reviewmain_date = (TextView) v.findViewById(R.id.reviewmain_date);
+
     }
 
+    public void ChangeSearch_Date(String datetext){
 
+        reviewmain_date.setText(datetext);
+
+    }
     
 
 }
