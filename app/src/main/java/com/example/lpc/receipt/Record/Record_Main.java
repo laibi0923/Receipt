@@ -29,6 +29,8 @@ import android.support.v7.app.*;
 public class Record_Main extends AppCompatActivity {
 	
 	private NestedScrollView recordmain_scrollview;
+	
+	private LinearLayout back_btn;
 
     private EditText recordmain_name_edittext;
 
@@ -229,6 +231,9 @@ public class Record_Main extends AppCompatActivity {
 		
 		recordmain_scrollview = (NestedScrollView) findViewById(R.id.recordmain_scrollview);
 		recordmain_scrollview.setOnScrollChangeListener(NestedScrollView_OnScrollChangeListener);
+		
+		back_btn = (LinearLayout) findViewById(R.id.back_btn);
+		back_btn.setOnClickListener(View_Click_Listener);
 
         recordmain_name_edittext = (EditText) findViewById(R.id.recordmain_name_edittext);
         recordmain_name_edittext.setText("");
@@ -294,6 +299,10 @@ public class Record_Main extends AppCompatActivity {
         public void onClick(View v) {
 
             switch (v.getId()){
+				
+				case R.id.back_btn:
+					finish();
+					break;
 
                 case R.id.recordmain_date_textview:
 

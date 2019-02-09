@@ -19,6 +19,7 @@ import com.example.lpc.receipt.Public.Change_Amount;
 import com.example.lpc.receipt.R;
 
 import java.text.DecimalFormat;
+import android.view.View.*;
 
 public class Record_Item extends AppCompatActivity {
 
@@ -135,17 +136,17 @@ public class Record_Item extends AppCompatActivity {
 
         price_edittext = (EditText) findViewById(R.id.price_edittext);
         price_edittext.setText(Product_Price_Text);
-        price_edittext.setOnClickListener(View_Click_Listener);
+		price_edittext.setOnFocusChangeListener(InputChangeListener);
         price_edittext.addTextChangedListener(Price_TextWatcher);
 
         discount_edittext = (EditText) findViewById(R.id.discount_edittext);
         discount_edittext.setText(Product_Discount_Text);
-        discount_edittext.setOnClickListener(View_Click_Listener);
+		discount_edittext.setOnFocusChangeListener(InputChangeListener);
         discount_edittext.addTextChangedListener(Discount_TextWatcher);
 
         tax_edittext = (EditText) findViewById(R.id.tax_edittext);
         tax_edittext.setText(Product_Tax_Text);
-        tax_edittext.setOnClickListener(View_Click_Listener);
+		tax_edittext.setOnFocusChangeListener(InputChangeListener);
         tax_edittext.addTextChangedListener(Tax_TextWatcher);
 
         total_amount_textview = (TextView) findViewById(R.id.total_amount_textview);
@@ -180,31 +181,6 @@ public class Record_Item extends AppCompatActivity {
                     setResult(2, del_item_Intent);
                     close_keybord();
                     finish();
-
-                    break;
-
-
-                case R.id.price_edittext:
-
-                    price_edittext.setText("");
-                    Price = 0.0;
-                    Sum_Value();
-
-                    break;
-
-                case R.id.discount_edittext:
-
-                    discount_edittext.setText("");
-                    Discount = 1.0;
-                    Sum_Value();
-
-                    break;
-
-                case R.id.tax_edittext:
-
-                    tax_edittext.setText("");
-                    Tax = 0.0;
-                    Sum_Value();
 
                     break;
 
@@ -282,7 +258,75 @@ public class Record_Item extends AppCompatActivity {
         }
 
     };
+	
+	private OnFocusChangeListener InputChangeListener = new OnFocusChangeListener(){
 
+		@Override
+		public void onFocusChange(View v, boolean hasfocus)
+		{
+			// TODO: Implement this method
+			if(hasfocus){
+				
+				switch(v.getId()){
+					
+					case R.id.price_edittext:
+						
+						price_edittext.setText("");
+						
+						break;
+						
+					case R.id.discount_edittext:
+						
+						discount_edittext.setText("");
+						break;
+						
+						
+					case R.id.tax_edittext:
+						
+						tax_edittext.setText("");
+						
+						break;
+				}
+				
+				Sum_Value();
+				
+			}else{
+				
+				switch(v.getId()){
+
+					case R.id.price_edittext:
+						
+						if(price_edittext.getText().toString().isEmpty()){
+							price_edittext.setText("$0.00");
+						}
+						
+						break;
+
+					case R.id.discount_edittext:
+						
+						if(discount_edittext.getText().toString().isEmpty()){
+							discount_edittext.setText("0");
+						}
+						
+						break;
+
+					case R.id.tax_edittext:
+						
+						if(tax_edittext.getText().toString().isEmpty()){
+							tax_edittext.setText("$0.00");
+						}
+						
+						break;
+				}
+				
+				Sum_Value();
+				
+			}
+		}
+		
+	};
+	
+	
 
     private TextWatcher Discount_TextWatcher = new TextWatcher(){
 

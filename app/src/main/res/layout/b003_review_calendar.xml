@@ -1,4 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
+	<!--
+android:dateTextAppearance  设置日历View在日历表格中的字体皮肤;
+
+android:firstDayOfWeek   指定日历第一个星期的第一天，在日历中横向所在位置，从右边向左数，从1开始计数;
+
+android:focusedMonthDateColor  设置日历表格当月显示的日期字体颜色；
+
+android:maxDate 设置日历能够显示的最大日期；
+
+android:minDate 设置日历能够显示的最小日期；
+
+android:selectedDateVerticalBar 设置当前选择日期选择边框左右两边显示的图标；
+
+android:selectedWeekBackgroundColor  设置当前选择日期所在行的背景颜色(除了选中的日期之外)；
+
+android:showWeekNumber   设置是否显示周期数量；
+
+android:shownWeekCount 设置设备一屏显示多少周即多少行；
+
+android:unfocusedMonthDateColor  设置非当前选择月的字体颜色与focusedMonthDateColor相反；
+
+android:weekNumberColor  设置显示周期编号字体的颜色；
+
+android:weekSeparatorLineColor  设置日历每行之间分割线的颜色;-->
+	
+	
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
@@ -10,7 +36,10 @@
 	<CalendarView
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		 />
+		android:theme="@style/CalenderViewCustom"
+		android:dateTextAppearance="@style/CalenderViewDateCustomText"
+		android:weekDayTextAppearance="@style/CalenderViewWeekCustomText"
+		/>
 
 </LinearLayout>
 
