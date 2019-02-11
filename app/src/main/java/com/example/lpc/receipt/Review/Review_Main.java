@@ -16,6 +16,16 @@ import com.example.lpc.receipt.R;
 public class Review_Main extends Fragment {
 
     private TextView reviewmain_date;
+	private int mDate;
+	
+	
+	public static Review_Main newInstance(int testtab){
+		
+		Review_Main fragment = new Review_Main();
+		
+		return fragment;
+	}
+	
 
     @Nullable
     @Override
@@ -32,6 +42,7 @@ public class Review_Main extends Fragment {
     private void Find_View(View v){
 
         reviewmain_date = (TextView) v.findViewById(R.id.reviewmain_date);
+		reviewmain_date.setText(getArguments().getString("date"));
 
     }
 

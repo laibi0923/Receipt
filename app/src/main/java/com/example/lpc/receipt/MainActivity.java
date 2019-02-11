@@ -18,6 +18,8 @@ import com.example.lpc.receipt.Record.*;
 import static android.support.v4.view.ViewPager.SCROLL_STATE_SETTLING;
 import static android.support.v7.widget.RecyclerView.SCROLL_STATE_DRAGGING;
 import static android.widget.AbsListView.OnScrollListener.SCROLL_STATE_IDLE;
+import java.text.*;
+import java.time.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +28,10 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager mViewPager;
 
 	private LinearLayout New_btn, Setting_btn;
+	
+	private int vdate = 10;
+	
+	private Calendar mCalendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         mViewPager = (ViewPager) findViewById(R.id.main_activity_viewpager);
 
-        mViewPager.setOffscreenPageLimit(3);
+        //mViewPager.setOffscreenPageLimit(3);
 
         Setup_Viewpager();
 
@@ -84,16 +90,48 @@ public class MainActivity extends AppCompatActivity {
 
 
 	};
+	
+	private String getCurrentDate(){
+		
+		Date mDate = new Date();
+		
+		DateFormat mDateFormat = new SimpleDateFormat("MM" + "月" + "dd" + "日");
+		
+		String formatDate = mDateFormat.format(mDate);
+		
+		return formatDate;
+	}
 
     private void Setup_Viewpager(){
 
         List<Fragment> fragmentList = new ArrayList<Fragment>();
-        Review_Main Fragment_Review = new Review_Main();
+        SimpleDateFormat mDateFormat = new SimpleDateFormat("MM" + "月" + "dd" + "日");
 
+		mCalendar = Calendar.getInstance();
+
+		mCalendar.setTime(new Date());
+		
+		mCalendar.add(mCalendar.DATE, -1);
 
         for (int i = 0; i < 3; i++){
-            fragmentList.add(Fragment_Review);
+				
+			String formatDate = mDateFormat.format(mCalendar.getTime());
+			
+			Review_Main Fragment_Review = new Review_Main();
+					
+			Bundle args = new Bundle();
+
+			args.putString("date", formatDate);
+
+			Fragment_Review.setArguments(args);
+			
+			fragmentList.add(Fragment_Review);
+			
+			mCalendar.add(Calendar.DATE, 1);
         }
+		
+		
+		
 
         final ViewPager_Adapter mViewPager_Adapter = new ViewPager_Adapter(this.getSupportFragmentManager(), fragmentList);
 
@@ -134,6 +172,8 @@ public class MainActivity extends AppCompatActivity {
                             mViewPager.setCurrentItem(1, false);
 
                         }
+						
+						
 
                         break;
 
@@ -155,7 +195,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-   public class ViewPager_Adapter extends FragmentPagerAdapter{
+	public class ViewPager_Adapter extends FragmentStatePagerAdapter
+	{
 
         private List<Fragment> fragmentList;
 
@@ -166,19 +207,29 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return new Review_Main();
+			
+			// TODO: Implement this method
+			return fragmentList.get(position);
         }
 
+		// 顯示多少頁
         @Override
         public int getCount() {
             return fragmentList.size();
         }
+		
+
+		/*
 
        @Override
        public int getItemPosition(@NonNull Object object) {
            return POSITION_NONE;
-       }
+       }*/
 
+	   // 初始方法
+		
+	   
+	   // 回收方法
        @Override
        public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
            
