@@ -23,15 +23,16 @@ import java.time.*;
 
 public class MainActivity extends AppCompatActivity {
 
-    private int mViewpager_Position;
-
     private ViewPager mViewPager;
 
 	private LinearLayout New_btn, Setting_btn;
-	
-	private int vdate = 10;
-	
-	private Calendar mCalendar;
+
+	private List<String> DateList;
+
+
+	private static Calendar mCalendar = Calendar.getInstance();
+
+	private int Current_Position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +41,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.a000_activity_main);
 
         Find_View();
+
     }
-
-
-
 
 
     @SuppressLint("WrongViewCast")
@@ -51,9 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         mViewPager = (ViewPager) findViewById(R.id.main_activity_viewpager);
 
-        //mViewPager.setOffscreenPageLimit(3);
-
-        Setup_Viewpager();
+        Setup_ViewPager();
 
 		New_btn = (LinearLayout) findViewById(R.id.new_btn);
 		New_btn.setOnClickListener(View_OnClickListeren);
@@ -62,9 +59,6 @@ public class MainActivity extends AppCompatActivity {
 		Setting_btn.setOnClickListener(View_OnClickListeren);
 
     }
-
-
-
 
 
 	private View.OnClickListener View_OnClickListeren = new View.OnClickListener(){
@@ -86,95 +80,83 @@ public class MainActivity extends AppCompatActivity {
 					break;
 			}
 		}
-
-
-
 	};
-	
-	private String getCurrentDate(){
-		
-		Date mDate = new Date();
-		
-		DateFormat mDateFormat = new SimpleDateFormat("MM" + "月" + "dd" + "日");
-		
-		String formatDate = mDateFormat.format(mDate);
-		
-		return formatDate;
-	}
 
-    private void Setup_Viewpager(){
 
-        List<Fragment> fragmentList = new ArrayList<Fragment>();
-        SimpleDateFormat mDateFormat = new SimpleDateFormat("MM" + "月" + "dd" + "日");
+// https://github.com/codepath/android_guides/wiki/ViewPager-with-FragmentPagerAdapter
+// https://stackoverflow.com/questions/19731320/android-viewpager-working-with-date
+    private void Setup_ViewPager(){
 
-		mCalendar = Calendar.getInstance();
+        DateList = new ArrayList<>();
 
-		mCalendar.setTime(new Date());
-		
-		mCalendar.add(mCalendar.DATE, -1);
+        mCalendar.setTime(new Date());
+
+        mCalendar.add(Calendar.DAY_OF_MONTH, -1);
+
+        SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("MM月dd日");
 
         for (int i = 0; i < 3; i++){
-				
-			String formatDate = mDateFormat.format(mCalendar.getTime());
-			
-			Review_Main Fragment_Review = new Review_Main();
-					
-			Bundle args = new Bundle();
 
-			args.putString("date", formatDate);
+            DateList.add(mSimpleDateFormat.format(mCalendar.getTime()));
 
-			Fragment_Review.setArguments(args);
-			
-			fragmentList.add(Fragment_Review);
-			
-			mCalendar.add(Calendar.DATE, 1);
+            mCalendar.add(Calendar.DAY_OF_MONTH, 1);
         }
-		
-		
-		
 
-        final ViewPager_Adapter mViewPager_Adapter = new ViewPager_Adapter(this.getSupportFragmentManager(), fragmentList);
+        final ViewPager_Adapter mViewPager_Adapter = new ViewPager_Adapter(getSupportFragmentManager(), DateList);
 
         mViewPager.setAdapter(mViewPager_Adapter);
 
         mViewPager.setCurrentItem(1);
 
+//        Current_Position = Integer.MAX_VALUE / 2;
+
+        // 過場動畫
+        mViewPager.setPageTransformer(false, new ViewPager.PageTransformer() {
+            @Override
+            public void transformPage(@NonNull View page, float position) {
+                position = (float) Math.sqrt(1 - Math.abs(position));
+                page.setAlpha(position);
+            }
+        });
+
+        // 過場監聽
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
             @Override
             public void onPageScrolled(int i, float v, int i1) {
 
-                Log.e("PageScroll", "Position : " + i );
             }
 
             @Override
             public void onPageSelected(int position) {
 
-                mViewpager_Position = position;
-                Log.e("onPageSelected", "Position : " + position);
+                if (position < Current_Position){
+                    // 左滑時當前日子減少一日
+                    mCalendar.add(Calendar.DAY_OF_MONTH, -1);
+                }else {
+                    // 右滑時當前日子增加一日
+                    mCalendar.add(Calendar.DAY_OF_MONTH, 1);
+                }
+
+                Current_Position = position;
+
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
 
-                switch(state){
+				switch(state){
 
                     // 停止滑動
                     case SCROLL_STATE_IDLE:
 
                         // 無限循環設定
                         // http://www.voidcn.com/article/p-tyexajzi-bhh.html
-                        if(mViewpager_Position == 0){
-
+                        if(Current_Position == 0){
                             mViewPager.setCurrentItem(mViewPager_Adapter.getCount() - 2, false);
-
-                        }else if(mViewpager_Position == mViewPager_Adapter.getCount() - 1) {
-
+                        }else if(Current_Position == mViewPager_Adapter.getCount() - 1) {
                             mViewPager.setCurrentItem(1, false);
-
                         }
-						
-						
-
                         break;
 
                     // 滑動進行中
@@ -184,57 +166,140 @@ public class MainActivity extends AppCompatActivity {
                     // 滑動放手, 自動歸位過程
                     case SCROLL_STATE_SETTLING:
                         break;
+
+
                 }
 
             }
         });
 
+    }
+
+
+    private void renderView(){
+
+        SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("MM月dd日");
 
     }
 
 
 
+    // 返回本日
+    private void Jump_Today(){
+        mViewPager.setCurrentItem(0);
+    }
 
-	public class ViewPager_Adapter extends FragmentStatePagerAdapter
-	{
 
-        private List<Fragment> fragmentList;
 
-        public ViewPager_Adapter(FragmentManager fm, List<Fragment> fragmentList){
-            super(fm);
-            this.fragmentList = fragmentList;
-        }
 
-        @Override
-        public Fragment getItem(int position) {
-			
-			// TODO: Implement this method
-			return fragmentList.get(position);
-        }
 
-		// 顯示多少頁
-        @Override
-        public int getCount() {
-            return fragmentList.size();
-        }
-		
 
-		/*
+//    private void Setup_Viewpager(){
+//
+//        Current_Position = Integer.MAX_VALUE / 2;
+//
+//        List<Fragment> fragmentList = new ArrayList<Fragment>();
+//
+//        SimpleDateFormat mDateFormat = new SimpleDateFormat("MM" + "月" + "dd" + "日");
+//
+//		mCalendar = Calendar.getInstance();
+//
+//		mCalendar.setTime(new Date());
+//
+//		mCalendar.add(mCalendar.DATE, -1);
+//
+//        for (int i = 0; i < 3; i++){
+//
+//			String formatDate = mDateFormat.format(mCalendar.getTime());
+//
+//			Review_Main Fragment_Review = new Review_Main();
+//
+//			Bundle args = new Bundle();
+//
+//			args.putString("date", formatDate);
+//
+//			Fragment_Review.setArguments(args);
+//
+//			fragmentList.add(Fragment_Review);
+//
+//			mCalendar.add(Calendar.DATE, 1);
+//        }
+//
+//
+//
+//
+//        final ViewPager_Adapter mViewPager_Adapter = new ViewPager_Adapter(this.getSupportFragmentManager(), fragmentList);
+//
+//        mViewPager.setAdapter(mViewPager_Adapter);
+//
+//        mViewPager.setCurrentItem(Current_Position);
+//
+//        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//            @Override
+//            public void onPageScrolled(int i, float v, int i1) {
+//
+//                Log.e("PageScroll", "Position : " + i );
+//            }
+//
+//            @Override
+//            public void onPageSelected(int position) {
+//
+//                if (position < Current_Position){
+//                    mCalendar.add(mCalendar.DAY_OF_MONTH, -1);
+//                }else {
+//                    mCalendar.add(mCalendar.DAY_OF_MONTH, 1);
+//                }
+//
+//                Current_Position = position;
+//
+//
+//
+//
+//            }
+//
+//            @Override
+//            public void onPageScrollStateChanged(int state) {
+//
+//                switch(state){
+//
+//                    // 停止滑動
+//                    case SCROLL_STATE_IDLE:
+//
+//                        // 無限循環設定
+//                        // http://www.voidcn.com/article/p-tyexajzi-bhh.html
+//                        if(mViewpager_Position == 0){
+//
+//                            mViewPager.setCurrentItem(mViewPager_Adapter.getCount() - 2, false);
+//
+//                        }else if(mViewpager_Position == mViewPager_Adapter.getCount() - 1) {
+//
+//                            mViewPager.setCurrentItem(1, false);
+//
+//                        }
+//
+//
+//
+//                        break;
+//
+//                    // 滑動進行中
+//                    case SCROLL_STATE_DRAGGING:
+//                        break;
+//
+//                    // 滑動放手, 自動歸位過程
+//                    case SCROLL_STATE_SETTLING:
+//                        break;
+//
+//
+//                }
+//
+//            }
+//        });
+//
+//
+//    }
 
-       @Override
-       public int getItemPosition(@NonNull Object object) {
-           return POSITION_NONE;
-       }*/
 
-	   // 初始方法
-		
-	   
-	   // 回收方法
-       @Override
-       public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-           
-       }
-   }
+
 
 }
 
