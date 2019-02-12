@@ -12,11 +12,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.lpc.receipt.R;
+import android.support.v7.widget.*;
+import android.view.View.*;
 
 public class Review_Main extends Fragment {
 
+	private TextView reviewmain_totalamount;
+	
     private TextView reviewmain_date;
-	private int mDate;
+	
+	private RecyclerView reviewmain_recyclerView;
 
 	private String Display_Date;
 	
@@ -51,16 +56,38 @@ public class Review_Main extends Fragment {
 
     private void Find_View(View v){
 
-        reviewmain_date = (TextView) v.findViewById(R.id.reviewmain_date);
+		reviewmain_totalamount = v.findViewById(R.id.reviewmain_totalamount);
+		
+        reviewmain_date = v.findViewById(R.id.reviewmain_date);
 		reviewmain_date.setText(Display_Date);
-
-    }
-
-    public void ChangeSearch_Date(String datetext){
-
-        reviewmain_date.setText(datetext);
+		reviewmain_date.setOnClickListener(View_ClickListener);
+		
+		reviewmain_recyclerView = v.findViewById(R.id.reviewmain_recyclerView);
 
     }
     
 
+	private View.OnClickListener View_ClickListener = new View.OnClickListener(){
+
+		@Override
+		public void onClick(View view)
+		{
+			// TODO: Implement this method
+			
+			switch(view.getId()){
+				
+				case R.id.reviewmain_date:
+					
+					Intent open_b003_activity = new Intent(getActivity(), Review_Calendar.class);
+                    startActivity(open_b003_activity);
+					
+					break;
+					
+			}
+			
+			
+		}
+		
+		
+	};
 }

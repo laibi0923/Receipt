@@ -87,28 +87,40 @@ public class MainActivity extends AppCompatActivity {
 // https://stackoverflow.com/questions/19731320/android-viewpager-working-with-date
     private void Setup_ViewPager(){
 
+		SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("MM月dd日");
+		
+		// 設始初始日期 1970-1-1
+		Calendar Start_Date = Calendar.getInstance();
+		Start_Date.set(1970, 0, 1);
+		
+		// 最後日期為初始日期 +100,000 日
+		Calendar End_Date = (Calendar) Start_Date.clone();
+		End_Date.add(Calendar.DAY_OF_MONTH, 100000);
+		
+		// 計算開始日期與本日之間日差 定義為當前顯示頁面 Current_Position
+		// one_day_ms 為計算一日毫秒，用作計算日差, 必須定義為 long
+		long one_day_ms = 24 * 60 * 60 * 1000;
+		int day_diff = (int) ((mCalendar.getTimeInMillis() - Start_Date.getTimeInMillis()) / (one_day_ms));
+		Current_Position = day_diff + 1;
+		
+		// 由 Start Date 開始循環放入日期, 直至到 End Date
         DateList = new ArrayList<>();
-
-        mCalendar.setTime(new Date());
-
-        mCalendar.add(Calendar.DAY_OF_MONTH, -1);
-
-        SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("MM月dd日");
-
-        for (int i = 0; i < 3; i++){
-
-            DateList.add(mSimpleDateFormat.format(mCalendar.getTime()));
-
-            mCalendar.add(Calendar.DAY_OF_MONTH, 1);
-        }
-
+		
+		while(Start_Date.compareTo(End_Date) <= 0){
+			
+			DateList.add(mSimpleDateFormat.format(Start_Date.getTime()));
+			
+			Start_Date.add(Calendar.DAY_OF_MONTH, 1);
+		}
+		
         final ViewPager_Adapter mViewPager_Adapter = new ViewPager_Adapter(getSupportFragmentManager(), DateList);
 
         mViewPager.setAdapter(mViewPager_Adapter);
+		
+		mViewPager.setOffscreenPageLimit(0);
 
-        mViewPager.setCurrentItem(1);
+        mViewPager.setCurrentItem(Current_Position);
 
-//        Current_Position = Integer.MAX_VALUE / 2;
 
         // 過場動畫
         mViewPager.setPageTransformer(false, new ViewPager.PageTransformer() {
@@ -130,63 +142,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
 
-                if (position < Current_Position){
-                    // 左滑時當前日子減少一日
-                    mCalendar.add(Calendar.DAY_OF_MONTH, -1);
-                }else {
-                    // 右滑時當前日子增加一日
-                    mCalendar.add(Calendar.DAY_OF_MONTH, 1);
-                }
-
-                Current_Position = position;
-
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
 
-				switch(state){
-
-                    // 停止滑動
-                    case SCROLL_STATE_IDLE:
-
-                        // 無限循環設定
-                        // http://www.voidcn.com/article/p-tyexajzi-bhh.html
-                        if(Current_Position == 0){
-                            mViewPager.setCurrentItem(mViewPager_Adapter.getCount() - 2, false);
-                        }else if(Current_Position == mViewPager_Adapter.getCount() - 1) {
-                            mViewPager.setCurrentItem(1, false);
-                        }
-                        break;
-
-                    // 滑動進行中
-                    case SCROLL_STATE_DRAGGING:
-                        break;
-
-                    // 滑動放手, 自動歸位過程
-                    case SCROLL_STATE_SETTLING:
-                        break;
-
-
-                }
-
+				
             }
         });
 
     }
 
-
-    private void renderView(){
-
-        SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("MM月dd日");
-
-    }
-
-
-
     // 返回本日
     private void Jump_Today(){
-        mViewPager.setCurrentItem(0);
+        mViewPager.setCurrentItem(Current_Position);
     }
 
 

@@ -34,6 +34,7 @@ android:weekSeparatorLineColor  设置日历每行之间分割线的颜色;-->
 	android:orientation="vertical">
 
 	<CalendarView
+		android:id="@+id/selectdate_calendarview"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:theme="@style/CalenderViewCustom"

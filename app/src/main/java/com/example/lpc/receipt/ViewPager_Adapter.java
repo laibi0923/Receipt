@@ -20,27 +20,18 @@ public class ViewPager_Adapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
-        switch (position){
-
-            case 0:
-                return Review_Main.newInstance(DateList.get(position));
-
-            case 1:
-                return Review_Main.newInstance(DateList.get(position));
-
-            case 2:
-                return Review_Main.newInstance(DateList.get(position));
-
-        }
-
-        return null;
+        return Review_Main.newInstance(DateList.get(position));
+		
     }
 
     @Override
     public int getCount() {
-        return 3;
+        return DateList.size();
     }
 
+	
+
+	
 
 
 }
