@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.lpc.receipt.MainActivity;
 import com.example.lpc.receipt.R;
 import android.support.v7.widget.*;
 import android.view.View.*;
@@ -77,10 +78,11 @@ public class Review_Main extends Fragment {
 			switch(view.getId()){
 				
 				case R.id.reviewmain_date:
-					
-					Intent open_b003_activity = new Intent(getActivity(), Review_Calendar.class);
-                    startActivity(open_b003_activity);
-					
+
+					// 試過直按 呼叫 startActivityForResult, 但 MainActiviy onActivityResult 接收唔到
+					// 所以改成係 MainActivity 入面寫個 Method 打開 Calendar
+					((MainActivity) getActivity()).Open_Calendar();
+
 					break;
 					
 			}

@@ -20,7 +20,10 @@ import com.example.lpc.receipt.R;
 import com.example.lpc.receipt.Review.Review_Calendar;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+
 import android.support.design.widget.*;
 import android.support.v4.widget.*;
 import android.widget.NumberPicker.*;
@@ -68,6 +71,8 @@ public class Record_Main extends AppCompatActivity {
 
     private Double Total_Amount = 0.0;
 
+    private String get_Select_Date;
+
     DecimalFormat dec = new DecimalFormat("#,##0.00");
 
     @Override
@@ -91,7 +96,6 @@ public class Record_Main extends AppCompatActivity {
 
 
                     xx_list.add(record);
-//                    adapter.addData(data.getIntExtra("Postion", 0), record);
                     adapter.notifyDataSetChanged();
 
                 }
@@ -144,7 +148,7 @@ public class Record_Main extends AppCompatActivity {
             case 3:
 
                 if (data != null){
-                    add_remark(data.getStringExtra("remark_msg"));
+                    recordmain_remark_textview.setText(data.getStringExtra("remark_msg"));
                 }
 
                 break;
@@ -155,35 +159,6 @@ public class Record_Main extends AppCompatActivity {
     }
 
 
-    public void toggle_view(){
-
-        if (xx_list.isEmpty()){
-
-            recordmain_total_amount.setVisibility(View.GONE);
-            recordmain_payment_btn.setVisibility(View.GONE);
-            recordmain_remark.setVisibility(View.GONE);
-
-        }else {
-
-            recordmain_total_amount.setVisibility(View.VISIBLE);
-            recordmain_payment_btn.setVisibility(View.VISIBLE);
-            recordmain_remark.setVisibility(View.VISIBLE);
-
-            Total_Amount = 0.0;
-            for (int i = 0; i < xx_list.size(); i++){
-                Total_Amount = Total_Amount + Double.parseDouble(xx_list.get(i).getProduct_final_price().replaceAll("[$,]", ""));
-            }
-            recordmain_total_amount_textview.setText("$" + dec.format(Total_Amount));
-        }
-
-    }
-
-
-
-    public void add_remark(String remark){
-
-        recordmain_remark_textview.setText(remark);
-    }
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -192,6 +167,16 @@ public class Record_Main extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.a001_record_main);
+
+		// 接收係 MainActivity ViewPager 所顯示日子
+        Bundle mBundle = getIntent().getExtras();
+        if(mBundle != null){
+            long getdate = mBundle.getLong("Select_Date");
+            Calendar getDate_Calendar = Calendar.getInstance();
+            getDate_Calendar.setTimeInMillis(getdate);
+            SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("MM月dd日");
+            get_Select_Date = mSimpleDateFormat.format(getDate_Calendar.getTime());
+        }
 		
 		Find_View();
 		
@@ -201,28 +186,7 @@ public class Record_Main extends AppCompatActivity {
         recordmain_item_recyclerview.setLayoutManager(new LinearLayoutManager(this));
 
         adapter = new Record_Item_Adapter(this, xx_list);
-        adapter.setClickListener(new Record_Item_Adapter.ItemClickListener(){
-
-				@Override
-				public void onItemClick(View view, int position) {
-
-				    Log.e("Adapter Action", "You click Position : " + position);
-
-					Intent open_a002_activity = new Intent(Record_Main.this, Record_Item.class);
-
-					open_a002_activity.putExtra("extras_position", position);
-					open_a002_activity.putExtra("extras_product_no", adapter.get_Product_No(position));
-					open_a002_activity.putExtra("extras_product_name", adapter.get_Product_Name(position));
-					open_a002_activity.putExtra("extras_product_price", adapter.get_Product_Price(position));
-					open_a002_activity.putExtra("extras_product_discount", adapter.get_Product_Discount(position));
-					open_a002_activity.putExtra("extras_product_tax", adapter.get_Product_Tax(position));
-					open_a002_activity.putExtra("extras_product_finalprice", adapter.get_Product_FinalPrice(position));
-
-					startActivityForResult(open_a002_activity, 2);
-
-				}
-			});
-
+        adapter.setClickListener(RecycleviewItemClickListener);
         recordmain_item_recyclerview.setAdapter(adapter);
 	}
 
@@ -239,6 +203,7 @@ public class Record_Main extends AppCompatActivity {
         recordmain_name_edittext.setText("");
 
         recordmain_date_textview = (TextView) findViewById(R.id.recordmain_date_textview);
+        recordmain_date_textview.setText(get_Select_Date);
         recordmain_date_textview.setOnClickListener(View_Click_Listener);
 
         recordmain_income_btn = (LinearLayout) findViewById(R.id.recordmain_income_btn);
@@ -276,6 +241,8 @@ public class Record_Main extends AppCompatActivity {
 
     }
 
+
+    // Float Action Button 顥示
 	private NestedScrollView.OnScrollChangeListener NestedScrollView_OnScrollChangeListener = new NestedScrollView.OnScrollChangeListener(){
 
 		@Override
@@ -291,6 +258,34 @@ public class Record_Main extends AppCompatActivity {
 		
 		
 	};
+
+
+
+
+    /*
+     *  打開及修改物品內容 (如: 名稱, 銀碼, 折扣, 稅, 總銀碼)
+     */
+
+    private Record_Item_Adapter.ItemClickListener RecycleviewItemClickListener = new Record_Item_Adapter.ItemClickListener() {
+        @Override
+        public void onItemClick(View view, int position) {
+
+//            Log.e("Adapter Action", "You click Position : " + position);
+
+            Intent open_a002_activity = new Intent(Record_Main.this, Record_Item.class);
+
+            open_a002_activity.putExtra("extras_position", position);
+            open_a002_activity.putExtra("extras_product_no", adapter.get_Product_No(position));
+            open_a002_activity.putExtra("extras_product_name", adapter.get_Product_Name(position));
+            open_a002_activity.putExtra("extras_product_price", adapter.get_Product_Price(position));
+            open_a002_activity.putExtra("extras_product_discount", adapter.get_Product_Discount(position));
+            open_a002_activity.putExtra("extras_product_tax", adapter.get_Product_Tax(position));
+            open_a002_activity.putExtra("extras_product_finalprice", adapter.get_Product_FinalPrice(position));
+
+            startActivityForResult(open_a002_activity, 2);
+
+        }
+    };
 
 
     private View.OnClickListener View_Click_Listener = new View.OnClickListener(){
@@ -363,6 +358,31 @@ public class Record_Main extends AppCompatActivity {
 
         }
     };
+
+
+    public void toggle_view(){
+
+        if (xx_list.isEmpty()){
+
+            recordmain_total_amount.setVisibility(View.GONE);
+            recordmain_payment_btn.setVisibility(View.GONE);
+            recordmain_remark.setVisibility(View.GONE);
+
+        }else {
+
+            recordmain_total_amount.setVisibility(View.VISIBLE);
+            recordmain_payment_btn.setVisibility(View.VISIBLE);
+            recordmain_remark.setVisibility(View.VISIBLE);
+
+            Total_Amount = 0.0;
+            for (int i = 0; i < xx_list.size(); i++){
+                Total_Amount = Total_Amount + Double.parseDouble(xx_list.get(i).getProduct_final_price().replaceAll("[$,]", ""));
+            }
+            recordmain_total_amount_textview.setText("$" + dec.format(Total_Amount));
+        }
+
+    }
+
 
 
 }

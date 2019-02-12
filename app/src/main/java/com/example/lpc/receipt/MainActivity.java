@@ -29,16 +29,63 @@ public class MainActivity extends AppCompatActivity {
 
 	private List<String> DateList;
 
-
+	// 本日 (不可修改)
 	private static Calendar mCalendar = Calendar.getInstance();
 
+	private static Calendar Start_Date, End_Date, Select_Date;
+
+    // 計算開始日期與本日之間日差 定義為當前顯示頁面 Current_Position
+    // one_day_ms 為計算一日毫秒，用作計算日差, 必須定義為 long
+    private long one_day_ms = 24 * 60 * 60 * 1000;
+
 	private int Current_Position;
+
+    SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("MM月dd日");
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode){
+
+            case 8:
+
+                // 接收用戶係 Calendar 揀左邊日, 然後跳轉到果日顯示
+                if (data != null){
+
+                    Calendar New_Statr_Date = Calendar.getInstance();
+                    New_Statr_Date.set(1970, 0, 1);
+
+                    long getselect_Date = data.getLongExtra("getselect_Date", 0);
+
+                    Select_Date.setTimeInMillis(getselect_Date);
+
+                    int day_diff = (int) ((Select_Date.getTimeInMillis() - New_Statr_Date.getTimeInMillis()) / (one_day_ms));
+
+                    Current_Position = day_diff + 1;
+                    mViewPager.setCurrentItem(Current_Position);
+
+                }
+                break;
+        }
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.a000_activity_main);
+
+        Select_Date = Calendar.getInstance();
+
+        // 設始初始日期 1970-1-1
+        Start_Date = Calendar.getInstance();
+        Start_Date.set(1970, 0, 1);
+
+        // 最後日期為初始日期 +100,000 日
+        End_Date = (Calendar) Start_Date.clone();
+        End_Date.add(Calendar.DAY_OF_MONTH, 100000);
 
         Find_View();
 
@@ -71,6 +118,8 @@ public class MainActivity extends AppCompatActivity {
 
 				case R.id.new_btn:
 					Intent open_a001_activity = new Intent(MainActivity.this, Record_Main.class);
+					long Select_Date_parseLong = Select_Date.getTimeInMillis();
+					open_a001_activity.putExtra("Select_Date", Select_Date_parseLong);
 					startActivity(open_a001_activity);
 					break;
 
@@ -82,24 +131,14 @@ public class MainActivity extends AppCompatActivity {
 		}
 	};
 
+    public void Open_Calendar(){
 
-// https://github.com/codepath/android_guides/wiki/ViewPager-with-FragmentPagerAdapter
-// https://stackoverflow.com/questions/19731320/android-viewpager-working-with-date
+        Intent open_b003_activity = new Intent(MainActivity.this, Review_Calendar.class);
+        startActivityForResult(open_b003_activity, 8);
+    }
+
     private void Setup_ViewPager(){
 
-		SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("MM月dd日");
-		
-		// 設始初始日期 1970-1-1
-		Calendar Start_Date = Calendar.getInstance();
-		Start_Date.set(1970, 0, 1);
-		
-		// 最後日期為初始日期 +100,000 日
-		Calendar End_Date = (Calendar) Start_Date.clone();
-		End_Date.add(Calendar.DAY_OF_MONTH, 100000);
-		
-		// 計算開始日期與本日之間日差 定義為當前顯示頁面 Current_Position
-		// one_day_ms 為計算一日毫秒，用作計算日差, 必須定義為 long
-		long one_day_ms = 24 * 60 * 60 * 1000;
 		int day_diff = (int) ((mCalendar.getTimeInMillis() - Start_Date.getTimeInMillis()) / (one_day_ms));
 		Current_Position = day_diff + 1;
 		
@@ -157,116 +196,6 @@ public class MainActivity extends AppCompatActivity {
     private void Jump_Today(){
         mViewPager.setCurrentItem(Current_Position);
     }
-
-
-
-
-
-
-//    private void Setup_Viewpager(){
-//
-//        Current_Position = Integer.MAX_VALUE / 2;
-//
-//        List<Fragment> fragmentList = new ArrayList<Fragment>();
-//
-//        SimpleDateFormat mDateFormat = new SimpleDateFormat("MM" + "月" + "dd" + "日");
-//
-//		mCalendar = Calendar.getInstance();
-//
-//		mCalendar.setTime(new Date());
-//
-//		mCalendar.add(mCalendar.DATE, -1);
-//
-//        for (int i = 0; i < 3; i++){
-//
-//			String formatDate = mDateFormat.format(mCalendar.getTime());
-//
-//			Review_Main Fragment_Review = new Review_Main();
-//
-//			Bundle args = new Bundle();
-//
-//			args.putString("date", formatDate);
-//
-//			Fragment_Review.setArguments(args);
-//
-//			fragmentList.add(Fragment_Review);
-//
-//			mCalendar.add(Calendar.DATE, 1);
-//        }
-//
-//
-//
-//
-//        final ViewPager_Adapter mViewPager_Adapter = new ViewPager_Adapter(this.getSupportFragmentManager(), fragmentList);
-//
-//        mViewPager.setAdapter(mViewPager_Adapter);
-//
-//        mViewPager.setCurrentItem(Current_Position);
-//
-//        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-//            @Override
-//            public void onPageScrolled(int i, float v, int i1) {
-//
-//                Log.e("PageScroll", "Position : " + i );
-//            }
-//
-//            @Override
-//            public void onPageSelected(int position) {
-//
-//                if (position < Current_Position){
-//                    mCalendar.add(mCalendar.DAY_OF_MONTH, -1);
-//                }else {
-//                    mCalendar.add(mCalendar.DAY_OF_MONTH, 1);
-//                }
-//
-//                Current_Position = position;
-//
-//
-//
-//
-//            }
-//
-//            @Override
-//            public void onPageScrollStateChanged(int state) {
-//
-//                switch(state){
-//
-//                    // 停止滑動
-//                    case SCROLL_STATE_IDLE:
-//
-//                        // 無限循環設定
-//                        // http://www.voidcn.com/article/p-tyexajzi-bhh.html
-//                        if(mViewpager_Position == 0){
-//
-//                            mViewPager.setCurrentItem(mViewPager_Adapter.getCount() - 2, false);
-//
-//                        }else if(mViewpager_Position == mViewPager_Adapter.getCount() - 1) {
-//
-//                            mViewPager.setCurrentItem(1, false);
-//
-//                        }
-//
-//
-//
-//                        break;
-//
-//                    // 滑動進行中
-//                    case SCROLL_STATE_DRAGGING:
-//                        break;
-//
-//                    // 滑動放手, 自動歸位過程
-//                    case SCROLL_STATE_SETTLING:
-//                        break;
-//
-//
-//                }
-//
-//            }
-//        });
-//
-//
-//    }
-
 
 
 

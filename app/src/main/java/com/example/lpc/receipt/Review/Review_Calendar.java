@@ -1,5 +1,6 @@
 package com.example.lpc.receipt.Review;
 
+import android.content.Intent;
 import android.os.*;
 import android.support.annotation.*;
 import android.support.v7.app.*;
@@ -32,9 +33,15 @@ public class Review_Calendar extends AppCompatActivity {
 					// TODO: Implement this method
 					Calendar mCalendar = Calendar.getInstance();
 					mCalendar.set(year, month, dayOfmonth);
-					String get_cv_date = mSimpleDateFormat.format(mCalendar.getTime());
-					Log.e("CalendarView Get", get_cv_date);
-					
+//					String get_cv_date = mSimpleDateFormat.format(mCalendar.getTime());
+//					Log.e("CalendarView Get", get_cv_date);
+
+					Log.e("getdate", mCalendar.getTimeInMillis() + "");
+
+					Intent mIntent = new Intent();
+					mIntent.putExtra("getselect_Date", mCalendar.getTimeInMillis());
+					setResult(8, mIntent);
+
 					finish();
 				}
 			});
