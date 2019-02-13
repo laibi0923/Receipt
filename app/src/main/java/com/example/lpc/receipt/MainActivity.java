@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
 	private LinearLayout New_btn, Setting_btn;
 
-	private List<String> DateList;
+	private List<Long> DateList;
 
 	// 本日 (不可修改)
 	private static Calendar mCalendar = Calendar.getInstance();
@@ -53,17 +53,17 @@ public class MainActivity extends AppCompatActivity {
                 // 接收用戶係 Calendar 揀左邊日, 然後跳轉到果日顯示
                 if (data != null){
 
-                    Calendar New_Statr_Date = Calendar.getInstance();
-                    New_Statr_Date.set(1970, 0, 1);
+                    Calendar New_Start_Date = Calendar.getInstance();
+                    New_Start_Date.set(1970, 0, 1);
 
                     long getselect_Date = data.getLongExtra("getselect_Date", 0);
 
                     Select_Date.setTimeInMillis(getselect_Date);
 
-                    int day_diff = (int) ((Select_Date.getTimeInMillis() - New_Statr_Date.getTimeInMillis()) / (one_day_ms));
+                    int day_diff = (int) ((Select_Date.getTimeInMillis() - New_Start_Date.getTimeInMillis()) / (one_day_ms));
 
-                    Current_Position = day_diff + 1;
-                    mViewPager.setCurrentItem(Current_Position);
+                    int Select_Date_Position = day_diff + 1;
+                    mViewPager.setCurrentItem(Select_Date_Position);
 
                 }
                 break;
@@ -131,12 +131,7 @@ public class MainActivity extends AppCompatActivity {
 		}
 	};
 
-    public void Open_Calendar(){
-
-        Intent open_b003_activity = new Intent(MainActivity.this, Review_Calendar.class);
-        startActivityForResult(open_b003_activity, 8);
-    }
-
+    
     private void Setup_ViewPager(){
 
 		int day_diff = (int) ((mCalendar.getTimeInMillis() - Start_Date.getTimeInMillis()) / (one_day_ms));
@@ -147,7 +142,8 @@ public class MainActivity extends AppCompatActivity {
 		
 		while(Start_Date.compareTo(End_Date) <= 0){
 			
-			DateList.add(mSimpleDateFormat.format(Start_Date.getTime()));
+			//DateList.add(mSimpleDateFormat.format(Start_Date.getTime()));
+			DateList.add(Start_Date.getTimeInMillis());
 			
 			Start_Date.add(Calendar.DAY_OF_MONTH, 1);
 		}
@@ -193,11 +189,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // 返回本日
-    private void Jump_Today(){
+    public void Jump_Today(){
         mViewPager.setCurrentItem(Current_Position);
     }
 
 
+	public void Open_Calendar(){
+        Intent open_b003_activity = new Intent(MainActivity.this, Review_Calendar.class);
+        startActivityForResult(open_b003_activity, 8);
+    }
 
 }
 

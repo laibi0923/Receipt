@@ -1,53 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent"
 	android:layout_height="wrap_content"
-	android:layout_marginBottom="10dp"
-	android:background="@color/colorPrimary"
-	android:gravity="bottom|center"
+	android:layout_marginBottom="5dp"
 	android:orientation="vertical"
-	android:padding="15dp"
-	android:layout_marginTop="10dp">
-
-	<TextView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:gravity="center"
-		android:text="HH : MM"
-		android:textColor="#FFFFFF"
-		android:textStyle="bold" />
+	android:background="#3E3E3E">
 
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_marginTop="10dp"
-		android:layout_marginBottom="10dp"
 		android:layout_weight="1.0"
-		android:gravity="bottom"
-		android:orientation="horizontal">
+		android:gravity="center"
+		android:orientation="vertical"
+		android:layout_margin="10dp">
 
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginTop="10dp"
+			android:text="11:38"
+			android:textColor="#FFFFFF"
+			android:gravity="center"/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
 			android:layout_weight="1.0"
 			android:gravity="left|center"
-			android:text="NAME"
-			android:textColor="#FFFFFF" />
+			android:text="7-11"
+			android:textColor="#FFFFFF"
+			android:textSize="20sp"
+			android:textStyle="bold"
+			android:layout_marginTop="5dp"
+			android:layout_marginBottom="5dp"/>
 
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:gravity="center"
 			android:text="$ 10,000.00"
-			android:textColor="#FFFFFF" />
+			android:textColor="#FFFFFF"/>
 
 	</LinearLayout>
-
-	<View
-		android:layout_width="30dp"
-		android:layout_height="1dp"
-		android:background="#1aff75" />
 
 </LinearLayout>
 

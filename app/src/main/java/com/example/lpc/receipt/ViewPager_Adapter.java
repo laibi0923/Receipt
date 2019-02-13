@@ -10,9 +10,9 @@ import java.util.List;
 
 public class ViewPager_Adapter extends FragmentStatePagerAdapter {
 
-    private List<String> DateList;
+    private List<Long> DateList;
 
-    public ViewPager_Adapter(FragmentManager fm, List<String> DateList) {
+    public ViewPager_Adapter(FragmentManager fm, List<Long> DateList) {
         super(fm);
         this.DateList = DateList;
     }

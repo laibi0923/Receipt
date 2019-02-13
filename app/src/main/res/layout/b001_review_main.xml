@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
@@ -12,8 +13,8 @@
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent"
 		android:layout_alignParentTop="true"
-		android:layout_marginLeft="40dp"
-		android:layout_marginRight="40dp"
+		android:layout_marginLeft="15dp"
+		android:layout_marginRight="15dp"
 		android:fillViewport="true">
 
 		<LinearLayout
@@ -23,7 +24,6 @@
 			android:gravity="center"
 			android:orientation="vertical">
 
-
 			<android.support.v7.widget.RecyclerView
 				android:id="@+id/reviewmain_recyclerView"
 				android:layout_width="match_parent"
@@ -31,20 +31,19 @@
 
 			<include
 				layout="@layout/b002_review_listitem"
-				android:visibility="gone" />
+				android:visibility="visible"/>
 
 			<include
 				layout="@layout/b002_review_listitem"
-				android:visibility="gone" />
-
-
-			<include
-				layout="@layout/b002_review_listitem"
-				android:visibility="gone" />
+				android:visibility="visible"/>
 
 			<include
 				layout="@layout/b002_review_listitem"
-				android:visibility="gone" />
+				android:visibility="visible"/>
+
+			<include
+				layout="@layout/b002_review_listitem"
+				android:visibility="gone"/>
 
 		</LinearLayout>
 
@@ -59,8 +58,6 @@
 		android:layout_marginBottom="15dp"
 		android:gravity="center"
 		android:orientation="horizontal">
-
-		
 
 		<LinearLayout
 			android:layout_width="match_parent"
@@ -79,7 +76,7 @@
 				android:text="$ 0.00"
 				android:textColor="#FFFFFF"
 				android:textSize="25sp"
-				android:textStyle="bold" />
+				android:textStyle="bold"/>
 
 			<TextView
 				android:id="@+id/reviewmain_date"
@@ -87,11 +84,27 @@
 				android:layout_height="wrap_content"
 				android:gravity="center"
 				android:text="8 JAN"
-				android:textColor="#FFFFFF" />
+				android:textColor="#FFFFFF"/>
 
 		</LinearLayout>
 
-		
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:layout_alignParentBottom="true"
+		android:layout_centerInParent="true"
+		android:padding="10dp"
+		android:id="@+id/reviewmain_jumptoday">
+
+		<TextView
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:text="本日"
+			android:textColor="#FFFFFF"
+			android:gravity="center"/>
 
 	</LinearLayout>
 
