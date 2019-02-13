@@ -1,4 +1,4 @@
-package com.example.lpc.receipt.Review;
+package com.example.lpc.receipt.Public;
 
 import android.content.Intent;
 import android.os.*;
@@ -11,7 +11,7 @@ import com.example.lpc.receipt.*;
 import java.util.*;
 import java.text.*;
 
-public class Review_Calendar extends AppCompatActivity {
+public class Calendar_Selecter extends AppCompatActivity {
 
 	private CalendarView selectdate_calendarview;
 	

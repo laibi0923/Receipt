@@ -5,22 +5,17 @@ import android.content.*;
 import android.os.*;
 import android.support.annotation.*;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.*;
 import android.support.v4.view.*;
 import android.support.v7.app.*;
-import android.util.Log;
 import android.view.*;
 import android.widget.*;
-import com.example.lpc.receipt.Review.*;
+
+import com.example.lpc.receipt.Public.Calendar_Selecter;
 import com.example.lpc.receipt.Setting.*;
 import java.util.*;
 import com.example.lpc.receipt.Record.*;
 
-import static android.support.v4.view.ViewPager.SCROLL_STATE_SETTLING;
-import static android.support.v7.widget.RecyclerView.SCROLL_STATE_DRAGGING;
-import static android.widget.AbsListView.OnScrollListener.SCROLL_STATE_IDLE;
 import java.text.*;
-import java.time.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -210,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 	public void Open_Calendar(){
-        Intent open_b003_activity = new Intent(MainActivity.this, Review_Calendar.class);
+        Intent open_b003_activity = new Intent(MainActivity.this, Calendar_Selecter.class);
         startActivityForResult(open_b003_activity, 8);
     }
 

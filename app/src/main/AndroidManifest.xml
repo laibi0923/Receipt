@@ -46,7 +46,7 @@
 
         </activity>
 
-        <activity android:name=".Review.Review_Calendar">
+        <activity android:name=".Public.Calendar_Selecter">
 
         </activity>
 

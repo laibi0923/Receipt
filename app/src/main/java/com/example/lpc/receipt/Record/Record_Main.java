@@ -2,22 +2,17 @@ package com.example.lpc.receipt.Record;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
 import com.example.lpc.receipt.R;
-import com.example.lpc.receipt.Review.Review_Calendar;
+import com.example.lpc.receipt.Public.Calendar_Selecter;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -26,7 +21,6 @@ import java.util.Calendar;
 
 import android.support.design.widget.*;
 import android.support.v4.widget.*;
-import android.widget.NumberPicker.*;
 import android.support.v7.app.*;
 
 public class Record_Main extends AppCompatActivity {
@@ -301,7 +295,7 @@ public class Record_Main extends AppCompatActivity {
 
                 case R.id.recordmain_date_textview:
 
-                    Intent open_b003_activity = new Intent(Record_Main.this, Review_Calendar.class);
+                    Intent open_b003_activity = new Intent(Record_Main.this, Calendar_Selecter.class);
                     startActivity(open_b003_activity);
 
                     break;
