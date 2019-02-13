@@ -9,7 +9,8 @@ import android.view.*;
 import android.widget.*;
 import com.example.lpc.receipt.*;
 import java.text.*;
-import android.icu.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
 
 
 // 未完成 Fragment 狀態保存
@@ -20,12 +21,14 @@ public class Review_Main extends Fragment {
     private TextView reviewmain_date;
 	
 	private RecyclerView reviewmain_recyclerView;
-	
-	private LinearLayout reviewmain_jumptoday;
 
 	private Long Display_Date_Long;
 	
 	private String Display_Date_String;
+
+	private Review_Item_Adapter adapter;
+
+	private ArrayList<Review_Item_Model> review_list;
 	
 	SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("MM月dd日");
 	
@@ -57,6 +60,8 @@ public class Review_Main extends Fragment {
 	{
 		// TODO: Implement this method
 		super.onActivityCreated(savedInstanceState);
+
+		// 保存 Fragment 收狀態其中一種方式
 		setRetainInstance(true);
 	}
 
@@ -64,9 +69,6 @@ public class Review_Main extends Fragment {
 	@Override
 	public void onResume()
 	{
-		
-		Log.e("onResume", "true");
-		
 		// TODO: Implement this method
 		super.onResume();
 		Calendar mCalendar = Calendar.getInstance();
@@ -100,6 +102,22 @@ public class Review_Main extends Fragment {
 
         Find_View(v);
 
+        review_list = new ArrayList<>();
+
+        // For Sample Data
+        for (int i = 0; i < 3; i++){
+			review_list.add(new Review_Item_Model("11:00", "7-11", "$5,000"));
+		}
+		// For Sample Data
+
+        reviewmain_recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+
+        adapter = new Review_Item_Adapter(this.getContext(), review_list);
+
+        adapter.setClickListener(ReviewItemClickListener);
+
+        reviewmain_recyclerView.setAdapter(adapter);
+
         return v;
 
     }
@@ -113,12 +131,16 @@ public class Review_Main extends Fragment {
 		reviewmain_date.setOnClickListener(View_ClickListener);
 		
 		reviewmain_recyclerView = v.findViewById(R.id.reviewmain_recyclerView);
-		
-		reviewmain_jumptoday = v.findViewById(R.id.reviewmain_jumptoday);
-		reviewmain_jumptoday.setOnClickListener(View_ClickListener);
 
     }
-    
+
+    private Review_Item_Adapter.ItemClickListener ReviewItemClickListener = new Review_Item_Adapter.ItemClickListener() {
+		@Override
+		public void onItemClick(View view, int position) {
+			Toast.makeText(getActivity(), position + " was click" , Toast.LENGTH_SHORT).show();
+			Log.e("Click", position + "");
+		}
+	};
 
 	private View.OnClickListener View_ClickListener = new View.OnClickListener(){
 
@@ -135,13 +157,6 @@ public class Review_Main extends Fragment {
 					// 所以改成係 MainActivity 入面寫個 Method 打開 Calendar
 					((MainActivity) getActivity()).Open_Calendar();
 
-					break;
-					
-		
-				case R.id.reviewmain_jumptoday:
-					
-					((MainActivity) getActivity()).Jump_Today();
-					
 					break;
 					
 			}

@@ -4,6 +4,7 @@ import android.annotation.*;
 import android.content.*;
 import android.os.*;
 import android.support.annotation.*;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.*;
 import android.support.v4.view.*;
 import android.support.v7.app.*;
@@ -26,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager mViewPager;
 
 	private LinearLayout New_btn, Setting_btn;
+
+	private FloatingActionButton activity_main_fab;
 
 	private List<Long> DateList;
 
@@ -95,6 +98,9 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("WrongViewCast")
     private void Find_View(){
 
+        activity_main_fab = findViewById(R.id.activity_main_fab);
+        activity_main_fab.setOnClickListener(View_OnClickListeren);
+
         mViewPager = (ViewPager) findViewById(R.id.main_activity_viewpager);
 
         Setup_ViewPager();
@@ -115,6 +121,10 @@ public class MainActivity extends AppCompatActivity {
 		{
 			// TODO: Implement this method
 			switch(v.getId()){
+
+                case R.id.activity_main_fab:
+                    Jump_Today();
+                    break;
 
 				case R.id.new_btn:
 					Intent open_a001_activity = new Intent(MainActivity.this, Record_Main.class);
@@ -170,8 +180,13 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
-            public void onPageScrolled(int i, float v, int i1) {
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
+                if (position == Current_Position){
+                    activity_main_fab.hide();
+                }else {
+                    activity_main_fab.show();
+                }
             }
 
             @Override

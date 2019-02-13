@@ -49,5 +49,18 @@
 
 	</LinearLayout>
 
+	<android.support.design.widget.FloatingActionButton
+		android:id="@+id/activity_main_fab"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:layout_centerInParent="true"
+		app:backgroundTint="#2b2b2b"
+        android:tint="@color/text_color_1"
+		android:src="@mipmap/ic_question_mark"
+		app:fabSize="mini"
+		android:layout_marginBottom="50dp"/>
+
+
 </RelativeLayout>
 

@@ -5,7 +5,7 @@
 	android:layout_height="wrap_content"
 	android:layout_marginBottom="5dp"
 	android:orientation="vertical"
-	android:background="#3E3E3E">
+	android:background="@drawable/a002_btn_normal_style">
 
 	<LinearLayout
 		android:layout_width="match_parent"
@@ -16,6 +16,7 @@
 		android:layout_margin="10dp">
 
 		<TextView
+			android:id="@+id/reviewmain_createdate"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="11:38"
@@ -23,6 +24,7 @@
 			android:gravity="center"/>
 
 		<TextView
+			android:id="@+id/reviewmain_itemname"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_weight="1.0"
@@ -35,6 +37,7 @@
 			android:layout_marginBottom="5dp"/>
 
 		<TextView
+			android:id="@+id/reviewmain_price"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:gravity="center"
