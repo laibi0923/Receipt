@@ -11,7 +11,7 @@ public class Record_Item_Model {
         this.product_discount = product_discount;
         this.product_tax = product_tax;
         this.product_final_price = product_final_price;
-    }
+    } 
 
     public String getProduct_no() { 
         return product_no;

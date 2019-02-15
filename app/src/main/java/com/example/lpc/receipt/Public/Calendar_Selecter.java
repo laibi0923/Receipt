@@ -5,7 +5,7 @@ import android.os.*;
 import android.support.annotation.*;
 import android.support.v7.app.*;
 import android.util.*;
-import android.widget.*;
+import android.widget.*; 
 import android.widget.CalendarView.*;
 import com.example.lpc.receipt.*;
 import java.util.*;
@@ -17,10 +17,14 @@ public class Calendar_Selecter extends AppCompatActivity {
 	
 	private SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	
+	private Bundle mBundle;
+	
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+		
+		mBundle = getIntent().getExtras();
 
         setContentView(R.layout.b003_review_calendar);
 		
@@ -40,14 +44,24 @@ public class Calendar_Selecter extends AppCompatActivity {
 
 					Intent mIntent = new Intent();
 					mIntent.putExtra("getselect_Date", mCalendar.getTimeInMillis());
-					setResult(8, mIntent);
+					
+					if(mBundle == null){
+						setResult(8, mIntent);
+					}else{
+						setResult(488, mIntent);
+					}
+					
+					
 
 					finish();
 				}
 			});
 			
-			
-			
     }
+	
+	
+	
+	
+	
 	
 }

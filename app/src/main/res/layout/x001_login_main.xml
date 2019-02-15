@@ -19,7 +19,8 @@
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
 			android:src="@android:drawable/ic_delete"
-			android:layout_margin="50dp"/>
+			android:layout_margin="50dp"
+			android:visibility="invisible"/>
 
 		<EditText
 			android:layout_height="wrap_content"
@@ -38,7 +39,8 @@
 		<View
 			android:background="?android:attr/dividerVertical"
 			android:layout_height="1dp"
-			android:layout_width="match_parent"/>
+			android:layout_width="match_parent"
+			android:visibility="gone"/>
 
 		<EditText
 			android:layout_height="wrap_content"
@@ -59,25 +61,29 @@
 		<View
 			android:background="?android:attr/dividerVertical"
 			android:layout_height="1dp"
-			android:layout_width="match_parent"/>
-
-		<LinearLayout
-			android:layout_height="wrap_content"
 			android:layout_width="match_parent"
-			android:orientation="horizontal"
+			android:visibility="gone"/>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:orientation="horizontal"
+		android:gravity="center"
+		android:padding="15dp"
+		android:background="@drawable/a002_btn_normal_style"
+		android:layout_marginTop="10dp"
+		android:id="@+id/loginsubmit_btn"
+		android:layout_alignParentBottom="true"
+		android:layout_marginBottom="20dp">
+
+		<TextView
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:text="登入"
 			android:gravity="center"
-			android:padding="15dp"
-			android:background="@drawable/a002_btn_normal_style"
-			android:layout_marginTop="10dp">
-
-			<TextView
-				android:layout_height="wrap_content"
-				android:layout_width="wrap_content"
-				android:text="登入"
-				android:gravity="center"
-				android:textColor="#FFFFFF"/>
-
-		</LinearLayout>
+			android:textColor="#FFFFFF"/>
 
 	</LinearLayout>
 
@@ -93,7 +99,8 @@
 			android:orientation="horizontal"
 			android:gravity="center"
 			android:padding="15dp"
-			android:layout_marginBottom="20dp">
+			android:layout_marginBottom="20dp"
+			android:visibility="gone">
 
 			<TextView
 				android:layout_height="wrap_content"

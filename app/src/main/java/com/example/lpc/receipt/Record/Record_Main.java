@@ -1,27 +1,19 @@
 package com.example.lpc.receipt.Record;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
-
-import com.example.lpc.receipt.R;
-import com.example.lpc.receipt.Public.Calendar_Selecter;
-
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-
+import android.content.*;
+import android.os.*;
+import android.support.annotation.*;
 import android.support.design.widget.*;
 import android.support.v4.widget.*;
 import android.support.v7.app.*;
+import android.support.v7.widget.*;
+import android.util.*;
+import android.view.*;
+import android.widget.*;
+import com.example.lpc.receipt.*;
+import com.example.lpc.receipt.Public.*;
+import java.text.*;
+import java.util.*;
 
 public class Record_Main extends AppCompatActivity {
 	
@@ -30,6 +22,8 @@ public class Record_Main extends AppCompatActivity {
 	private LinearLayout back_btn;
 
     private EditText recordmain_name_edittext;
+	
+	private TextView recordmain_year_textview;
 
     private TextView recordmain_date_textview;
 
@@ -46,10 +40,18 @@ public class Record_Main extends AppCompatActivity {
     private TextView recordmain_total_amount_textview;
 
     private LinearLayout recordmain_payment;
-
-    private LinearLayout recordmain_payment_btn;
-
+	
     private TextView recordmain_payment_textview;
+	
+	private LinearLayout recordmain_payment_btn;
+	
+	private LinearLayout recordmain_exchange;
+	
+	private TextView recordmain_exchange_textview;
+	
+	private LinearLayout recordmain_paymethod;
+	
+	private TextView recordmain_paymethod_textview;
 
     private LinearLayout recordmain_remark;
 
@@ -68,6 +70,12 @@ public class Record_Main extends AppCompatActivity {
     private String get_Select_Date;
 
     DecimalFormat dec = new DecimalFormat("#,##0.00");
+	
+	private String Type = "Income";
+	
+	private long getDate_long;
+	
+	private Change_Date mChange_Date;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -77,7 +85,7 @@ public class Record_Main extends AppCompatActivity {
 
             case 1:
 
-                // 全新資料
+                // 新增物品內容
                 if (data != null){
 
                     Record_Item_Model record = new Record_Item_Model(
@@ -101,6 +109,7 @@ public class Record_Main extends AppCompatActivity {
 
             case 2:
 
+				// 修改 / 刪除物品內容
                 if (data != null){
 
                     String Action_Type = data.getStringExtra("Action_Type");
@@ -141,16 +150,72 @@ public class Record_Main extends AppCompatActivity {
 
             case 3:
 
+				// 備註按鍵功能
                 if (data != null){
                     recordmain_remark_textview.setText(data.getStringExtra("remark_msg"));
                 }
 
                 break;
+				
+				
+			case 488:
+				
+				// 日曆按鍵功能
+				if (data != null){
+					getDate_long = data.getLongExtra("getselect_Date", 0);
+					recordmain_year_textview.setText(mChange_Date.parseToDateString(data.getLongExtra("getselect_Date", 0), "yyyy"));
+					recordmain_date_textview.setText(mChange_Date.parseToDateString(data.getLongExtra("getselect_Date", 0), "MM月dd日"));
+				}
+				
+				break;
+				
+				
+			case 137:
+				
+				// 支付按鍵功能
+				if (data != null){
+					
+					if(!recordmain_name_edittext.getText().toString().isEmpty()){
+						
+						recordmain_payment.setVisibility(View.VISIBLE);
+						recordmain_payment_textview.setText(data.getStringExtra("extraPaymentPrice"));
 
+						recordmain_exchange.setVisibility(View.VISIBLE);
+						recordmain_exchange_textview.setText(data.getStringExtra("extraPaymentExchange"));
+
+						recordmain_paymethod.setVisibility(View.VISIBLE);
+						recordmain_paymethod_textview.setText(data.getStringExtra("extraPaymentMethod"));
+
+
+						Calendar New_Start_Date = Calendar.getInstance();
+						New_Start_Date.set(1970, 0, 1);
+
+						int Select_Date_Position = mChange_Date.getDate_Diff(getDate_long, New_Start_Date.getTimeInMillis()) + 1;
+
+						Intent mIntent = new Intent();
+						mIntent.putExtra("Page_Position", Select_Date_Position);
+						setResult(773, mIntent);
+
+						getInputData();
+
+						finish();
+						
+					}else{
+						
+						Toast.makeText(this, "Please Enter Name", Toast.LENGTH_SHORT).show();
+						
+						recordmain_name_edittext.setFocusable(true);
+					}
+					
+				}
+				
+				break;
+				
         }
 
 
     }
+
 
 
 
@@ -162,14 +227,16 @@ public class Record_Main extends AppCompatActivity {
 		
 		setContentView(R.layout.a001_record_main);
 
+		mChange_Date = new Change_Date();
+		
 		// 接收係 MainActivity ViewPager 所顯示日子
         Bundle mBundle = getIntent().getExtras();
         if(mBundle != null){
-            long getdate = mBundle.getLong("Select_Date");
-            Calendar getDate_Calendar = Calendar.getInstance();
-            getDate_Calendar.setTimeInMillis(getdate);
-            SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("MM月dd日");
-            get_Select_Date = mSimpleDateFormat.format(getDate_Calendar.getTime());
+			
+            getDate_long = mBundle.getLong("Select_Date");
+			
+            get_Select_Date = mChange_Date.parseToDateString(getDate_long, "MM月dd日");
+			
         }
 		
 		Find_View();
@@ -195,6 +262,8 @@ public class Record_Main extends AppCompatActivity {
 
         recordmain_name_edittext = (EditText) findViewById(R.id.recordmain_name_edittext);
         recordmain_name_edittext.setText("");
+		
+		recordmain_year_textview = (TextView) findViewById(R.id.recordmain_year_textview);
 
         recordmain_date_textview = (TextView) findViewById(R.id.recordmain_date_textview);
         recordmain_date_textview.setText(get_Select_Date);
@@ -218,11 +287,19 @@ public class Record_Main extends AppCompatActivity {
 
         recordmain_payment = (LinearLayout) findViewById(R.id.recordmain_payment);
 
-        recordmain_payment_btn = (LinearLayout) findViewById(R.id.recordmain_payment_btn);
-        recordmain_payment_btn.setOnClickListener(View_Click_Listener);
-
         recordmain_payment_textview = (TextView) findViewById(R.id.recordmain_payment_textview);
 
+		recordmain_payment_btn = (LinearLayout) findViewById(R.id.recordmain_payment_btn);
+        recordmain_payment_btn.setOnClickListener(View_Click_Listener);
+		
+		recordmain_exchange = (LinearLayout) findViewById(R.id.recordmain_exchange);
+		
+		recordmain_exchange_textview = (TextView) findViewById(R.id.recordmain_exchange_textview);
+		
+		recordmain_paymethod = (LinearLayout) findViewById(R.id.recordmain_paymethod);
+		
+		recordmain_paymethod_textview = (TextView) findViewById(R.id.recordmain_paymethod_textview);
+		
         recordmain_remark = (LinearLayout) findViewById(R.id.recordmain_remark);
 
         recordmain_remark_btn = (LinearLayout) findViewById(R.id.recordmain_remark_btn);
@@ -264,8 +341,6 @@ public class Record_Main extends AppCompatActivity {
         @Override
         public void onItemClick(View view, int position) {
 
-//            Log.e("Adapter Action", "You click Position : " + position);
-
             Intent open_a002_activity = new Intent(Record_Main.this, Record_Item.class);
 
             open_a002_activity.putExtra("extras_position", position);
@@ -296,7 +371,8 @@ public class Record_Main extends AppCompatActivity {
                 case R.id.recordmain_date_textview:
 
                     Intent open_b003_activity = new Intent(Record_Main.this, Calendar_Selecter.class);
-                    startActivity(open_b003_activity);
+					open_b003_activity.putExtra("index", "448");
+                    startActivityForResult(open_b003_activity, 488);
 
                     break;
 
@@ -304,26 +380,23 @@ public class Record_Main extends AppCompatActivity {
 
                     recordmain_income_btn.setBackgroundDrawable(getResources().getDrawable(R.drawable.a001_left_border_select));
                     recordmain_disbursement_btn.setBackgroundDrawable(getResources().getDrawable(R.drawable.a001_right_border_normal));
-
+					Type = "Income";
+					
                     break;
 
                 case R.id.recordmain_disbursement_btn:
 
                     recordmain_income_btn.setBackgroundDrawable(getResources().getDrawable(R.drawable.a001_left_border_normal));
                     recordmain_disbursement_btn.setBackgroundDrawable(getResources().getDrawable(R.drawable.a001_right_border_select));
+					Type = "Disbursement";
 
                     break;
 
-                case R.id.recordmain_newitem_btn:
-
-//                    Intent open_a002_activity = new Intent(getActivity(), Record_Item.class);
-//                    startActivityForResult(open_a002_activity, 2);
-
-                    break;
 
                 case R.id.recordmain_remark_btn:
 
                     Intent open_a005_activity = new Intent(Record_Main.this, Record_Remark.class);
+					open_a005_activity.putExtra("extraRemark", recordmain_remark_textview.getText().toString());
                     startActivityForResult(open_a005_activity, 3);
 
                     break;
@@ -336,7 +409,7 @@ public class Record_Main extends AppCompatActivity {
 					open_a007_activity.putExtra("Record_Size", xx_list.size());
 					open_a007_activity.putExtra("Total_Amount", recordmain_total_amount_textview.getText().toString());
 					
-                    startActivity(open_a007_activity);
+                    startActivityForResult(open_a007_activity, 137);
 
                     break;
 					
@@ -361,6 +434,9 @@ public class Record_Main extends AppCompatActivity {
             recordmain_total_amount.setVisibility(View.GONE);
             recordmain_payment_btn.setVisibility(View.GONE);
             recordmain_remark.setVisibility(View.GONE);
+			recordmain_payment.setVisibility(View.GONE);
+            recordmain_exchange.setVisibility(View.GONE);
+            recordmain_paymethod.setVisibility(View.GONE);
 
         }else {
 
@@ -376,6 +452,32 @@ public class Record_Main extends AppCompatActivity {
         }
 
     }
+	
+	
+	private void getInputData(){
+		
+		Log.e("Name", recordmain_name_edittext.getText().toString());
+		Log.e("InputDate", String.valueOf(getDate_long));
+		Log.e("Type", Type);
+		
+		for(int i = 0; i < xx_list.size(); i++){
+			Log.e("ItemNo", xx_list.get(i).getProduct_no());
+			Log.e("ItemName", xx_list.get(i).getProduct_noname());
+			Log.e("ItemPrice", xx_list.get(i).getProduct_price());
+			Log.e("ItemDiscount", xx_list.get(i).getProduct_discount());
+			Log.e("ItemTax", xx_list.get(i).getProduct_tax());
+		}
+		
+		Log.e("TotalPrice", recordmain_total_amount_textview.getText().toString());
+		
+		Log.e("Payment", recordmain_payment_textview.getText().toString());
+		Log.e("ExChange", recordmain_exchange_textview.getText().toString());
+		Log.e("Method", recordmain_paymethod_textview.getText().toString());
+		
+		Log.e("Remark", recordmain_remark_textview.getText().toString());
+		
+		
+	}
 
 
 

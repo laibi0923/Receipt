@@ -18,6 +18,7 @@ import com.example.lpc.receipt.R;
 import java.text.DecimalFormat;
 import com.example.lpc.receipt.Public.*;
 import android.widget.*;
+import android.content.*;
 
 public class Record_Payment extends AppCompatActivity {
 
@@ -288,6 +289,12 @@ public class Record_Payment extends AppCompatActivity {
 					if(Payment_Amount < Total_Amount){					
 						payment_edittext.setText("$" + dec.format(Total_Amount));
 					}
+					
+					Intent mIntent = new Intent();
+					mIntent.putExtra("extraPaymentPrice", payment_edittext.getText().toString());
+					mIntent.putExtra("extraPaymentExchange", exchange_amount_edittext.getText().toString());
+					mIntent.putExtra("extraPaymentMethod", payment_method_textview.getText().toString());
+					setResult(137, mIntent);
 					
                     close_keybord();
 					

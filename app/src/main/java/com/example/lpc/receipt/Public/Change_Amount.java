@@ -4,7 +4,7 @@ import java.text.*;
 import android.widget.*; 
 
 public class Change_Amount
-{
+{ 
 	
 	DecimalFormat dec = new DecimalFormat("#,##0.00");
 	

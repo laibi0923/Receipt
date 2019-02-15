@@ -16,6 +16,7 @@ import java.util.*;
 import com.example.lpc.receipt.Record.*;
 
 import java.text.*;
+import com.example.lpc.receipt.Public.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,11 +35,13 @@ public class MainActivity extends AppCompatActivity {
 
     // 計算開始日期與本日之間日差 定義為當前顯示頁面 Current_Position
     // one_day_ms 為計算一日毫秒，用作計算日差, 必須定義為 long
-    private long one_day_ms = 24 * 60 * 60 * 1000;
+    // private long one_day_ms = 24 * 60 * 60 * 1000;
 
 	private int Current_Position;
 
-    SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("MM月dd日");
+    //SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("MM月dd日");
+	
+	private Change_Date mChange_Date;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -55,16 +58,23 @@ public class MainActivity extends AppCompatActivity {
                     New_Start_Date.set(1970, 0, 1);
 
                     long getselect_Date = data.getLongExtra("getselect_Date", 0);
-
                     Select_Date.setTimeInMillis(getselect_Date);
 
-                    int day_diff = (int) ((Select_Date.getTimeInMillis() - New_Start_Date.getTimeInMillis()) / (one_day_ms));
+                    //int day_diff = (int) ((Select_Date.getTimeInMillis() - New_Start_Date.getTimeInMillis()) / (one_day_ms));
 
-                    int Select_Date_Position = day_diff + 1;
+                    int Select_Date_Position = mChange_Date.getDate_Diff(Select_Date.getTimeInMillis(), New_Start_Date.getTimeInMillis() + 1);
                     mViewPager.setCurrentItem(Select_Date_Position);
 
                 }
                 break;
+				
+			case 773:
+				
+				if(data != null){
+					Jump_ToPage(data.getIntExtra("Page_Position", 0));
+				}
+				
+				break;
         }
 
     }
@@ -74,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.a000_activity_main);
+		
+		mChange_Date = new Change_Date();
 
         Select_Date = Calendar.getInstance();
 
@@ -93,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("WrongViewCast")
     private void Find_View(){
 
-        activity_main_fab = findViewById(R.id.activity_main_fab);
+        activity_main_fab = (FloatingActionButton) findViewById(R.id.activity_main_fab);
         activity_main_fab.setOnClickListener(View_OnClickListeren);
 
         mViewPager = (ViewPager) findViewById(R.id.main_activity_viewpager);
@@ -118,14 +130,14 @@ public class MainActivity extends AppCompatActivity {
 			switch(v.getId()){
 
                 case R.id.activity_main_fab:
-                    Jump_Today();
+                    Jump_ToPage(Current_Position);
                     break;
 
 				case R.id.new_btn:
 					Intent open_a001_activity = new Intent(MainActivity.this, Record_Main.class);
 					long Select_Date_parseLong = Select_Date.getTimeInMillis();
 					open_a001_activity.putExtra("Select_Date", Select_Date_parseLong);
-					startActivity(open_a001_activity);
+					startActivityForResult(open_a001_activity, 773);
 					break;
 
 				case R.id.setting_btn:
@@ -139,8 +151,8 @@ public class MainActivity extends AppCompatActivity {
     
     private void Setup_ViewPager(){
 
-		int day_diff = (int) ((mCalendar.getTimeInMillis() - Start_Date.getTimeInMillis()) / (one_day_ms));
-		Current_Position = day_diff + 1;
+		//int day_diff = (int) ((mCalendar.getTimeInMillis() - Start_Date.getTimeInMillis()) / (one_day_ms));
+		Current_Position = mChange_Date.getDate_Diff(mCalendar.getTimeInMillis(), Start_Date.getTimeInMillis()) + 1;
 		
 		// 由 Start Date 開始循環放入日期, 直至到 End Date
         DateList = new ArrayList<>();
@@ -199,8 +211,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // 返回本日
-    public void Jump_Today(){
-        mViewPager.setCurrentItem(Current_Position);
+    public void Jump_ToPage(int position){
+        mViewPager.setCurrentItem(position);
     }
 
 

@@ -17,6 +17,8 @@ public class Record_Remark extends AppCompatActivity {
     private LinearLayout back_btn;
 
     private EditText remark_edittext;
+	
+	private String Remark_Text;
 
     private LinearLayout remark_save_btn;
 
@@ -26,6 +28,15 @@ public class Record_Remark extends AppCompatActivity {
         setContentView(R.layout.a005_record_remark);
         super.onCreate(savedInstanceState);
 
+		Remark_Text = "";
+		
+		Bundle mBundle = getIntent().getExtras();
+		
+		if (!mBundle.isEmpty()){
+			
+			Remark_Text = mBundle.getString("extraRemark");
+		}
+		
         Find_View();
     }
 
@@ -35,6 +46,7 @@ public class Record_Remark extends AppCompatActivity {
         back_btn.setOnClickListener(View_Click_Listener);
 
         remark_edittext = (EditText) findViewById(R.id.remark_edittext);
+		remark_edittext.setText(Remark_Text);
 
         remark_save_btn = (LinearLayout) findViewById(R.id.remark_save_btn);
         remark_save_btn.setOnClickListener(View_Click_Listener);

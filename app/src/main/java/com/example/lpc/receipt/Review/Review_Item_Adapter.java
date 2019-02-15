@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.example.lpc.receipt.R;
 
-import java.util.List;
+import java.util.List; 
 
 public class Review_Item_Adapter extends RecyclerView.Adapter<Review_Item_Adapter.ViewHolder> {
 
