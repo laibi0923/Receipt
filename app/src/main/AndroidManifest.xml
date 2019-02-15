@@ -11,14 +11,27 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name="com.example.lpc.receipt.MainActivity"
-            android:windowSoftInputMode="stateHidden|adjustResize" >
+            android:name="com.example.lpc.receipt.SplashScreen"
+            android:windowSoftInputMode="stateHidden" >
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+        </activity>
+
+
+        <activity
+            android:name=".MainActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
+
+        </activity>
+
+        <activity
+            android:name=".LoginActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize" >
 
         </activity>
 

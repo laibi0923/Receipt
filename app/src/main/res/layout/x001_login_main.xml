@@ -16,53 +16,105 @@
 		android:gravity="center">
 
 		<ImageView
-			android:layout_height="wrap_content"
+			android:layout_width="100dp"
+			android:layout_height="100dp"
+			android:layout_marginTop="10dp"
+			android:src="@mipmap/ic_calendar_mark"
+			android:tint="@color/text_color_1"
+			android:visibility="gone"/>
+
+		<TextView
 			android:layout_width="wrap_content"
-			android:src="@android:drawable/ic_delete"
-			android:layout_margin="50dp"
-			android:visibility="invisible"/>
+			android:layout_height="wrap_content"
+			android:padding="15dp"
+			android:text="Error Message"
+            android:visibility="invisible"
+			android:textColor="#f23f3f" />
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center"
+			android:padding="15dp"
+			android:text="建立新帳戶"
+			android:textColor="@color/colorAccent" />
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center"
+			android:orientation="horizontal">
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_weight="0.5"
+				android:background="#AFAFAF" />
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:padding="15dp"
+				android:text="或"
+				android:textColor="#AFAFAF" />
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_weight="0.5"
+				android:background="#AFAFAF" />
+
+		</LinearLayout>
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="5dp"
+			android:gravity="center"
+			android:padding="10dp"
+			android:text="登入"
+			android:textColor="@color/text_color_1" />
 
 		<EditText
-			android:layout_height="wrap_content"
 			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="10dp"
 			android:background="@android:color/transparent"
 			android:ems="10"
+			android:gravity="center"
 			android:hint="電郵"
 			android:padding="10dp"
-			android:layout_marginBottom="10dp"
-			android:textColorHint="#AFAFAF"
-			android:gravity="center"
-			android:textColor="#FFFFFF"
 			android:singleLine="true"
-			android:textSize="15sp"/>
-
-		<View
-			android:background="?android:attr/dividerVertical"
-			android:layout_height="1dp"
-			android:layout_width="match_parent"
-			android:visibility="gone"/>
+			android:textColor="#FFFFFF"
+			android:textColorHint="#AFAFAF"
+			android:textSize="15sp" />
 
 		<EditText
-			android:layout_height="wrap_content"
 			android:layout_width="match_parent"
-			android:background="@android:color/transparent"
-			android:ems="10"
-			android:padding="10dp"
-			android:hint="密碼"
+			android:layout_height="wrap_content"
 			android:layout_marginTop="10dp"
 			android:layout_marginBottom="10dp"
-			android:textColorHint="#8A8A8A"
+			android:background="@android:color/transparent"
+			android:ems="10"
 			android:gravity="center"
-			android:textColor="#FFFFFF"
-			android:singleLine="true"
+			android:hint="密碼"
 			android:inputType="textPassword"
-			android:textSize="15sp"/>
+			android:padding="10dp"
+			android:singleLine="true"
+			android:textColor="#FFFFFF"
+			android:textColorHint="#8A8A8A"
+			android:textSize="15sp" />
 
-		<View
-			android:background="?android:attr/dividerVertical"
-			android:layout_height="1dp"
+		<TextView
 			android:layout_width="match_parent"
-			android:visibility="gone"/>
+			android:layout_height="wrap_content"
+			android:layout_marginTop="10dp"
+			android:layout_marginBottom="10dp"
+			android:gravity="center"
+			android:padding="10dp"
+			android:text="忘記密碼"
+			android:textColor="@color/text_color_1"
+			android:textSize="12sp" />
 
 	</LinearLayout>
 
@@ -71,7 +123,7 @@
 		android:layout_width="match_parent"
 		android:orientation="horizontal"
 		android:gravity="center"
-		android:padding="15dp"
+		android:padding="10dp"
 		android:background="@drawable/a002_btn_normal_style"
 		android:layout_marginTop="10dp"
 		android:id="@+id/loginsubmit_btn"
@@ -87,31 +139,6 @@
 
 	</LinearLayout>
 
-	<LinearLayout
-		android:layout_height="wrap_content"
-		android:layout_width="match_parent"
-		android:orientation="horizontal"
-		android:layout_alignParentBottom="true">
-
-		<LinearLayout
-			android:layout_height="wrap_content"
-			android:layout_width="match_parent"
-			android:orientation="horizontal"
-			android:gravity="center"
-			android:padding="15dp"
-			android:layout_marginBottom="20dp"
-			android:visibility="gone">
-
-			<TextView
-				android:layout_height="wrap_content"
-				android:layout_width="wrap_content"
-				android:text="新帳戶"
-				android:gravity="center"
-				android:textColor="#FFFFFF"/>
-
-		</LinearLayout>
-
-	</LinearLayout>
 
 </RelativeLayout>
 

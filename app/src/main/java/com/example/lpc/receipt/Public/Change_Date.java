@@ -1,6 +1,7 @@
 package com.example.lpc.receipt.Public;
-import android.icu.util.*;
-import java.text.*;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class Change_Date
 {
@@ -29,7 +30,7 @@ public class Change_Date
 	
 	
 	/*
-	 * 負責計日差
+	 * 負責計算日差
 	 */
 	public int getDate_Diff(long TargetDate, long StartDate){
 		

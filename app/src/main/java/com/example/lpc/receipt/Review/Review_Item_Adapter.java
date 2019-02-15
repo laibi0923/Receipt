@@ -88,4 +88,15 @@ public class Review_Item_Adapter extends RecyclerView.Adapter<Review_Item_Adapte
         void onItemClick(View view, int position);
     }
 
+    public void addData(int Position, Review_Item_Model Model){
+        mData.add(Position, Model);
+        notifyItemInserted(Position);
+    }
+
+    public void removeData(int Position){
+        mData.remove(Position);
+        notifyItemRemoved(Position);
+    }
+
+
 }

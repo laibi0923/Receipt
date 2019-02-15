@@ -5,13 +5,16 @@ import android.os.*;
 import android.support.annotation.*;
 import android.support.v7.app.*;
 import android.util.*;
-import android.widget.*; 
+import android.view.View;
+import android.widget.*;
 import android.widget.CalendarView.*;
 import com.example.lpc.receipt.*;
 import java.util.*;
 import java.text.*;
 
 public class Calendar_Selecter extends AppCompatActivity {
+
+	private LinearLayout back_btn;
 
 	private CalendarView selectdate_calendarview;
 	
@@ -56,6 +59,17 @@ public class Calendar_Selecter extends AppCompatActivity {
 					finish();
 				}
 			});
+
+
+		back_btn = findViewById(R.id.back_btn);
+		back_btn.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+
+				finish();
+				
+			}
+		});
 			
     }
 	
