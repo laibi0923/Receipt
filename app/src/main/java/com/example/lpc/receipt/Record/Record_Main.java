@@ -67,7 +67,7 @@ public class Record_Main extends AppCompatActivity {
 
     private Double Total_Amount = 0.0;
 
-    private String get_Select_Date;
+    private String get_Select_Date, get_Select_Year;
 
     DecimalFormat dec = new DecimalFormat("#,##0.00");
 	
@@ -194,6 +194,7 @@ public class Record_Main extends AppCompatActivity {
 
 						Intent mIntent = new Intent();
 						mIntent.putExtra("Page_Position", Select_Date_Position);
+						mIntent.putExtra("RecordMain_SelectDate", getDate_long);
 						setResult(773, mIntent);
 
 						getInputData();
@@ -235,6 +236,7 @@ public class Record_Main extends AppCompatActivity {
 			
             getDate_long = mBundle.getLong("Select_Date");
 			
+			get_Select_Year = mChange_Date.parseToDateString(getDate_long, "yyyy");
             get_Select_Date = mChange_Date.parseToDateString(getDate_long, "MM月dd日");
 			
         }
@@ -264,6 +266,7 @@ public class Record_Main extends AppCompatActivity {
         recordmain_name_edittext.setText("");
 		
 		recordmain_year_textview = (TextView) findViewById(R.id.recordmain_year_textview);
+		recordmain_year_textview.setText(get_Select_Year);
 
         recordmain_date_textview = (TextView) findViewById(R.id.recordmain_date_textview);
         recordmain_date_textview.setText(get_Select_Date);

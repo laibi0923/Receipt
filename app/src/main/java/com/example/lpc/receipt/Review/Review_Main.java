@@ -12,8 +12,6 @@ import java.text.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-
-// 未完成 Fragment 狀態保存
 public class Review_Main extends Fragment {
 
 	private TextView reviewmain_totalamount;
@@ -83,6 +81,7 @@ public class Review_Main extends Fragment {
 		Log.e("day diff", day_diff + "");
 		
 		Display_Date_String = mSimpleDateFormat.format(Get_DateCalendar.getTime());
+		
 		/*
 		if(day_diff == 0){
 			Display_Date_String = "本日";

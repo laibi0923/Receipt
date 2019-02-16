@@ -61,7 +61,7 @@ public class Calendar_Selecter extends AppCompatActivity {
 			});
 
 
-		back_btn = findViewById(R.id.back_btn);
+		back_btn = (LinearLayout) findViewById(R.id.back_btn);
 		back_btn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
