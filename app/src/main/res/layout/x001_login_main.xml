@@ -32,6 +32,7 @@
 			android:textColor="#f23f3f" />
 
 		<TextView
+			android:id="@+id/lgoin_register_btn"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center"

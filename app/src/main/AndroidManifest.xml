@@ -30,6 +30,12 @@
         </activity>
 
         <activity
+            android:name=".Register.Register_Main"
+            android:windowSoftInputMode="stateVisible|adjustResize" >
+
+        </activity>
+
+        <activity
             android:name=".LoginActivity"
             android:windowSoftInputMode="stateVisible|adjustResize" >
 
