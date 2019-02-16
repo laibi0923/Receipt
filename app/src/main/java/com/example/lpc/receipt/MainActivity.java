@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
 
     private ViewPager mViewPager;
 
+    private int ViewrPager_Position;
+
 	private LinearLayout New_btn, Setting_btn;
 
 	private FloatingActionButton activity_main_fab;
@@ -32,14 +34,6 @@ public class MainActivity extends AppCompatActivity {
 	private static Calendar mCalendar = Calendar.getInstance();
 
 	private static Calendar StartDate_Calendar, EndDate_Calendar, SelectDate_Calendar;
-
-    // 計算開始日期與本日之間日差 定義為當前顯示頁面 Current_Position
-    // one_day_ms 為計算一日毫秒，用作計算日差, 必須定義為 long
-    // private long one_day_ms = 24 * 60 * 60 * 1000;
-
-	private int Current_Position;
-
-    //SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("MM月dd日");
 	
 	private long Select_Date_parseLong;
 	
@@ -59,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                     Calendar New_Start_Date = Calendar.getInstance();
                     New_Start_Date.set(1970, 0, 1);
 
-                    SelectDate_Calendar.setTimeInMillis(data.getLongExtra("getselect_Date", 0));
+                    SelectDate_Calendar.setTimeInMillis(data.getLongExtra("Calendar_Selecter_Date", 0));
 					
 					Select_Date_parseLong = SelectDate_Calendar.getTimeInMillis();
 
@@ -137,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.activity_main_fab:
 					
-                    Jump_ToPage(Current_Position);
+                    Jump_ToPage(ViewrPager_Position);
 					
                     break;
 
@@ -162,8 +156,8 @@ public class MainActivity extends AppCompatActivity {
     
     private void Setup_ViewPager(){
 
-		
-		Current_Position = mChange_Date.getDate_Diff(mCalendar.getTimeInMillis(), StartDate_Calendar.getTimeInMillis()) + 1;
+
+		ViewrPager_Position = mChange_Date.getDate_Diff(mCalendar.getTimeInMillis(), StartDate_Calendar.getTimeInMillis()) + 1;
 		
 		// 由 Start Date 開始循環放入日期, 直至到 End Date
         DateList = new ArrayList<>();
@@ -182,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
 		
 		mViewPager.setOffscreenPageLimit(0);
 
-        mViewPager.setCurrentItem(Current_Position);
+        mViewPager.setCurrentItem(ViewrPager_Position);
 
 
         // 過場動畫
@@ -200,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-                if (position == Current_Position){
+                if (position == ViewrPager_Position){
                     activity_main_fab.hide();
                 }else {
                     activity_main_fab.show();

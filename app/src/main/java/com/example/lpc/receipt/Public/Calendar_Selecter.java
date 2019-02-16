@@ -46,7 +46,7 @@ public class Calendar_Selecter extends AppCompatActivity {
 					Log.e("getdate", mCalendar.getTimeInMillis() + "");
 
 					Intent mIntent = new Intent();
-					mIntent.putExtra("getselect_Date", mCalendar.getTimeInMillis());
+					mIntent.putExtra("Calendar_Selecter_Date", mCalendar.getTimeInMillis());
 					
 					if(mBundle == null){
 						setResult(8, mIntent);
@@ -67,7 +67,7 @@ public class Calendar_Selecter extends AppCompatActivity {
 			public void onClick(View v) {
 
 				finish();
-				
+
 			}
 		});
 			

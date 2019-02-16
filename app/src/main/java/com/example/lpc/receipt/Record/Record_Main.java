@@ -162,7 +162,7 @@ public class Record_Main extends AppCompatActivity {
 				
 				// 日曆按鍵功能
 				if (data != null){
-					getDate_long = data.getLongExtra("getselect_Date", 0);
+					getDate_long = data.getLongExtra("Calendar_Selecter_Date", 0);
 					recordmain_year_textview.setText(mChange_Date.parseToDateString(data.getLongExtra("getselect_Date", 0), "yyyy"));
 					recordmain_date_textview.setText(mChange_Date.parseToDateString(data.getLongExtra("getselect_Date", 0), "MM月dd日"));
 				}
@@ -216,9 +216,6 @@ public class Record_Main extends AppCompatActivity {
 
 
     }
-
-
-
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
