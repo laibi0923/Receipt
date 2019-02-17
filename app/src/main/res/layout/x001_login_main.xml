@@ -24,12 +24,13 @@
 			android:visibility="gone"/>
 
 		<TextView
-			android:layout_width="wrap_content"
+			android:id="@+id/login_errormsg"
+			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:gravity="center"
 			android:padding="15dp"
-			android:text="Error Message"
-            android:visibility="invisible"
-			android:textColor="#f23f3f" />
+			android:textColor="#f23f3f"
+			android:visibility="visible" />
 
 		<TextView
 			android:id="@+id/lgoin_register_btn"
@@ -77,6 +78,7 @@
 			android:textColor="@color/text_color_1" />
 
 		<EditText
+			android:id="@+id/login_email"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginTop="10dp"
@@ -91,6 +93,7 @@
 			android:textSize="15sp" />
 
 		<EditText
+			android:id="@+id/login_password"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginTop="10dp"
@@ -139,6 +142,13 @@
 			android:textColor="#FFFFFF"/>
 
 	</LinearLayout>
+
+	<ProgressBar
+		android:id="@+id/login_loading_view"
+		android:layout_centerInParent="true"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:visibility="gone"/>
 
 
 </RelativeLayout>
