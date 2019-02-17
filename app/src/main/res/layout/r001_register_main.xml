@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/register_framlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
@@ -36,11 +35,8 @@
     </LinearLayout>
 
     <FrameLayout
-        android:id="@id/register_framlayout"
+        android:id="@+id/register_framlayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#333333"/>
-
-
+        android:layout_height="match_parent" />
 
 </LinearLayout>

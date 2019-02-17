@@ -1,13 +1,17 @@
 package com.example.lpc.receipt.Register;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
@@ -33,6 +37,10 @@ public class Register_Main extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.r001_register_main);
 
+        Fragment Register_Email = new Register_Email();
+
+        Load_Fragment(Register_Email);
+
         register_close_btn = findViewById(R.id.register_close_btn);
         register_close_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,17 +49,42 @@ public class Register_Main extends AppCompatActivity {
             }
         });
 
-        Load_Init_Fragment();
+    }
+
+    public void Load_Fragment(Fragment fragment){
+
+        FragmentTransaction mFragmentTransaction = getSupportFragmentManager().beginTransaction();
+        mFragmentTransaction.replace(R.id.register_framlayout, fragment);
+        mFragmentTransaction.addToBackStack(null);
+        mFragmentTransaction.commit();
 
     }
 
-    private void Load_Init_Fragment(){
+    public void PopbackFragment(){
+        getSupportFragmentManager().popBackStack();
+    }
 
-        Fragment Register_Email = new Register_Email();
-        FragmentTransaction mFragmentTransaction = getSupportFragmentManager().beginTransaction();
-        mFragmentTransaction.replace(R.id.register_framlayout, Register_Email);
-        mFragmentTransaction.commit();
+    public void UserInput_Value(){
 
+        Log.e("", Email);
+        Log.e("", Password);
+        Log.e("", UserName);
+//        Log.e("", Gender);
+        Log.e("", Age_of_Year);
+
+    }
+
+    public void Finish_Register(){
+        this.finish();
+    }
+
+    private void New_Register(){
+
+    }
+
+    public void show_keybord(EditText mEditText){
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(mEditText ,0);
     }
 
     public void setEmail(String email) {
