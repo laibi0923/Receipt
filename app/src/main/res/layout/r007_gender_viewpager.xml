@@ -4,17 +4,22 @@
 	android:layout_width="fill_parent"
 	android:layout_height="wrap_content"
 	android:orientation="vertical"
+	android:padding="10dp"
 	android:gravity="center">
 
 	<ImageView
+		android:id="@+id/viewpager_img"
 		android:layout_height="100dp"
 		android:layout_width="100dp"
+		android:tint="@color/text_color_1"
 		android:src="@android:drawable/ic_delete"/>
 
 	<TextView
+		android:id="@+id/gender_title"
 		android:layout_height="wrap_content"
 		android:layout_width="wrap_content"
-		android:text="Text"
+		android:textColor="@color/text_color_1"
+		android:text="1564165415645645645"
 		android:gravity="center"/>
 
 </LinearLayout>

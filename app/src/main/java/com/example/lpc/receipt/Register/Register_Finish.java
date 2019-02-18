@@ -18,14 +18,12 @@ public class Register_Finish extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.r005_register_finish, container, false);
+        View v = inflater.inflate(R.layout.r006_register_finish, container, false);
 
         register_getvalue = v.findViewById(R.id.register_getvalue);
         register_getvalue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                ((Register_Main) getActivity()).UserInput_Value();
 
                 ((Register_Main) getActivity()).Finish_Register();
 

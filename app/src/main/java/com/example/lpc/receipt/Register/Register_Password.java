@@ -37,7 +37,17 @@ public class Register_Password extends Fragment {
             @Override
             public void onClick(View v) {
 
-                if (!password_edittext.getText().toString().isEmpty()){
+                if (password_edittext.getText().length() <= 6) {
+                    Error_Msg_TextView.setText("請輸入密碼長度大於六位.");
+                    return;
+                }
+
+                if (password_edittext.getText().toString().isEmpty()){
+                    Error_Msg_TextView.setText("請輸入密碼.");
+                    return;
+                }
+
+                if (!password_edittext.getText().toString().trim().isEmpty()) {
 
                     ((Register_Main) getActivity()).setPassword(password_edittext.getText().toString());
 
@@ -46,9 +56,6 @@ public class Register_Password extends Fragment {
                     ((Register_Main) getActivity()).Load_Fragment(mRegister_UserName);
 
                     Error_Msg_TextView.setText("");
-
-                }else {
-                    Error_Msg_TextView.setText("Password cannot be empty");
                 }
 
 

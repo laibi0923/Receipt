@@ -1,107 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/register_email_next"
+
+
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:orientation="vertical"
-        android:gravity="top|center">
-
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_margin="50dp"
-            android:src="@mipmap/ic_mail"
-            android:tint="@color/text_color_1"/>
+        android:layout_weight="1">
 
         <LinearLayout
+            android:id="@+id/register_email_next"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:gravity="top|center">
 
-
-            <LinearLayout
-                android:id="@+id/register_back_btn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_alignParentLeft="true"
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="50dp"
+                android:src="@mipmap/ic_mail"
                 android:layout_centerInParent="true"
-                android:layout_marginLeft="15dp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:visibility="invisible">
-
-                <ImageView
-                    android:id="@+id/close_btn1"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@mipmap/ic_back_btn"
-                    android:tint="@color/text_color_1" />
-
-            </LinearLayout>
+                android:layout_weight="1"
+                android:tint="@color/text_color_1"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/email_edittext"
+                <LinearLayout
+                    android:id="@+id/register_back_btn"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="15dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="invisible">
+
+                    <ImageView
+                        android:id="@+id/close_btn1"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@mipmap/ic_back_btn"
+                        android:tint="@color/text_color_1" />
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/email_edittext"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:hint="電郵"
+                        android:padding="10dp"
+                        android:singleLine="true"
+                        android:textColor="@color/text_color_1"
+                        android:textColorHint="@color/text_color_2"
+                        android:textSize="15sp" />
+
+                    <requestFocus/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/register_next_btn"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="15dp"
                     android:gravity="center"
-                    android:hint="電郵"
-                    android:padding="10dp"
-                    android:textColor="@color/text_color_1"
-                    android:textColorHint="@color/text_color_2"
-                    android:textSize="15sp" />
+                    android:orientation="horizontal"
+                    android:rotation="180">
 
-                <requestFocus/>
+                    <ImageView
+                        android:id="@+id/close_btn"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@mipmap/ic_back_btn"
+                        android:tint="@color/text_color_1" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/register_next_btn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerInParent="true"
-                android:layout_marginRight="15dp"
+            <TextView
+                android:id="@+id/errormsg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:orientation="horizontal"
-                android:rotation="180">
-
-                <ImageView
-                    android:id="@+id/close_btn"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:src="@mipmap/ic_back_btn"
-                    android:tint="@color/text_color_1" />
-
-            </LinearLayout>
+                android:textColor="#f25b5b" />
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/errormsg"
+        <!--Loading Screen-->
+        <LinearLayout
+            android:id="@+id/email_loading_screen"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="center"
-            android:textColor="#f25b5b" />
+            android:visibility="gone">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
 
-    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
 
 
 
-</RelativeLayout>
+</LinearLayout>

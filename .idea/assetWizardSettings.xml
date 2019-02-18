@@ -21,8 +21,8 @@
                                       <entry key="assetType" value="IMAGE" />
                                       <entry key="cropped" value="true" />
                                       <entry key="iconShape" value="NONE" />
-                                      <entry key="imageAsset" value="C:\Users\LPC\Desktop\male.png" />
-                                      <entry key="outputName" value="ic_male" />
+                                      <entry key="imageAsset" value="C:\Users\LPC\Desktop\female.png" />
+                                      <entry key="outputName" value="ic_female" />
                                     </map>
                                   </option>
                                 </PersistentState>

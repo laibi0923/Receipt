@@ -31,7 +31,7 @@
 
         <activity
             android:name=".Register.Register_Main"
-            android:windowSoftInputMode="stateAlwaysVisible|adjustResize" >
+            android:windowSoftInputMode="stateAlwaysVisible|adjustNothing" >
 
         </activity>
 
