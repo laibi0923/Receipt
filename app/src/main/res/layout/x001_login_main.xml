@@ -30,7 +30,7 @@
 			android:gravity="center"
 			android:padding="15dp"
 			android:textColor="#f23f3f"
-			android:visibility="visible" />
+			android:visibility="visible"/>
 
 		<TextView
 			android:id="@+id/lgoin_register_btn"
@@ -39,7 +39,7 @@
 			android:gravity="center"
 			android:padding="15dp"
 			android:text="建立新帳戶"
-			android:textColor="@color/colorAccent" />
+			android:textColor="@color/colorAccent"/>
 
 		<LinearLayout
 			android:layout_width="match_parent"
@@ -51,20 +51,20 @@
 				android:layout_width="match_parent"
 				android:layout_height="1dp"
 				android:layout_weight="0.5"
-				android:background="#AFAFAF" />
+				android:background="#AFAFAF"/>
 
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:padding="15dp"
 				android:text="或"
-				android:textColor="#AFAFAF" />
+				android:textColor="#AFAFAF"/>
 
 			<View
 				android:layout_width="match_parent"
 				android:layout_height="1dp"
 				android:layout_weight="0.5"
-				android:background="#AFAFAF" />
+				android:background="#AFAFAF"/>
 
 		</LinearLayout>
 
@@ -75,7 +75,7 @@
 			android:gravity="center"
 			android:padding="10dp"
 			android:text="登入"
-			android:textColor="@color/text_color_1" />
+			android:textColor="@color/text_color_1"/>
 
 		<EditText
 			android:id="@+id/login_email"
@@ -90,7 +90,7 @@
 			android:singleLine="true"
 			android:textColor="#FFFFFF"
 			android:textColorHint="#AFAFAF"
-			android:textSize="15sp" />
+			android:textSize="15sp"/>
 
 		<EditText
 			android:id="@+id/login_password"
@@ -107,7 +107,7 @@
 			android:singleLine="true"
 			android:textColor="#FFFFFF"
 			android:textColorHint="#8A8A8A"
-			android:textSize="15sp" />
+			android:textSize="15sp"/>
 
 		<TextView
 			android:layout_width="match_parent"
@@ -118,7 +118,7 @@
 			android:padding="10dp"
 			android:text="忘記密碼"
 			android:textColor="@color/text_color_1"
-			android:textSize="12sp" />
+			android:textSize="12sp"/>
 
 	</LinearLayout>
 
@@ -143,13 +143,19 @@
 
 	</LinearLayout>
 
-	<ProgressBar
-		android:id="@+id/login_loading_view"
-		android:layout_centerInParent="true"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:visibility="gone"/>
+	<RelativeLayout
+		android:layout_height="match_parent"
+		android:layout_width="match_parent"
+		android:visibility="gone"
+		android:id="@+id/login_loading_view">
 
+		<ProgressBar
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:visibility="visible"
+			android:layout_centerInParent="true"/>
+
+	</RelativeLayout>
 
 </RelativeLayout>
 

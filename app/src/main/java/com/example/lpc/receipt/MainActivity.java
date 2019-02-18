@@ -73,6 +73,10 @@ public class MainActivity extends AppCompatActivity {
 				}
 				
 				break;
+				
+			case 688:
+				Open_LoginScreen();
+				break;
         }
 
     }
@@ -146,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
 				case R.id.setting_btn:
 					
 					Intent open_z001_activity = new Intent(MainActivity.this, Setting_Main.class);
-					startActivity(open_z001_activity);
+					startActivityForResult(open_z001_activity, 688);
 					
 					break;
 			}
@@ -225,6 +229,13 @@ public class MainActivity extends AppCompatActivity {
         Intent open_b003_activity = new Intent(MainActivity.this, Calendar_Selecter.class);
         startActivityForResult(open_b003_activity, 8);
     }
+	
+	public void Open_LoginScreen(){
+		Intent mIntent = new Intent();
+		mIntent.setClass(MainActivity.this, LoginActivity.class);
+		startActivity(mIntent);
+		finish();
+	}
 
 }
 

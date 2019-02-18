@@ -13,7 +13,7 @@ public class Record_Item_Model {
         this.product_final_price = product_final_price;
     } 
 
-    public String getProduct_no() { 
+    public String getProduct_no() {  
         return product_no;
     }
 

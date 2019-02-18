@@ -183,14 +183,14 @@
 					android:gravity="center"
 					android:text="報表檢視"
 					android:textColor="@color/text_color_1"
-					android:textStyle="bold" />
+					android:textStyle="bold"/>
 
 				<TextView
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:gravity="center"
 					android:text="檢視過去收入及支出 (需密碼)"
-					android:textColor="@color/text_color_1" />
+					android:textColor="@color/text_color_1"/>
 
 			</LinearLayout>
 
@@ -356,7 +356,8 @@
 			android:layout_marginTop="30dp"
 			android:layout_marginBottom="200dp"
 			android:gravity="center"
-			android:padding="15dp">
+			android:padding="15dp"
+			android:id="@+id/setting_logout">
 
 			<TextView
 				android:layout_width="wrap_content"

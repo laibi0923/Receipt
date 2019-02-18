@@ -1,18 +1,14 @@
 package com.example.lpc.receipt.Register;
 
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
-import com.example.lpc.receipt.R;
+import android.content.*;
+import android.os.*;
+import android.support.annotation.*;
+import android.support.v4.app.*;
+import android.support.v4.view.*;
+import android.view.*;
+import android.widget.*;
+import com.example.lpc.receipt.*;
+import java.util.*;
 
 public class Register_Gender_Age extends Fragment {
 
@@ -21,6 +17,8 @@ public class Register_Gender_Age extends Fragment {
     private EditText birthyear_edittext;
 
     private TextView Error_Msg_TextView;
+	
+	private ViewPager gender_viewpager;
 
     @Nullable
     @Override
@@ -30,6 +28,32 @@ public class Register_Gender_Age extends Fragment {
         birthyear_edittext  = v.findViewById(R.id.register_birthyear_edittext);
 
         Error_Msg_TextView = v.findViewById(R.id.errormsg);
+		
+		List<String> mListr = new ArrayList();
+		
+		gender_viewpager = v.findViewById(R.id.gender_viewpager);
+		Gender_ViewPager_Adapter mAdapter = new Gender_ViewPager_Adapter(getContext(), mListr);
+		gender_viewpager.setAdapter(mAdapter);
+		gender_viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener(){
+
+				@Override
+				public void onPageScrolled(int p1, float p2, int p3)
+				{
+					// TODO: Implement this method
+				}
+
+				@Override
+				public void onPageSelected(int p1)
+				{
+					// TODO: Implement this method
+				}
+
+				@Override
+				public void onPageScrollStateChanged(int p1)
+				{
+					// TODO: Implement this method
+				}
+			});
 
         register_next_btn = v.findViewById(R.id.register_next_btn);
         register_next_btn.setOnClickListener(new View.OnClickListener() {
@@ -70,4 +94,56 @@ public class Register_Gender_Age extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ((Register_Main) getActivity()).show_keybord(birthyear_edittext);
     }
+	
+	
+	
+	
+	
+	public static class Gender_ViewPager_Adapter extends PagerAdapter
+	{
+
+		private LayoutInflater mLayoutInflater;
+		private List<String> mList;
+		
+		public Gender_ViewPager_Adapter(Context context, List<String> mList){
+			this.mList = mList;
+			mLayoutInflater = LayoutInflater.from(context);
+		}
+
+		@Override
+		public Object instantiateItem(ViewGroup container, int position)
+		{
+			// TODO: Implement this method
+			View v = mLayoutInflater.inflate(R.layout.r006_gender_viewpager, container, false);
+			return v;
+		}
+
+			
+		@Override
+		public int getCount()
+		{
+			// TODO: Implement this method
+			return 4;
+		}
+
+		@Override
+		public boolean isViewFromObject(View view, Object object)
+		{
+			// TODO: Implement this method
+			return view == object;
+		}
+
+		@Override
+		public void destroyItem(ViewGroup container, int position, Object object)
+		{
+			// TODO: Implement this method
+			super.destroyItem(container, position, object);
+			container.removeView((View)object);
+		}
+		
+		
+		
+	}
+	
+	
 }

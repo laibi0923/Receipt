@@ -1,17 +1,14 @@
 package com.example.lpc.receipt;
-import android.os.*;
-import android.support.annotation.NonNull;
-import android.support.v7.app.*;
-import android.util.Log;
-import android.view.*;
-import android.widget.*;
 import android.content.*;
-
-import com.example.lpc.receipt.Register.Register_Main;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
+import android.os.*;
+import android.support.annotation.*;
+import android.support.v7.app.*;
+import android.view.*;
+import android.view.inputmethod.*;
+import android.widget.*;
+import com.example.lpc.receipt.Register.*;
+import com.google.android.gms.tasks.*;
+import com.google.firebase.auth.*;
 
 public class LoginActivity extends AppCompatActivity
 {
@@ -23,22 +20,61 @@ public class LoginActivity extends AppCompatActivity
 
 	private EditText login_email, login_password;
 
-	private ProgressBar login_loading_view;
+	private RelativeLayout login_loading_view;
+	
+	private String UserEmail;
+	
+	FirebaseAuth mFirebaseAuth;
+	
+	FirebaseUser mFirebaseUser;
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data)
+	{
+		// TODO: Implement this method
+		super.onActivityResult(requestCode, resultCode, data);
+		
+		switch(requestCode){
+			
+			case 644:
+				
+				if(data != null){
+					UserEmail = data.getStringExtra("UserEmail");
+					login_email.setText(UserEmail);
+					login_password.requestFocus();
+				}
+				
+				break;
+		}
+	}
+	
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		// TODO: Implement this method
 		super.onCreate(savedInstanceState);
+		
+		mFirebaseAuth = FirebaseAuth.getInstance();
+		
+		mFirebaseUser = mFirebaseAuth.getCurrentUser();
+		
 		setContentView(R.layout.x001_login_main);
+		
+		if(mFirebaseUser != null){
+			Open_MainActivity();
+		}
+		
+		login_loading_view = (RelativeLayout) findViewById(R.id.login_loading_view);
 
-		login_loading_view = findViewById(R.id.login_loading_view);
+		login_errormsg = (TextView) findViewById(R.id.login_errormsg);
 
-		login_errormsg = findViewById(R.id.login_errormsg);
+		UserEmail = "";
+		login_email = (EditText) findViewById(R.id.login_email);
+		//login_email.setText(UserEmail);
 
-		login_email = findViewById(R.id.login_email);
-
-		login_password = findViewById(R.id.login_password);
+		login_password = (EditText) findViewById(R.id.login_password);
 
 		loginsubmit_btn = (LinearLayout) findViewById(R.id.loginsubmit_btn);
 		loginsubmit_btn.setOnClickListener(new View.OnClickListener(){
@@ -51,10 +87,10 @@ public class LoginActivity extends AppCompatActivity
 					login_errormsg.setText("");
 
 					login_loading_view.setVisibility(View.VISIBLE);
+					
+					close_keybord();
 
 					if (!login_email.getText().toString().isEmpty() && !login_password.getText().toString().isEmpty()){
-
-						FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
 
 						mFirebaseAuth.signInWithEmailAndPassword(login_email.getText().toString(), login_password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
 							@Override
@@ -63,9 +99,7 @@ public class LoginActivity extends AppCompatActivity
 								if (task.isSuccessful()){
 
 									login_loading_view.setVisibility(View.GONE);
-									Intent mIntent = new Intent().setClass(LoginActivity.this, MainActivity.class);
-									startActivity(mIntent);
-									finish();
+									Open_MainActivity();
 
 								}else {
 
@@ -87,18 +121,29 @@ public class LoginActivity extends AppCompatActivity
 			});
 
 
-		lgoin_register_btn = findViewById(R.id.lgoin_register_btn);
+		lgoin_register_btn = (TextView) findViewById(R.id.lgoin_register_btn);
 		lgoin_register_btn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 
 				Intent mIntent = new Intent().setClass(LoginActivity.this, Register_Main.class);
-				startActivity(mIntent);
+				startActivityForResult(mIntent, 644);
 
 			}
 		});
 
 	}
+	
+	private void close_keybord(){
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+    }
+	
 
+	private void Open_MainActivity(){
+		Intent mIntent = new Intent().setClass(LoginActivity.this, MainActivity.class);
+		startActivity(mIntent);
+		finish();
+	}
 
 }

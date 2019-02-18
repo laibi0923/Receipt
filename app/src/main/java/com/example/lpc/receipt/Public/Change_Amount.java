@@ -13,7 +13,7 @@ public class Change_Amount
 	
 	public String Change_Amount(String Input_Amount, EditText mEditText){
 		
-		String Result = "";
+		String Result = ""; 
 
         if(!Input_Amount.matches("^\\$(\\d{1,3}(\\,\\d{3})*|(\\d+))(\\.\\d{2})?$"))
         {

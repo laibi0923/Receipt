@@ -11,7 +11,7 @@ public class Change_Date
 	
 	private Calendar getDate_Calendar = Calendar.getInstance();
 
-	public Change_Date(){}
+	public Change_Date(){} 
 	
 	
 	public String parseToDateString(Long ms, String dateformat_mask){

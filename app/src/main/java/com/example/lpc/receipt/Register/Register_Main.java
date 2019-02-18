@@ -16,18 +16,11 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.example.lpc.receipt.R;
+import android.content.*;
 
 public class Register_Main extends AppCompatActivity {
 
     private LinearLayout register_close_btn;
-
-    private Register_Email mRegister_Email;
-
-    private Register_Password mRegister_Password;
-
-    private Register_UserName mRegister_UserName;
-
-    private Register_Gender_Age mRegister_Gender_Age;
 
     private String Email, Password, UserName, Gender, Age_of_Year;
 
@@ -41,7 +34,7 @@ public class Register_Main extends AppCompatActivity {
 
         Load_Fragment(Register_Email);
 
-        register_close_btn = findViewById(R.id.register_close_btn);
+        register_close_btn = (LinearLayout) findViewById(R.id.register_close_btn);
         register_close_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,6 +64,10 @@ public class Register_Main extends AppCompatActivity {
         Log.e("", UserName);
 //        Log.e("", Gender);
         Log.e("", Age_of_Year);
+		
+		Intent mIntent = new Intent();
+		mIntent.putExtra("UserEmail", Email);
+		setResult(644, mIntent);
 
     }
 
@@ -78,9 +75,7 @@ public class Register_Main extends AppCompatActivity {
         this.finish();
     }
 
-    private void New_Register(){
-
-    }
+    
 
     public void show_keybord(EditText mEditText){
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
