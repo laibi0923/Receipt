@@ -10,10 +10,13 @@ import android.support.v7.widget.*;
 import android.util.*;
 import android.view.*;
 import android.widget.*;
-import com.example.lpc.receipt.*;
+import com.example.lpc.receipt.R;
 import com.example.lpc.receipt.Public.*;
 import java.text.*;
 import java.util.*;
+import com.google.firebase.database.*;
+import com.google.firebase.auth.*;
+import java.time.*;
 
 public class Record_Main extends AppCompatActivity {
 	
@@ -197,7 +200,7 @@ public class Record_Main extends AppCompatActivity {
 						mIntent.putExtra("RecordMain_SelectDate", getDate_long);
 						setResult(773, mIntent);
 
-						getInputData();
+						RealTimeDataBase_setValue();
 
 						finish();
 						
@@ -454,13 +457,19 @@ public class Record_Main extends AppCompatActivity {
     }
 	
 	
-	private void getInputData(){
+	private void RealTimeDataBase_setValue(){
+		
+		// Firebase Path : UserId/Record/Year/Months/ddMmyyhhmmssms/
+		// Item Details : UserId/Record/Year/Months/ddMmyyhhmmssms/Position/
+		// MonthAmount : UserId/Record/Year/Months/MonthAmount
+		// YearAmount : UserId/Record/Year/YearAmount
 		
 		Log.e("Name", recordmain_name_edittext.getText().toString());
 		Log.e("InputDate", String.valueOf(getDate_long));
 		Log.e("Type", Type);
 		
 		for(int i = 0; i < xx_list.size(); i++){
+			
 			Log.e("ItemNo", xx_list.get(i).getProduct_no());
 			Log.e("ItemName", xx_list.get(i).getProduct_noname());
 			Log.e("ItemPrice", xx_list.get(i).getProduct_price());
@@ -477,8 +486,99 @@ public class Record_Main extends AppCompatActivity {
 		Log.e("Remark", recordmain_remark_textview.getText().toString());
 		
 		
+		Calendar CreateTime_Calendar = Calendar.getInstance();
+		long CreateTimeInMillis = CreateTime_Calendar.getTimeInMillis();
+		String CreateYear = new Change_Date().parseToDateString(CreateTimeInMillis, "yyyy");
+		String CreateMonth = new Change_Date().parseToDateString(CreateTimeInMillis, "MM");
+		
+		FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
+		FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
+		String UserUid = mFirebaseUser.getUid();
+		
+		
+		// Firebase
+		FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
+		String Root_Ref = UserUid + "/" + "Record";
+		
+		
+		// Firebase Patch
+		String TestingPatch = Root_Ref + "/" + CreateYear + "/" + CreateMonth + "/" + CreateTimeInMillis;
+		DatabaseReference Ref = mFirebaseDatabase.getReference(TestingPatch);
+		Log.e("Testingpatch", TestingPatch);
+		
+		Ref.setValue(new Record_Model(
+						 recordmain_name_edittext.getText().toString(),
+						 CreateTime_Calendar.getTimeInMillis(),
+						 Type,
+						 recordmain_total_amount_textview.getText().toString(),
+						 recordmain_exchange_textview.getText().toString(),
+						 recordmain_paymethod_textview.getText().toString(),
+						 recordmain_remark_textview.getText().toString()
+						 ));
+						 
+		
+						 
+		// 				 
+		for(int i = 0; i < xx_list.size(); i++){
+			
+			String TestinPatch2 = TestingPatch + "/zItem/" + i;
+			DatabaseReference Ref2 = mFirebaseDatabase.getReference(TestinPatch2);
+			
+			Ref2.setValue(new Record_Item_Model(
+							  xx_list.get(i).getProduct_no(),
+							  xx_list.get(i).getProduct_noname(),
+							  xx_list.get(i).getProduct_price(),
+							  xx_list.get(i).getProduct_discount(),
+							  xx_list.get(i).getProduct_tax(),
+							  xx_list.get(i).getProduct_final_price()
+							  ));
+							
+							
+		}
+		
+		
+		
+		// Monthly Amount
+		String Monthly_Amount_Patch = Root_Ref + "/" + CreateYear + "/" + CreateMonth;
+		final DatabaseReference Ref_Monthly_Amount = mFirebaseDatabase.getReference(Monthly_Amount_Patch);
+		Query mQuery = Ref_Monthly_Amount.child("Monthly_Amount");
+		mQuery.addListenerForSingleValueEvent(new ValueEventListener(){
+
+				@Override
+				public void onDataChange(DataSnapshot snapshot)
+				{
+					Double Monthly_Amount = 0.0;
+					
+					// TODO: Implement this method
+					if(snapshot.exists()){
+						Monthly_Amount = Double.parseDouble(snapshot.getValue().toString());
+					}else{
+						Monthly_Amount = 0.0;
+					}
+					
+					if(Type.equals("Income")){
+						Monthly_Amount = Monthly_Amount + Total_Amount;
+					}else{
+						Monthly_Amount = Monthly_Amount - Total_Amount;
+					}
+					
+					Ref_Monthly_Amount.child("Monthly_Amount").setValue(Monthly_Amount);
+				}
+
+				@Override
+				public void onCancelled(DatabaseError p1)
+				{
+					// TODO: Implement this method
+				}
+				
+			
+		});
+		
+		// Year Amount
+		
+		
+		
+		
+		
 	}
-
-
-
 }

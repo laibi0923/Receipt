@@ -6,5 +6,7 @@
 
     <color name="text_color_1">#FFFFFF</color>
     <color name="text_color_2">#8C8C8C</color>
-
+	<color name="text_color_red">#F23F3F</color>
+	<color name="text_color_green">#59F1B4</color>
+	
 </resources>

@@ -105,7 +105,7 @@ public class Review_Main extends Fragment {
 
         // For Sample Data
         for (int i = 0; i < 1; i++){
-			review_list.add(new Review_Item_Model("11:00", "7-11", "$5,000"));
+			review_list.add(new Review_Item_Model("11:00", "7-11 (11)", "$5,000"));
 		}
 		// For Sample Data
 
