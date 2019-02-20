@@ -132,20 +132,36 @@
 	<LinearLayout
 		android:layout_height="wrap_content"
 		android:layout_width="match_parent"
-		android:orientation="horizontal"
+		android:orientation="vertical"
 		android:gravity="center"
-		android:padding="10dp"
-		android:background="@drawable/a002_btn_normal_style"
-		android:layout_marginTop="10dp"
-		android:id="@+id/loginsubmit_btn"
-		android:layout_alignParentBottom="true"
-		android:layout_marginBottom="20dp">
+		android:layout_alignParentBottom="true">
+
+		<LinearLayout
+			android:id="@+id/loginsubmit_btn"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="@drawable/a002_btn_normal_style"
+			android:gravity="center"
+			android:padding="10dp">
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:text="登入"
+				android:gravity="center"
+				android:textColor="#FFFFFF"/>
+
+		</LinearLayout>
 
 		<TextView
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
-			android:text="登入"
+			android:layout_marginTop="10dp"
+			android:text="以其他方式登入"
+			android:textSize="12sp"
 			android:gravity="center"
+            android:visibility="invisible"
+            android:layout_marginBottom="10dp"
 			android:textColor="#FFFFFF"/>
 
 	</LinearLayout>
