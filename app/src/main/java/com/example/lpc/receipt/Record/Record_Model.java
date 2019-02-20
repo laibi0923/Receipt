@@ -1,18 +1,17 @@
 package com.example.lpc.receipt.Record;
 
 public class Record_Model{
-	String RecordName;
-	long DateLong;
-	String Type;
-	String TotalPrice;
-	String Exchange;
-	String PayMethod;
-	String Remarks;
+	private String RecordName;
+	private long CreateTime;
+	private String Type;
+	private String TotalPrice;
+	private String Exchange;
+	private String PayMethod;
+	private String Remarks;
 
-	public Record_Model(String recordName, long dateLong, String type, String totalPrice, String exchange, String payMethod, String remarks)
-	{
+	public Record_Model(String recordName, long createTime, String type, String totalPrice, String exchange, String payMethod, String remarks) {
 		RecordName = recordName;
-		DateLong = dateLong;
+		CreateTime = createTime;
 		Type = type;
 		TotalPrice = totalPrice;
 		Exchange = exchange;
@@ -20,74 +19,59 @@ public class Record_Model{
 		Remarks = remarks;
 	}
 
-	public void setRecordName(String recordName)
-	{
-		RecordName = recordName;
-	}
-
-	public String getRecordName()
-	{
+	public String getRecordName() {
 		return RecordName;
 	}
 
-	public void setDateLong(long dateLong)
-	{
-		DateLong = dateLong;
+	public void setRecordName(String recordName) {
+		RecordName = recordName;
 	}
 
-	public long getDateLong()
-	{
-		return DateLong;
+	public long getCreateTime() {
+		return CreateTime;
 	}
 
-	public void setType(String type)
-	{
-		Type = type;
+	public void setCreateTime(long createTime) {
+		CreateTime = createTime;
 	}
 
-	public String getType()
-	{
+	public String getType() {
 		return Type;
 	}
 
-	public void setTotalPrice(String totalPrice)
-	{
-		TotalPrice = totalPrice;
+	public void setType(String type) {
+		Type = type;
 	}
 
-	public String getTotalPrice()
-	{
+	public String getTotalPrice() {
 		return TotalPrice;
 	}
 
-	public void setExchange(String exchange)
-	{
-		Exchange = exchange;
+	public void setTotalPrice(String totalPrice) {
+		TotalPrice = totalPrice;
 	}
 
-	public String getExchange()
-	{
+	public String getExchange() {
 		return Exchange;
 	}
 
-	public void setPayMethod(String payMethod)
-	{
-		PayMethod = payMethod;
+	public void setExchange(String exchange) {
+		Exchange = exchange;
 	}
 
-	public String getPayMethod()
-	{
+	public String getPayMethod() {
 		return PayMethod;
 	}
 
-	public void setRemarks(String remarks)
-	{
-		Remarks = remarks;
+	public void setPayMethod(String payMethod) {
+		PayMethod = payMethod;
 	}
 
-	public String getRemarks()
-	{
+	public String getRemarks() {
 		return Remarks;
 	}
-	
+
+	public void setRemarks(String remarks) {
+		Remarks = remarks;
+	}
 }

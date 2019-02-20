@@ -458,38 +458,18 @@ public class Record_Main extends AppCompatActivity {
 	
 	
 	private void RealTimeDataBase_setValue(){
-		
-		// Firebase Path : UserId/Record/Year/Months/ddMmyyhhmmssms/
-		// Item Details : UserId/Record/Year/Months/ddMmyyhhmmssms/Position/
-		// MonthAmount : UserId/Record/Year/Months/MonthAmount
-		// YearAmount : UserId/Record/Year/YearAmount
-		
-		Log.e("Name", recordmain_name_edittext.getText().toString());
-		Log.e("InputDate", String.valueOf(getDate_long));
-		Log.e("Type", Type);
-		
-		for(int i = 0; i < xx_list.size(); i++){
-			
-			Log.e("ItemNo", xx_list.get(i).getProduct_no());
-			Log.e("ItemName", xx_list.get(i).getProduct_noname());
-			Log.e("ItemPrice", xx_list.get(i).getProduct_price());
-			Log.e("ItemDiscount", xx_list.get(i).getProduct_discount());
-			Log.e("ItemTax", xx_list.get(i).getProduct_tax());
-		}
-		
-		Log.e("TotalPrice", recordmain_total_amount_textview.getText().toString());
-		
-		Log.e("Payment", recordmain_payment_textview.getText().toString());
-		Log.e("ExChange", recordmain_exchange_textview.getText().toString());
-		Log.e("Method", recordmain_paymethod_textview.getText().toString());
-		
-		Log.e("Remark", recordmain_remark_textview.getText().toString());
-		
-		
+
+        // Patch
+		// Patch_RecordDetails  : UserId/Record/Year/Months/dd/TimInMillis
+		// Patch_RecordItems    : UserId/Record/Year/Months/dd/z_Item/Position
+		// Patch_Monthly_Amount : UserId/Record/Year/Months/MonthlyAmount
+		// Patch_Year_Amount    : UserId/Record/Year/YearAmount
+
 		Calendar CreateTime_Calendar = Calendar.getInstance();
 		long CreateTimeInMillis = CreateTime_Calendar.getTimeInMillis();
 		String CreateYear = new Change_Date().parseToDateString(CreateTimeInMillis, "yyyy");
 		String CreateMonth = new Change_Date().parseToDateString(CreateTimeInMillis, "MM");
+        String CreateDay = new Change_Date().parseToDateString(CreateTimeInMillis, "dd");
 		
 		FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
 		FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
@@ -499,14 +479,12 @@ public class Record_Main extends AppCompatActivity {
 		// Firebase
 		FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
 		String Root_Ref = UserUid + "/" + "Record";
-		
-		
+
 		// Firebase Patch
-		String TestingPatch = Root_Ref + "/" + CreateYear + "/" + CreateMonth + "/" + CreateTimeInMillis;
-		DatabaseReference Ref = mFirebaseDatabase.getReference(TestingPatch);
-		Log.e("Testingpatch", TestingPatch);
-		
-		Ref.setValue(new Record_Model(
+		String Patch_RecordDetails = Root_Ref + "/" + CreateYear + "/" + CreateMonth + "/" + CreateDay + "/" + CreateTimeInMillis;
+		DatabaseReference Ref_RecordDetails = mFirebaseDatabase.getReference(Patch_RecordDetails);
+
+        Ref_RecordDetails.setValue(new Record_Model(
 						 recordmain_name_edittext.getText().toString(),
 						 CreateTime_Calendar.getTimeInMillis(),
 						 Type,
@@ -516,15 +494,13 @@ public class Record_Main extends AppCompatActivity {
 						 recordmain_remark_textview.getText().toString()
 						 ));
 						 
-		
-						 
-		// 				 
+		// ZItem
 		for(int i = 0; i < xx_list.size(); i++){
 			
-			String TestinPatch2 = TestingPatch + "/zItem/" + i;
-			DatabaseReference Ref2 = mFirebaseDatabase.getReference(TestinPatch2);
-			
-			Ref2.setValue(new Record_Item_Model(
+			String Patch_RecordItems = Patch_RecordDetails + "/z_Item/" + i;
+			DatabaseReference Ref_RecordItems = mFirebaseDatabase.getReference(Patch_RecordItems);
+
+            Ref_RecordItems.setValue(new Record_Item_Model(
 							  xx_list.get(i).getProduct_no(),
 							  xx_list.get(i).getProduct_noname(),
 							  xx_list.get(i).getProduct_price(),
@@ -539,10 +515,10 @@ public class Record_Main extends AppCompatActivity {
 		
 		
 		// Monthly Amount
-		String Monthly_Amount_Patch = Root_Ref + "/" + CreateYear + "/" + CreateMonth;
-		final DatabaseReference Ref_Monthly_Amount = mFirebaseDatabase.getReference(Monthly_Amount_Patch);
-		Query mQuery = Ref_Monthly_Amount.child("Monthly_Amount");
-		mQuery.addListenerForSingleValueEvent(new ValueEventListener(){
+		String Patch_Monthly_Amount = Root_Ref + "/" + CreateYear + "/" + CreateMonth;
+		final DatabaseReference Ref_Monthly_Amount = mFirebaseDatabase.getReference(Patch_Monthly_Amount);
+		Query Query_MonthlyAmouunt = Ref_Monthly_Amount.child("Monthly_Amount");
+        Query_MonthlyAmouunt.addListenerForSingleValueEvent(new ValueEventListener(){
 
 				@Override
 				public void onDataChange(DataSnapshot snapshot)
@@ -570,15 +546,47 @@ public class Record_Main extends AppCompatActivity {
 				{
 					// TODO: Implement this method
 				}
-				
 			
 		});
 		
 		// Year Amount
+        String Patch_Year_Amount = Root_Ref + "/" + CreateYear;
+        final DatabaseReference Ref_Year_Amount = mFirebaseDatabase.getReference(Patch_Year_Amount);
+        Query Query_YearAmount = Ref_Year_Amount.child("Year_Amount");
+        Query_YearAmount.addListenerForSingleValueEvent(new ValueEventListener(){
+
+            @Override
+            public void onDataChange(DataSnapshot snapshot)
+            {
+                Double Year_Amount = 0.0;
+
+                // TODO: Implement this method
+                if(snapshot.exists()){
+                    Year_Amount = Double.parseDouble(snapshot.getValue().toString());
+                }else{
+                    Year_Amount = 0.0;
+                }
+
+                if(Type.equals("Income")){
+                    Year_Amount = Year_Amount + Total_Amount;
+                }else{
+                    Year_Amount = Year_Amount - Total_Amount;
+                }
+
+                Ref_Year_Amount.child("Year_Amount").setValue(Year_Amount);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError p1)
+            {
+                // TODO: Implement this method
+            }
+
+        });
 		
-		
-		
-		
-		
+
 	}
+
+
+
 }
