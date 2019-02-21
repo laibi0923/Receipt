@@ -8,9 +8,14 @@ import android.util.*;
 import android.view.*;
 import android.widget.*;
 import com.example.lpc.receipt.*;
+import com.google.firebase.auth.*;
 import java.text.*;
-import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.*;
+
+import com.example.lpc.receipt.R;
+import com.example.lpc.receipt.Public.*;
+import com.google.firebase.database.*;
+import com.example.lpc.receipt.Record.*;
 
 public class Review_Main extends Fragment {
 
@@ -26,9 +31,11 @@ public class Review_Main extends Fragment {
 
 	private Review_Item_Adapter adapter;
 
-	private ArrayList<Review_Item_Model> review_list;
+	private ArrayList<Record_Model> review_list;
 	
 	SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("MM月dd日");
+	
+	private Calendar Get_DateCalendar;
 	
 	
 	public static Review_Main newInstance(Long Display_Date){
@@ -49,9 +56,12 @@ public class Review_Main extends Fragment {
 	{
 		// TODO: Implement this method
 		super.setUserVisibleHint(isVisibleToUser);
-		Log.e("setUserVisibleHint", "true");
+		//Log.e("setUserVisibleHint", "true");
 		onResume();
+		
+		//Log.e("1", "visiba");
 	}
+	
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState)
@@ -67,18 +77,19 @@ public class Review_Main extends Fragment {
 	@Override
 	public void onResume()
 	{
+		//Log.e("1", "onresume");
 		// TODO: Implement this method
 		super.onResume();
-		Calendar mCalendar = Calendar.getInstance();
+		//Calendar mCalendar = Calendar.getInstance();
 		
 		Display_Date_Long = getArguments().getLong("Display_Date");
-		Calendar Get_DateCalendar = Calendar.getInstance();
+		Get_DateCalendar = Calendar.getInstance();
 		Get_DateCalendar.setTimeInMillis(Display_Date_Long);
 		
-		long one_day_ms = 24 * 60 * 60 * 1000;
-		int day_diff = (int) ((mCalendar.getTimeInMillis() - Get_DateCalendar.getTimeInMillis()) / (one_day_ms));
+		//long one_day_ms = 24 * 60 * 60 * 1000;
+		//int day_diff = (int) ((mCalendar.getTimeInMillis() - Get_DateCalendar.getTimeInMillis()) / (one_day_ms));
 	
-		Log.e("day diff", day_diff + "");
+		//Log.e("day diff", day_diff + "");
 		
 		Display_Date_String = mSimpleDateFormat.format(Get_DateCalendar.getTime());
 		
@@ -89,6 +100,12 @@ public class Review_Main extends Fragment {
 			Display_Date_String = mSimpleDateFormat.format(Get_DateCalendar.getTime());
 		}
 		*/
+		
+		
+		
+	
+
+		
 	}
 	
 	
@@ -97,26 +114,86 @@ public class Review_Main extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+		//Log.e("1", "oncreayeview");
+		
+		Display_Date_Long = getArguments().getLong("Display_Date");
+		Get_DateCalendar = Calendar.getInstance();
+		Get_DateCalendar.setTimeInMillis(Display_Date_Long);
+		
+		
+		FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
+		FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
+		FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
+		String UserId = mFirebaseUser.getUid();
+		String GetDate_Year = new Change_Date().parseToDateString(Get_DateCalendar.getTimeInMillis(), "yyyy");
+		String GetDate_Mth = new Change_Date().parseToDateString(Get_DateCalendar.getTimeInMillis(), "MM");
+		String GetDate_Day = new Change_Date().parseToDateString(Get_DateCalendar.getTimeInMillis(), "dd");
+
+		String Patch_Root = UserId + "/Record/" + GetDate_Year + "/" +  GetDate_Mth + "/" + GetDate_Day;
+
+		Log.e("patch", Patch_Root);
+		
+		
+		
         View v = inflater.inflate(R.layout.b001_review_main, container, false);
 
         Find_View(v);
+		
+		
+		
+		
 
-        review_list = new ArrayList<>();
+		reviewmain_recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+		adapter = new Review_Item_Adapter(this.getContext());
+		adapter.setClickListener(ReviewItemClickListener);
+		
+		review_list = new ArrayList<>();
+		
+		DatabaseReference Ref_ReviewItem = mFirebaseDatabase.getReference(Patch_Root);
 
-        // For Sample Data
-        for (int i = 0; i < 1; i++){
-			review_list.add(new Review_Item_Model("11:00", "7-11 (11)", "$5,000"));
-		}
-		// For Sample Data
+		Ref_ReviewItem.addValueEventListener(new ValueEventListener(){
 
-        reviewmain_recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+				@Override
+				public void onDataChange(DataSnapshot snapshot)
+				{
+					// TODO: Implement this method
+					for(DataSnapshot mDataSnapshot : snapshot.getChildren()){
+						
+						Log.e("check", mDataSnapshot.getValue() + "");
+						
+						Record_Model mRecord_Model = mDataSnapshot.getValue(Record_Model.class);
+						
+						review_list.add(mRecord_Model);
+						
+						
+					}
+				
+					
+					adapter.get_list(review_list);
 
-        adapter = new Review_Item_Adapter(this.getContext(), review_list);
+					reviewmain_recyclerView.setAdapter(adapter);
+					
+					adapter.notifyDataSetChanged();
+				}
 
-        adapter.setClickListener(ReviewItemClickListener);
+				@Override
+				public void onCancelled(DatabaseError p1)
+				{
+					// TODO: Implement this method
+				}
+				
+			
+		});
 
-        reviewmain_recyclerView.setAdapter(adapter);
+        
+//
+//         For S vvvample Data
+//        for (int i = 0; i < 1; i++){
+//			review_list.add(new Review_Item_Model("11:00", "7-11 (11)", "$5,000"));
+//		}
+//		 For Sample Data
 
+        
         return v;
 
     }

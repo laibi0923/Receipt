@@ -1,4 +1,5 @@
 package com.example.lpc.receipt.Record;
+import java.util.*;
 
 public class Record_Model{
 	private String RecordName;
@@ -8,8 +9,10 @@ public class Record_Model{
 	private String Exchange;
 	private String PayMethod;
 	private String Remarks;
+	private ArrayList<Record_Item_Model> zItem;
 
-	public Record_Model(String recordName, long createTime, String type, String totalPrice, String exchange, String payMethod, String remarks) {
+	public Record_Model(String recordName, long createTime, String type, String totalPrice, String exchange, String payMethod, String remarks, ArrayList<Record_Item_Model> zItem)
+	{
 		RecordName = recordName;
 		CreateTime = createTime;
 		Type = type;
@@ -17,7 +20,28 @@ public class Record_Model{
 		Exchange = exchange;
 		PayMethod = payMethod;
 		Remarks = remarks;
+		this.zItem = zItem;
 	}
+
+	
+	
+	
+	public Record_Model()
+	{}
+
+	public void setZItem(ArrayList<Record_Item_Model> zItem)
+	{
+		this.zItem = zItem;
+	}
+
+	public ArrayList<Record_Item_Model> getZItem()
+	{
+		return zItem;
+	}
+
+	
+
+	
 
 	public String getRecordName() {
 		return RecordName;

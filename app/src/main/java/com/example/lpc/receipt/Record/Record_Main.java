@@ -200,7 +200,7 @@ public class Record_Main extends AppCompatActivity {
 						mIntent.putExtra("RecordMain_SelectDate", getDate_long);
 						setResult(773, mIntent);
 
-						RealTimeDataBase_setValue();
+						Insert_RecordValue();
 
 						finish();
 						
@@ -457,7 +457,7 @@ public class Record_Main extends AppCompatActivity {
     }
 	
 	
-	private void RealTimeDataBase_setValue(){
+	private void Insert_RecordValue(){
 
         // Patch
 		// Patch_RecordDetails  : UserId/Record/Year/Months/dd/TimInMillis
@@ -484,6 +484,29 @@ public class Record_Main extends AppCompatActivity {
 		String Patch_RecordDetails = Root_Ref + "/" + CreateYear + "/" + CreateMonth + "/" + CreateDay + "/" + CreateTimeInMillis;
 		DatabaseReference Ref_RecordDetails = mFirebaseDatabase.getReference(Patch_RecordDetails);
 
+		ArrayList<Record_Item_Model> mklist = new ArrayList();
+		
+		
+		// ZItem
+		for(int i = 0; i < xx_list.size(); i++){
+
+			//String Patch_RecordItems = Patch_RecordDetails + "/z_Item/" + i;
+			//DatabaseReference Ref_RecordItems = mFirebaseDatabase.getReference(Patch_RecordItems);
+
+			mklist.add(
+            new Record_Item_Model(
+				xx_list.get(i).getProduct_no(),
+				xx_list.get(i).getProduct_noname(),
+				xx_list.get(i).getProduct_price(),
+				xx_list.get(i).getProduct_discount(),
+				xx_list.get(i).getProduct_tax(),
+				xx_list.get(i).getProduct_final_price()
+			));
+
+
+		}
+		
+		
         Ref_RecordDetails.setValue(new Record_Model(
 						 recordmain_name_edittext.getText().toString(),
 						 CreateTime_Calendar.getTimeInMillis(),
@@ -491,26 +514,11 @@ public class Record_Main extends AppCompatActivity {
 						 recordmain_total_amount_textview.getText().toString(),
 						 recordmain_exchange_textview.getText().toString(),
 						 recordmain_paymethod_textview.getText().toString(),
-						 recordmain_remark_textview.getText().toString()
+						 recordmain_remark_textview.getText().toString(),
+						 mklist
 						 ));
 						 
-		// ZItem
-		for(int i = 0; i < xx_list.size(); i++){
-			
-			String Patch_RecordItems = Patch_RecordDetails + "/z_Item/" + i;
-			DatabaseReference Ref_RecordItems = mFirebaseDatabase.getReference(Patch_RecordItems);
-
-            Ref_RecordItems.setValue(new Record_Item_Model(
-							  xx_list.get(i).getProduct_no(),
-							  xx_list.get(i).getProduct_noname(),
-							  xx_list.get(i).getProduct_price(),
-							  xx_list.get(i).getProduct_discount(),
-							  xx_list.get(i).getProduct_tax(),
-							  xx_list.get(i).getProduct_final_price()
-							  ));
-							
-							
-		}
+		
 		
 		
 		

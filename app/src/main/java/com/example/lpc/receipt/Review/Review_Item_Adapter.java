@@ -10,20 +10,26 @@ import android.widget.TextView;
 
 import com.example.lpc.receipt.R;
 
-import java.util.List; 
+import java.util.List;
+import java.util.*;
+import com.example.lpc.receipt.Record.*; 
  
 public class Review_Item_Adapter extends RecyclerView.Adapter<Review_Item_Adapter.ViewHolder> {
 
-    private List<Review_Item_Model> mData;
+    private List<Record_Model> mData = new ArrayList();
 
     private LayoutInflater mInflater;
 
     private ItemClickListener mClickListener;
 
-    public Review_Item_Adapter(Context context, List<Review_Item_Model> mData) {
-        this.mData = mData;
+    public Review_Item_Adapter(Context context) {
+		this.mData.clear();
         this.mInflater = LayoutInflater.from(context);
     }
+	
+	public void get_list(ArrayList<Record_Model> mData){
+		this.mData = mData;
+	}
 
     @NonNull
     @Override
@@ -35,17 +41,17 @@ public class Review_Item_Adapter extends RecyclerView.Adapter<Review_Item_Adapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
 
-        viewHolder.reviewmain_createdate.setText(mData.get(position).getCreate_Time());
+        //viewHolder.reviewmain_createdate.setText(mData.get(position).getCreate_Time());
 
-        viewHolder.reviewmain_itemname.setText(mData.get(position).getItem_Name());
+        viewHolder.reviewmain_itemname.setText(mData.get(position).getRecordName());
 
-        viewHolder.reviewmain_price.setText(mData.get(position).getPrice());
+        viewHolder.reviewmain_price.setText(mData.get(position).getTotalPrice());
 
     }
 
     @Override
     public int getItemCount() {
-        return mData.size();
+        return mData == null ? 0 : mData.size();
     }
 
 
@@ -88,7 +94,7 @@ public class Review_Item_Adapter extends RecyclerView.Adapter<Review_Item_Adapte
         void onItemClick(View view, int position);
     }
 
-    public void addData(int Position, Review_Item_Model Model){
+    public void addData(int Position, Record_Model Model){
         mData.add(Position, Model);
         notifyItemInserted(Position);
     }

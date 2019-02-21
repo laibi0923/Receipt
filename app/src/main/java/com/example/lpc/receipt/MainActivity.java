@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
 
         mViewPager.setAdapter(mViewPager_Adapter);
 		
-		mViewPager.setOffscreenPageLimit(0);
+		mViewPager.setOffscreenPageLimit(1);
 
         mViewPager.setCurrentItem(ViewrPager_Position);
 
