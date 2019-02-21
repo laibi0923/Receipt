@@ -32,10 +32,18 @@ public class Review_Main extends Fragment {
 	private Review_Item_Adapter adapter;
 
 	private ArrayList<Record_Model> review_list;
-	
-	SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("MM月dd日");
+
+//	SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("MM月dd日");
 	
 	private Calendar Get_DateCalendar;
+
+	private FirebaseAuth mFirebaseAuth;
+
+	private FirebaseUser mFirebaseUser;
+
+	private FirebaseDatabase mFirebaseDatabase;
+
+	String UserId, GetDate_Year, GetDate_Mth, GetDate_Day;
 	
 	
 	public static Review_Main newInstance(Long Display_Date){
@@ -56,10 +64,8 @@ public class Review_Main extends Fragment {
 	{
 		// TODO: Implement this method
 		super.setUserVisibleHint(isVisibleToUser);
-		//Log.e("setUserVisibleHint", "true");
+
 		onResume();
-		
-		//Log.e("1", "visiba");
 	}
 	
 
@@ -75,36 +81,16 @@ public class Review_Main extends Fragment {
 
 	
 	@Override
-	public void onResume()
-	{
-		//Log.e("1", "onresume");
+	public void onResume() {
+
 		// TODO: Implement this method
 		super.onResume();
-		//Calendar mCalendar = Calendar.getInstance();
 		
 		Display_Date_Long = getArguments().getLong("Display_Date");
 		Get_DateCalendar = Calendar.getInstance();
 		Get_DateCalendar.setTimeInMillis(Display_Date_Long);
 		
-		//long one_day_ms = 24 * 60 * 60 * 1000;
-		//int day_diff = (int) ((mCalendar.getTimeInMillis() - Get_DateCalendar.getTimeInMillis()) / (one_day_ms));
-	
-		//Log.e("day diff", day_diff + "");
-		
-		Display_Date_String = mSimpleDateFormat.format(Get_DateCalendar.getTime());
-		
-		/*
-		if(day_diff == 0){
-			Display_Date_String = "本日";
-		}else{
-			Display_Date_String = mSimpleDateFormat.format(Get_DateCalendar.getTime());
-		}
-		*/
-		
-		
-		
-	
-
+		Display_Date_String = new Change_Date().parseToDateString(Get_DateCalendar.getTimeInMillis(),  "MM月dd日");
 		
 	}
 	
@@ -113,38 +99,31 @@ public class Review_Main extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-		//Log.e("1", "oncreayeview");
 		
 		Display_Date_Long = getArguments().getLong("Display_Date");
 		Get_DateCalendar = Calendar.getInstance();
 		Get_DateCalendar.setTimeInMillis(Display_Date_Long);
 		
 		
-		FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
-		FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
-		FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
-		String UserId = mFirebaseUser.getUid();
-		String GetDate_Year = new Change_Date().parseToDateString(Get_DateCalendar.getTimeInMillis(), "yyyy");
-		String GetDate_Mth = new Change_Date().parseToDateString(Get_DateCalendar.getTimeInMillis(), "MM");
-		String GetDate_Day = new Change_Date().parseToDateString(Get_DateCalendar.getTimeInMillis(), "dd");
+		mFirebaseAuth = FirebaseAuth.getInstance();
+		mFirebaseUser = mFirebaseAuth.getCurrentUser();
+		mFirebaseDatabase = FirebaseDatabase.getInstance();
+		UserId = mFirebaseUser.getUid();
+		GetDate_Year = new Change_Date().parseToDateString(Get_DateCalendar.getTimeInMillis(), "yyyy");
+		GetDate_Mth = new Change_Date().parseToDateString(Get_DateCalendar.getTimeInMillis(), "MM");
+		GetDate_Day = new Change_Date().parseToDateString(Get_DateCalendar.getTimeInMillis(), "dd");
 
-		String Patch_Root = UserId + "/Record/" + GetDate_Year + "/" +  GetDate_Mth + "/" + GetDate_Day;
+		// Firebase Patch
+		String Patch_Root = UserId + "/Record/" + GetDate_Year + "/" +  GetDate_Mth + "/" + GetDate_Day + "/A_Receipt/";
 
-		Log.e("patch", Patch_Root);
-		
-		
-		
         View v = inflater.inflate(R.layout.b001_review_main, container, false);
 
         Find_View(v);
-		
-		
-		
-		
 
 		reviewmain_recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+
 		adapter = new Review_Item_Adapter(this.getContext());
+
 		adapter.setClickListener(ReviewItemClickListener);
 		
 		review_list = new ArrayList<>();
@@ -156,24 +135,27 @@ public class Review_Main extends Fragment {
 				@Override
 				public void onDataChange(DataSnapshot snapshot)
 				{
+					// 唔加呢句新增數據會重覆顯示舊數據
+					review_list.clear();
+
 					// TODO: Implement this method
 					for(DataSnapshot mDataSnapshot : snapshot.getChildren()){
 						
 						Log.e("check", mDataSnapshot.getValue() + "");
 						
 						Record_Model mRecord_Model = mDataSnapshot.getValue(Record_Model.class);
-						
+
 						review_list.add(mRecord_Model);
-						
-						
+
 					}
-				
-					
+
 					adapter.get_list(review_list);
 
 					reviewmain_recyclerView.setAdapter(adapter);
 					
 					adapter.notifyDataSetChanged();
+
+					Get_DailyAmount();
 				}
 
 				@Override
@@ -185,30 +167,105 @@ public class Review_Main extends Fragment {
 			
 		});
 
-        
-//
-//         For S vvvample Data
-//        for (int i = 0; i < 1; i++){
-//			review_list.add(new Review_Item_Model("11:00", "7-11 (11)", "$5,000"));
-//		}
-//		 For Sample Data
-
-        
         return v;
 
     }
 
-    private void Find_View(View v){
+
+
+	private void Find_View(View v){
 
 		reviewmain_totalamount = v.findViewById(R.id.reviewmain_totalamount);
-		
-        reviewmain_date = v.findViewById(R.id.reviewmain_date);
+
+		reviewmain_date = v.findViewById(R.id.reviewmain_date);
 		reviewmain_date.setText(Display_Date_String);
 		reviewmain_date.setOnClickListener(View_ClickListener);
-		
+
 		reviewmain_recyclerView = v.findViewById(R.id.reviewmain_recyclerView);
 
-    }
+	}
+
+
+
+	/*
+	 * 睇返每日用左 / 用深情況, 需同讀取 Firebase 數據時一齊用, 因為新增紀錄後會重新計算,
+	 * 所以更新 Recycleview 入面 Data 同時更新
+	 */
+
+
+
+    private void Get_DailyAmount(){
+
+		// Get Daily Amount
+		String Patch_DailyAmount = UserId + "/Record/" + GetDate_Year + "/" +  GetDate_Mth + "/" + GetDate_Day;
+
+		DatabaseReference Ref_DailyAmount = mFirebaseDatabase.getReference(Patch_DailyAmount);
+
+		Ref_DailyAmount.child("Daily_Amount").addListenerForSingleValueEvent(new ValueEventListener() {
+			@Override
+			public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+				if (dataSnapshot.exists()){
+
+					DecimalFormat dec = new DecimalFormat("#,##0.00");
+
+					Double get_daily_amount = Double.parseDouble(String.valueOf(dataSnapshot.getValue()));
+
+					new Change_Amount().Change_Amount(dec.format(get_daily_amount), reviewmain_totalamount);
+
+					// 設定每日銀碼字體顏色
+					if (get_daily_amount < 0){
+						reviewmain_totalamount.setTextColor(getResources().getColor(R.color.text_color_red));
+					}else if (get_daily_amount > 0){
+						reviewmain_totalamount.setTextColor(getResources().getColor(R.color.text_color_green));
+					}else {
+						reviewmain_totalamount.setTextColor(getResources().getColor(R.color.text_color_1));
+					}
+
+				}
+
+			}
+
+			@Override
+			public void onCancelled(@NonNull DatabaseError databaseError) {
+
+			}
+		});
+	}
+
+
+
+	private View.OnClickListener View_ClickListener = new View.OnClickListener(){
+
+		@Override
+		public void onClick(View view)
+		{
+			// TODO: Implement this method
+
+			switch(view.getId()){
+
+				case R.id.reviewmain_date:
+
+					// 試過直按 呼叫 startActivityForResult, 但 MainActiviy onActivityResult 接收唔到
+					// 所以改成係 MainActivity 入面寫個 Method 打開 Calendar
+					((MainActivity) getActivity()).Open_Calendar();
+
+					break;
+
+			}
+		}
+
+
+	};
+
+
+
+	/*
+	 * 每個 Item 點擊後用, 用黎睇果條紀錄入邊詳細, 如有幾多個貨品, 收款方式等等...
+	 */
+
+
 
     private Review_Item_Adapter.ItemClickListener ReviewItemClickListener = new Review_Item_Adapter.ItemClickListener() {
 		@Override
@@ -218,28 +275,7 @@ public class Review_Main extends Fragment {
 		}
 	};
 
-	private View.OnClickListener View_ClickListener = new View.OnClickListener(){
 
-		@Override
-		public void onClick(View view)
-		{
-			// TODO: Implement this method
-			
-			switch(view.getId()){
-				
-				case R.id.reviewmain_date:
 
-					// 試過直按 呼叫 startActivityForResult, 但 MainActiviy onActivityResult 接收唔到
-					// 所以改成係 MainActivity 入面寫個 Method 打開 Calendar
-					((MainActivity) getActivity()).Open_Calendar();
 
-					break;
-					
-			}
-			
-			
-		}
-		
-		
-	};
 }

@@ -481,7 +481,7 @@ public class Record_Main extends AppCompatActivity {
 		String Root_Ref = UserUid + "/" + "Record";
 
 		// Firebase Patch
-		String Patch_RecordDetails = Root_Ref + "/" + CreateYear + "/" + CreateMonth + "/" + CreateDay + "/" + CreateTimeInMillis;
+		String Patch_RecordDetails = Root_Ref + "/" + CreateYear + "/" + CreateMonth + "/" + CreateDay + "/A_Receipt/" + CreateTimeInMillis;
 		DatabaseReference Ref_RecordDetails = mFirebaseDatabase.getReference(Patch_RecordDetails);
 
 		ArrayList<Record_Item_Model> mklist = new ArrayList();
@@ -490,18 +490,14 @@ public class Record_Main extends AppCompatActivity {
 		// ZItem
 		for(int i = 0; i < xx_list.size(); i++){
 
-			//String Patch_RecordItems = Patch_RecordDetails + "/z_Item/" + i;
-			//DatabaseReference Ref_RecordItems = mFirebaseDatabase.getReference(Patch_RecordItems);
-
-			mklist.add(
-            new Record_Item_Model(
+			mklist.add(new Record_Item_Model(
 				xx_list.get(i).getProduct_no(),
 				xx_list.get(i).getProduct_noname(),
 				xx_list.get(i).getProduct_price(),
 				xx_list.get(i).getProduct_discount(),
 				xx_list.get(i).getProduct_tax(),
 				xx_list.get(i).getProduct_final_price()
-			));
+			    ));
 
 
 		}
@@ -556,7 +552,8 @@ public class Record_Main extends AppCompatActivity {
 				}
 			
 		});
-		
+
+
 		// Year Amount
         String Patch_Year_Amount = Root_Ref + "/" + CreateYear;
         final DatabaseReference Ref_Year_Amount = mFirebaseDatabase.getReference(Patch_Year_Amount);
@@ -582,6 +579,42 @@ public class Record_Main extends AppCompatActivity {
                 }
 
                 Ref_Year_Amount.child("Year_Amount").setValue(Year_Amount);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError p1)
+            {
+                // TODO: Implement this method
+            }
+
+        });
+
+
+        // Daily Amount
+        String Patch_Daily_Amount = Root_Ref + "/" + CreateYear + "/" + CreateMonth + "/" + CreateDay;
+        final DatabaseReference Ref_Daily_Amount = mFirebaseDatabase.getReference(Patch_Daily_Amount);
+        Query Query_DailyAmount = Ref_Daily_Amount.child("Daily_Amount");
+        Query_DailyAmount.addListenerForSingleValueEvent(new ValueEventListener(){
+
+            @Override
+            public void onDataChange(DataSnapshot snapshot)
+            {
+                Double Daily_Amount = 0.0;
+
+                // TODO: Implement this method
+                if(snapshot.exists()){
+                    Daily_Amount = Double.parseDouble(snapshot.getValue().toString());
+                }else{
+                    Daily_Amount = 0.0;
+                }
+
+                if(Type.equals("Income")){
+                    Daily_Amount = Daily_Amount + Total_Amount;
+                }else{
+                    Daily_Amount = Daily_Amount - Total_Amount;
+                }
+
+                Ref_Daily_Amount.child("Daily_Amount").setValue(Daily_Amount);
             }
 
             @Override

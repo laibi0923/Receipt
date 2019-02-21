@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.lpc.receipt.Public.Change_Date;
 import com.example.lpc.receipt.R;
 
 import java.util.List;
@@ -22,9 +23,12 @@ public class Review_Item_Adapter extends RecyclerView.Adapter<Review_Item_Adapte
 
     private ItemClickListener mClickListener;
 
+    private Context mContext;
+
     public Review_Item_Adapter(Context context) {
 		this.mData.clear();
         this.mInflater = LayoutInflater.from(context);
+        this.mContext =context;
     }
 	
 	public void get_list(ArrayList<Record_Model> mData){
@@ -41,11 +45,17 @@ public class Review_Item_Adapter extends RecyclerView.Adapter<Review_Item_Adapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
 
-        //viewHolder.reviewmain_createdate.setText(mData.get(position).getCreate_Time());
+        viewHolder.reviewmain_createdate.setText(new Change_Date().parseToDateString(mData.get(position).getCreateTime(), "hh:mm"));
 
-        viewHolder.reviewmain_itemname.setText(mData.get(position).getRecordName());
+        viewHolder.reviewmain_itemname.setText(mData.get(position).getRecordName() + " (" + mData.get(position).getZItem().size() + ")");
 
         viewHolder.reviewmain_price.setText(mData.get(position).getTotalPrice());
+
+        if (mData.get(position).getType().equals("Income")){
+            viewHolder.reviewmain_price.setTextColor(mContext.getResources().getColor(R.color.text_color_green));
+        }else{
+            viewHolder.reviewmain_price.setTextColor(mContext.getResources().getColor(R.color.text_color_red));
+        }
 
     }
 

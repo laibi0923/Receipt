@@ -310,12 +310,12 @@ public class Record_Payment extends AppCompatActivity {
     private void Sum_Value(){
 
         Exchange_Amount = Payment_Amount - Total_Amount;
-		
-		Log.e("Payment_Amount", Payment_Amount + "");
-		
-		Log.e("Total_Amount", Total_Amount + "");
-		
-		Log.e("Exchange_Amount", Exchange_Amount + "");
+//
+//		Log.e("Payment_Amount", Payment_Amount + "");
+//
+//		Log.e("Total_Amount", Total_Amount + "");
+//
+//		Log.e("Exchange_Amount", Exchange_Amount + "");
 		
 		exchange_amount_edittext.setText("$" + dec.format(Exchange_Amount));
 	

@@ -11,6 +11,8 @@ public class Record_Model{
 	private String Remarks;
 	private ArrayList<Record_Item_Model> zItem;
 
+    public Record_Model() {}
+
 	public Record_Model(String recordName, long createTime, String type, String totalPrice, String exchange, String payMethod, String remarks, ArrayList<Record_Item_Model> zItem)
 	{
 		RecordName = recordName;
@@ -22,12 +24,7 @@ public class Record_Model{
 		Remarks = remarks;
 		this.zItem = zItem;
 	}
-
 	
-	
-	
-	public Record_Model()
-	{}
 
 	public void setZItem(ArrayList<Record_Item_Model> zItem)
 	{
@@ -39,9 +36,6 @@ public class Record_Model{
 		return zItem;
 	}
 
-	
-
-	
 
 	public String getRecordName() {
 		return RecordName;
