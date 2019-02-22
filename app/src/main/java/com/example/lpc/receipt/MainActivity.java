@@ -1,21 +1,27 @@
 package com.example.lpc.receipt;
 
-import android.annotation.*;
-import android.content.*;
-import android.os.*;
-import android.support.annotation.*;
-import android.support.design.widget.*;
-import android.support.v4.view.*;
-import android.support.v7.app.*;
-import android.util.*;
-import android.view.*;
-import android.widget.*;
-import com.example.lpc.receipt.Public.*;
-import com.example.lpc.receipt.Record.*;
-import com.example.lpc.receipt.Setting.*;
-import java.util.*;
-import android.support.v4.app.*;
-import com.example.lpc.receipt.Review.*;
+
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.LinearLayout;
+
+import com.example.lpc.receipt.Public.Calendar_Selecter;
+import com.example.lpc.receipt.Public.Change_Date;
+import com.example.lpc.receipt.Record.Record_Main;
+import com.example.lpc.receipt.Review.Review_Main;
+import com.example.lpc.receipt.Setting.Setting_Main;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -143,17 +149,14 @@ public class MainActivity extends AppCompatActivity {
 				case R.id.new_btn:
 					
 					Intent open_a001_activity = new Intent(MainActivity.this, Record_Main.class);
-					//open_a001_activity.putExtra("Select_Date", SelectDate_Calendar.getTimeInMillis());
-//					int position_diff = 0;
-//					
-//					position_diff = Index_Position - ViewrPager_Position;
-//					
-//					if(position_diff != 0){
-//						SelectDate_Calendar.add(Calendar.DAY_OF_MONTH, position_diff);
-//					}else if(position_diff == 0){
-//						SelectDate_Calendar = Calendar.getInstance();
-//					}	
-					
+
+					// 向當前 Fragment (Review_Main) 取 Calendar
+                    FragmentStatePagerAdapter f = (FragmentStatePagerAdapter) mViewPager.getAdapter();
+
+                    Review_Main mReview_Main = (Review_Main) f.instantiateItem(mViewPager, Index_Position);
+
+                    SelectDate_Calendar = mReview_Main.getFragmentCalendar();
+
 					open_a001_activity.putExtra("Testing_Select_Date", SelectDate_Calendar);
 					startActivityForResult(open_a001_activity, 773);
 					
@@ -181,8 +184,7 @@ public class MainActivity extends AppCompatActivity {
         DateList = new ArrayList<>();
 		
 		while(StartDate_Calendar.compareTo(EndDate_Calendar) <= 0){
-			
-			//DateList.add(mSimpleDateFormat.format(Start_Date.getTime()));
+
 			DateList.add(StartDate_Calendar.getTimeInMillis());
 			
 			StartDate_Calendar.add(Calendar.DAY_OF_MONTH, 1);
@@ -236,21 +238,28 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // 返回本日
+    // 返回指定頁
     public void Jump_ToPage(int position){
         mViewPager.setCurrentItem(position);
     }
+
 
 
 	public void Open_Calendar(){
         Intent open_b003_activity = new Intent(MainActivity.this, Calendar_Selecter.class);
         startActivityForResult(open_b003_activity, 8);
     }
-	
+
+
+
 	public void Open_LoginScreen(){
+
 		Intent mIntent = new Intent();
+
 		mIntent.setClass(MainActivity.this, LoginActivity.class);
+
 		startActivity(mIntent);
+
 		finish();
 	}
 

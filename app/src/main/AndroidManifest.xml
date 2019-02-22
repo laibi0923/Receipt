@@ -59,6 +59,11 @@
 
         </activity>
 
+        <activity android:name=".Review.Review_Item_Details"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
+
+        </activity>
+
         <activity
             android:name=".Record.Record_Payment"
             android:windowSoftInputMode="stateHidden|adjustResize" >

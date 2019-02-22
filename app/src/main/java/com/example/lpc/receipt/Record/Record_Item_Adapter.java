@@ -24,7 +24,7 @@ public class Record_Item_Adapter extends RecyclerView.Adapter<Record_Item_Adapte
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    Record_Item_Adapter(Context context, List<Record_Item_Model> data) {
+    public Record_Item_Adapter(Context context, List<Record_Item_Model> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }

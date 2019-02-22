@@ -115,4 +115,37 @@ public class Review_Item_Adapter extends RecyclerView.Adapter<Review_Item_Adapte
     }
 
 
+    // For Review Item click and get data
+    public String get_ReviewItem_Name(int position){
+        return mData.get(position).getRecordName();
+    }
+
+    public long get_ReviewItem_CreateDate(int position){
+        return mData.get(position).getCreateTime();
+    }
+
+    public String get_ReviewItem_Type(int position){
+        return mData.get(position).getType();
+    }
+
+    public ArrayList<Record_Item_Model> get_ReviewItem_Zitem(int position){
+        return mData.get(position).getZItem();
+    }
+
+    public String get_ReviewItem_TotalPrice(int position){
+        return mData.get(position).getTotalPrice();
+    }
+
+    public String get_ReviewItem_Exchange(int position){
+        return mData.get(position).getExchange();
+    }
+
+    public String get_ReviewItem_PayMethod(int position){
+        return mData.get(position).getPayMethod();
+    }
+
+    public String get_ReviewItem_Remarks(int position){
+        return mData.get(position).getRemarks();
+    }
+
 }

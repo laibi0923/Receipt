@@ -1,6 +1,8 @@
 package com.example.lpc.receipt.Record;
 
-public class Record_Item_Model { 
+import java.io.Serializable;
+
+public class Record_Item_Model implements Serializable {
 
     private String product_no, product_name, product_price, product_discount, product_tax, product_final_price;
 
@@ -76,5 +78,5 @@ public class Record_Item_Model {
 		return product_final_price;
 	}
 
-    
+
 }

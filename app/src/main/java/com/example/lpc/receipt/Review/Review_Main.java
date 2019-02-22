@@ -1,5 +1,6 @@
 package com.example.lpc.receipt.Review;
 
+import android.content.Intent;
 import android.os.*;
 import android.support.annotation.*;
 import android.support.v4.app.*;
@@ -9,6 +10,8 @@ import android.view.*;
 import android.widget.*;
 import com.example.lpc.receipt.*;
 import com.google.firebase.auth.*;
+
+import java.io.Serializable;
 import java.text.*;
 import java.util.*;
 
@@ -32,8 +35,6 @@ public class Review_Main extends Fragment {
 	private Review_Item_Adapter adapter;
 
 	private ArrayList<Record_Model> review_list;
-
-//	SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("MM月dd日");
 	
 	public Calendar Get_DateCalendar;
 
@@ -71,28 +72,16 @@ public class Review_Main extends Fragment {
 	}
 	
 
-	
-
-	
 	@Override
 	public void onResume() {
 
 		// TODO: Implement this method
 		super.onResume();
-		
-		Display_Date_Long = getArguments().getLong("Display_Date");
 		Get_DateCalendar = Calendar.getInstance();
-		Get_DateCalendar.setTimeInMillis(Display_Date_Long);
-		
-		((MainActivity) getActivity()).SelectDate_Calendar = Get_DateCalendar;
-		
-		Display_Date_String = new Change_Date().parseToDateString(Get_DateCalendar.getTimeInMillis(),  "MM月dd日");
-		
-		
-		Display_Date_Long = getArguments().getLong("Display_Date");
-		Get_DateCalendar = Calendar.getInstance();
-		Get_DateCalendar.setTimeInMillis(Display_Date_Long);
 
+		Display_Date_Long = getArguments().getLong("Display_Date");
+		Get_DateCalendar.setTimeInMillis(Display_Date_Long);
+		Display_Date_String = new Change_Date().parseToDateString(Get_DateCalendar.getTimeInMillis(),  "MM月dd日");
 
 		mFirebaseAuth = FirebaseAuth.getInstance();
 		mFirebaseUser = mFirebaseAuth.getCurrentUser();
@@ -289,11 +278,29 @@ public class Review_Main extends Fragment {
     private Review_Item_Adapter.ItemClickListener ReviewItemClickListener = new Review_Item_Adapter.ItemClickListener() {
 		@Override
 		public void onItemClick(View view, int position) {
-			Toast.makeText(getActivity(), position + " was click" , Toast.LENGTH_SHORT).show();
-			Log.e("Click", position + "");
+
+			Intent open_reviewItemDetails = new Intent();
+			open_reviewItemDetails.setClass(getContext(), Review_Item_Details.class);
+
+			open_reviewItemDetails.putExtra("For_ItemDetails_Name", adapter.get_ReviewItem_Name(position));
+			open_reviewItemDetails.putExtra("For_ItemDetails_CreateDate", adapter.get_ReviewItem_CreateDate(position));
+			open_reviewItemDetails.putExtra("For_ItemDetails_Type", adapter.get_ReviewItem_Type(position));
+			open_reviewItemDetails.putExtra("For_ItemDetails_Zitem", (Serializable) adapter.get_ReviewItem_Zitem(position));
+			open_reviewItemDetails.putExtra("For_ItemDetails_TotalPrice", adapter.get_ReviewItem_TotalPrice(position));
+			open_reviewItemDetails.putExtra("For_ItemDetails_Exchange", adapter.get_ReviewItem_Exchange(position));
+			open_reviewItemDetails.putExtra("For_ItemDetails_PayMethod", adapter.get_ReviewItem_PayMethod(position));
+			open_reviewItemDetails.putExtra("For_ItemDetails_Remarks", adapter.get_ReviewItem_Remarks(position));
+
+			startActivityForResult(open_reviewItemDetails, 998);
+
 		}
 	};
 
+
+
+    public Calendar getFragmentCalendar(){
+        return this.Get_DateCalendar;
+    }
 
 
 
