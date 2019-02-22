@@ -43,10 +43,12 @@ public class Calendar_Selecter extends AppCompatActivity {
 //					String get_cv_date = mSimpleDateFormat.format(mCalendar.getTime());
 //					Log.e("CalendarView Get", get_cv_date);
 
-					Log.e("getdate", mCalendar.getTimeInMillis() + "");
+					//Log.e("getdate", mCalendar.getTimeInMillis() + "");
 
 					Intent mIntent = new Intent();
-					mIntent.putExtra("Calendar_Selecter_Date", mCalendar.getTimeInMillis());
+					//mIntent.putExtra("Calendar_Selecter_Date", mCalendar.getTimeInMillis());
+					
+					mIntent.putExtra("Calendar_Selecter_Date", mCalendar);
 					
 					if(mBundle == null){
 						setResult(8, mIntent);

@@ -42,7 +42,7 @@ public class Record_Item_Adapter extends RecyclerView.Adapter<Record_Item_Adapte
 
         viewHolder.listitem_productno.setText(mData.get(position).getProduct_no());
 
-        viewHolder.listitem_name.setText(mData.get(position).getProduct_noname());
+        viewHolder.listitem_name.setText(mData.get(position).getProduct_name());
 
         viewHolder.listitem_finalprice.setText(mData.get(position).getProduct_final_price());
 
@@ -113,7 +113,7 @@ public class Record_Item_Adapter extends RecyclerView.Adapter<Record_Item_Adapte
     }
 
     String get_Product_Name(int id){
-        return mData.get(id).getProduct_noname();
+        return mData.get(id).getProduct_name();
     }
 
     String get_Product_Price(int id){

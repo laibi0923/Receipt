@@ -4,23 +4,26 @@ import android.annotation.*;
 import android.content.*;
 import android.os.*;
 import android.support.annotation.*;
-import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.*;
 import android.support.v4.view.*;
 import android.support.v7.app.*;
+import android.util.*;
 import android.view.*;
 import android.widget.*;
-
-import com.example.lpc.receipt.Public.Calendar_Selecter;
+import com.example.lpc.receipt.Public.*;
+import com.example.lpc.receipt.Record.*;
 import com.example.lpc.receipt.Setting.*;
 import java.util.*;
-import com.example.lpc.receipt.Record.*;
-
-import java.text.*;
-import com.example.lpc.receipt.Public.*;
+import android.support.v4.app.*;
+import com.example.lpc.receipt.Review.*;
 
 public class MainActivity extends AppCompatActivity {
 
     private ViewPager mViewPager;
+	
+	private ViewPager_Adapter mViewPager_Adapter;
+	
+	private int Index_Position;
 
     private int ViewrPager_Position;
 
@@ -33,9 +36,9 @@ public class MainActivity extends AppCompatActivity {
 	// 本日 (不可修改)
 	private static Calendar mCalendar = Calendar.getInstance();
 
-	private static Calendar StartDate_Calendar, EndDate_Calendar, SelectDate_Calendar;
+	public static Calendar StartDate_Calendar, EndDate_Calendar, SelectDate_Calendar;
 	
-	private long Select_Date_parseLong;
+	public long Select_Date_parseLong;
 	
 	private Change_Date mChange_Date;
 
@@ -52,10 +55,8 @@ public class MainActivity extends AppCompatActivity {
 
                     Calendar New_Start_Date = Calendar.getInstance();
                     New_Start_Date.set(1970, 0, 1);
-
-                    SelectDate_Calendar.setTimeInMillis(data.getLongExtra("Calendar_Selecter_Date", 0));
-					
-					Select_Date_parseLong = SelectDate_Calendar.getTimeInMillis();
+                    
+					SelectDate_Calendar = (Calendar) data.getSerializableExtra("Calendar_Selecter_Date");
 
                     int Select_Date_Position = mChange_Date.getDate_Diff(SelectDate_Calendar.getTimeInMillis(), New_Start_Date.getTimeInMillis());
 					
@@ -91,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
 		// 用戶所選的日期, 預設為今天
         SelectDate_Calendar = Calendar.getInstance();
-		Select_Date_parseLong = SelectDate_Calendar.getTimeInMillis();
+		//Select_Date_parseLong = SelectDate_Calendar.getTimeInMillis();
 
         // 設始初始日期 1970-1-1
         StartDate_Calendar = Calendar.getInstance();
@@ -142,7 +143,18 @@ public class MainActivity extends AppCompatActivity {
 				case R.id.new_btn:
 					
 					Intent open_a001_activity = new Intent(MainActivity.this, Record_Main.class);
-					open_a001_activity.putExtra("Select_Date", Select_Date_parseLong);
+					//open_a001_activity.putExtra("Select_Date", SelectDate_Calendar.getTimeInMillis());
+//					int position_diff = 0;
+//					
+//					position_diff = Index_Position - ViewrPager_Position;
+//					
+//					if(position_diff != 0){
+//						SelectDate_Calendar.add(Calendar.DAY_OF_MONTH, position_diff);
+//					}else if(position_diff == 0){
+//						SelectDate_Calendar = Calendar.getInstance();
+//					}	
+					
+					open_a001_activity.putExtra("Testing_Select_Date", SelectDate_Calendar);
 					startActivityForResult(open_a001_activity, 773);
 					
 					break;
@@ -163,6 +175,8 @@ public class MainActivity extends AppCompatActivity {
 
 		ViewrPager_Position = mChange_Date.getDate_Diff(mCalendar.getTimeInMillis(), StartDate_Calendar.getTimeInMillis()) + 1;
 		
+		Index_Position = ViewrPager_Position;
+		
 		// 由 Start Date 開始循環放入日期, 直至到 End Date
         DateList = new ArrayList<>();
 		
@@ -174,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
 			StartDate_Calendar.add(Calendar.DAY_OF_MONTH, 1);
 		}
 		
-        final ViewPager_Adapter mViewPager_Adapter = new ViewPager_Adapter(getSupportFragmentManager(), DateList);
+        mViewPager_Adapter = new ViewPager_Adapter(getSupportFragmentManager(), DateList);
 
         mViewPager.setAdapter(mViewPager_Adapter);
 		
@@ -203,11 +217,14 @@ public class MainActivity extends AppCompatActivity {
                 }else {
                     activity_main_fab.show();
                 }
+			
             }
 
             @Override
             public void onPageSelected(int position) {
 
+				Index_Position = position;
+			
             }
 
             @Override

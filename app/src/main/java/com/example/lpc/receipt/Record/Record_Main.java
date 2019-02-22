@@ -76,9 +76,11 @@ public class Record_Main extends AppCompatActivity {
 	
 	private String Type = "Income";
 	
-	private long getDate_long;
+	//private long getDate_long;
 	
 	private Change_Date mChange_Date;
+	
+	private Calendar RecordMain_Calendar = Calendar.getInstance();
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -165,9 +167,17 @@ public class Record_Main extends AppCompatActivity {
 				
 				// 日曆按鍵功能
 				if (data != null){
-					getDate_long = data.getLongExtra("Calendar_Selecter_Date", 0);
-					recordmain_year_textview.setText(mChange_Date.parseToDateString(data.getLongExtra("getselect_Date", 0), "yyyy"));
-					recordmain_date_textview.setText(mChange_Date.parseToDateString(data.getLongExtra("getselect_Date", 0), "MM月dd日"));
+					
+					//getDate_long = data.getLongExtra("Calendar_Selecter_Date", 0);
+					
+					//RecordMain_Calendar.setTimeInMillis(getDate_long);
+					
+					RecordMain_Calendar = (Calendar) data.getSerializableExtra("Calendar_Selecter_Date");
+					
+					recordmain_year_textview.setText(new Change_Date().parseToDateString(RecordMain_Calendar.getTimeInMillis(), "yyyy"));
+					recordmain_date_textview.setText(new Change_Date().parseToDateString(RecordMain_Calendar.getTimeInMillis(), "MM月dd日"));
+//					recordmain_year_textview.setText(mChange_Date.parseToDateString(data.getLongExtra("getselect_Date", 0), "yyyy"));
+//					recordmain_date_textview.setText(mChange_Date.parseToDateString(data.getLongExtra("getselect_Date", 0), "MM月dd日"));
 				}
 				
 				break;
@@ -193,11 +203,12 @@ public class Record_Main extends AppCompatActivity {
 						Calendar New_Start_Date = Calendar.getInstance();
 						New_Start_Date.set(1970, 0, 1);
 
-						int Select_Date_Position = mChange_Date.getDate_Diff(getDate_long, New_Start_Date.getTimeInMillis()) + 1;
+						
+						int Select_Date_Position = new Change_Date().getDate_Diff(RecordMain_Calendar.getTimeInMillis(), New_Start_Date.getTimeInMillis()) + 1;
 
 						Intent mIntent = new Intent();
 						mIntent.putExtra("Page_Position", Select_Date_Position);
-						mIntent.putExtra("RecordMain_SelectDate", getDate_long);
+						mIntent.putExtra("RecordMain_SelectDate", RecordMain_Calendar.getTimeInMillis());
 						setResult(773, mIntent);
 
 						Insert_RecordValue();
@@ -227,17 +238,20 @@ public class Record_Main extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.a001_record_main);
-
-		mChange_Date = new Change_Date();
-		
+	
 		// 接收係 MainActivity ViewPager 所顯示日子
         Bundle mBundle = getIntent().getExtras();
+		
         if(mBundle != null){
 			
-            getDate_long = mBundle.getLong("Select_Date");
+			RecordMain_Calendar = Calendar.getInstance();
 			
-			get_Select_Year = mChange_Date.parseToDateString(getDate_long, "yyyy");
-            get_Select_Date = mChange_Date.parseToDateString(getDate_long, "MM月dd日");
+			Log.e("bubdle", "not bull");
+			
+			RecordMain_Calendar = (Calendar) mBundle.get("Testing_Select_Date");
+			
+			get_Select_Year = new Change_Date().parseToDateString(RecordMain_Calendar.getTimeInMillis(), "yyyy");
+            get_Select_Date = new Change_Date().parseToDateString(RecordMain_Calendar.getTimeInMillis(), "MM月dd日");
 			
         }
 		
@@ -465,11 +479,11 @@ public class Record_Main extends AppCompatActivity {
 		// Patch_Monthly_Amount : UserId/Record/Year/Months/MonthlyAmount
 		// Patch_Year_Amount    : UserId/Record/Year/YearAmount
 
-		Calendar CreateTime_Calendar = Calendar.getInstance();
-		long CreateTimeInMillis = CreateTime_Calendar.getTimeInMillis();
-		String CreateYear = new Change_Date().parseToDateString(CreateTimeInMillis, "yyyy");
-		String CreateMonth = new Change_Date().parseToDateString(CreateTimeInMillis, "MM");
-        String CreateDay = new Change_Date().parseToDateString(CreateTimeInMillis, "dd");
+		
+		//long CreateTimeInMillis = CreateTime_Calendar.getTimeInMillis();
+		String CreateYear = new Change_Date().parseToDateString(RecordMain_Calendar.getTimeInMillis(), "yyyy");
+		String CreateMonth = new Change_Date().parseToDateString(RecordMain_Calendar.getTimeInMillis(), "MM");
+        String CreateDay = new Change_Date().parseToDateString(RecordMain_Calendar.getTimeInMillis(), "dd");
 		
 		FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
 		FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
@@ -481,7 +495,7 @@ public class Record_Main extends AppCompatActivity {
 		String Root_Ref = UserUid + "/" + "Record";
 
 		// Firebase Patch
-		String Patch_RecordDetails = Root_Ref + "/" + CreateYear + "/" + CreateMonth + "/" + CreateDay + "/A_Receipt/" + CreateTimeInMillis;
+		String Patch_RecordDetails = Root_Ref + "/" + CreateYear + "/" + CreateMonth + "/" + CreateDay + "/A_Receipt/" + RecordMain_Calendar.getTimeInMillis();
 		DatabaseReference Ref_RecordDetails = mFirebaseDatabase.getReference(Patch_RecordDetails);
 
 		ArrayList<Record_Item_Model> mklist = new ArrayList();
@@ -492,7 +506,7 @@ public class Record_Main extends AppCompatActivity {
 
 			mklist.add(new Record_Item_Model(
 				xx_list.get(i).getProduct_no(),
-				xx_list.get(i).getProduct_noname(),
+				xx_list.get(i).getProduct_name(),
 				xx_list.get(i).getProduct_price(),
 				xx_list.get(i).getProduct_discount(),
 				xx_list.get(i).getProduct_tax(),
@@ -505,7 +519,7 @@ public class Record_Main extends AppCompatActivity {
 		
         Ref_RecordDetails.setValue(new Record_Model(
 						 recordmain_name_edittext.getText().toString(),
-						 CreateTime_Calendar.getTimeInMillis(),
+						 RecordMain_Calendar.getTimeInMillis(),
 						 Type,
 						 recordmain_total_amount_textview.getText().toString(),
 						 recordmain_exchange_textview.getText().toString(),

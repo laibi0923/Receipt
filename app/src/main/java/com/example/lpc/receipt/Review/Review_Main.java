@@ -35,7 +35,7 @@ public class Review_Main extends Fragment {
 
 //	SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat("MM月dd日");
 	
-	private Calendar Get_DateCalendar;
+	public Calendar Get_DateCalendar;
 
 	private FirebaseAuth mFirebaseAuth;
 
@@ -44,6 +44,8 @@ public class Review_Main extends Fragment {
 	private FirebaseDatabase mFirebaseDatabase;
 
 	String UserId, GetDate_Year, GetDate_Mth, GetDate_Day;
+	
+	private int TextColor_Red, TextColor_Green, TextColor_Normal;
 	
 	
 	public static Review_Main newInstance(Long Display_Date){
@@ -69,15 +71,7 @@ public class Review_Main extends Fragment {
 	}
 	
 
-	@Override
-	public void onActivityCreated(Bundle savedInstanceState)
-	{
-		// TODO: Implement this method
-		super.onActivityCreated(savedInstanceState);
-
-		// 保存 Fragment 收狀態其中一種方式
-		setRetainInstance(true);
-	}
+	
 
 	
 	@Override
@@ -90,21 +84,16 @@ public class Review_Main extends Fragment {
 		Get_DateCalendar = Calendar.getInstance();
 		Get_DateCalendar.setTimeInMillis(Display_Date_Long);
 		
+		((MainActivity) getActivity()).SelectDate_Calendar = Get_DateCalendar;
+		
 		Display_Date_String = new Change_Date().parseToDateString(Get_DateCalendar.getTimeInMillis(),  "MM月dd日");
 		
-	}
-	
-	
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		
 		Display_Date_Long = getArguments().getLong("Display_Date");
 		Get_DateCalendar = Calendar.getInstance();
 		Get_DateCalendar.setTimeInMillis(Display_Date_Long);
-		
-		
+
+
 		mFirebaseAuth = FirebaseAuth.getInstance();
 		mFirebaseUser = mFirebaseAuth.getCurrentUser();
 		mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -115,18 +104,8 @@ public class Review_Main extends Fragment {
 
 		// Firebase Patch
 		String Patch_Root = UserId + "/Record/" + GetDate_Year + "/" +  GetDate_Mth + "/" + GetDate_Day + "/A_Receipt/";
-
-        View v = inflater.inflate(R.layout.b001_review_main, container, false);
-
-        Find_View(v);
-
-		reviewmain_recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-
-		adapter = new Review_Item_Adapter(this.getContext());
-
-		adapter.setClickListener(ReviewItemClickListener);
 		
-		review_list = new ArrayList<>();
+		
 		
 		DatabaseReference Ref_ReviewItem = mFirebaseDatabase.getReference(Patch_Root);
 
@@ -140,9 +119,9 @@ public class Review_Main extends Fragment {
 
 					// TODO: Implement this method
 					for(DataSnapshot mDataSnapshot : snapshot.getChildren()){
-						
-						Log.e("check", mDataSnapshot.getValue() + "");
-						
+
+						//Log.e("check", mDataSnapshot.getValue() + "");
+
 						Record_Model mRecord_Model = mDataSnapshot.getValue(Record_Model.class);
 
 						review_list.add(mRecord_Model);
@@ -152,7 +131,7 @@ public class Review_Main extends Fragment {
 					adapter.get_list(review_list);
 
 					reviewmain_recyclerView.setAdapter(adapter);
-					
+
 					adapter.notifyDataSetChanged();
 
 					Get_DailyAmount();
@@ -163,15 +142,56 @@ public class Review_Main extends Fragment {
 				{
 					// TODO: Implement this method
 				}
-				
+
+
+			});
 			
-		});
+			
+			
+	}
+	
+	
+	
+	
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+		
+		
+        View v = inflater.inflate(R.layout.b001_review_main, container, false);
+
+        Find_View(v);
+
+		reviewmain_recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+
+		adapter = new Review_Item_Adapter(this.getContext());
+
+		adapter.setClickListener(ReviewItemClickListener);
+
+		review_list = new ArrayList<>();
+		
+		TextColor_Red = getContext().getResources().getColor(R.color.text_color_red);
+		
+		TextColor_Green = getContext().getResources().getColor(R.color.text_color_green);
+		
+		TextColor_Normal = getContext().getResources().getColor(R.color.text_color_1);
 
         return v;
 
     }
 
 
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState)
+	{
+		// TODO: Implement this method
+		super.onActivityCreated(savedInstanceState);
+
+		// 保存 Fragment 收狀態其中一種方式
+		setRetainInstance(true);
+	}
+	
 
 	private void Find_View(View v){
 
@@ -186,10 +206,8 @@ public class Review_Main extends Fragment {
 	}
 
 
-
 	/*
-	 * 睇返每日用左 / 用深情況, 需同讀取 Firebase 數據時一齊用, 因為新增紀錄後會重新計算,
-	 * 所以更新 Recycleview 入面 Data 同時更新
+	 * 睇返每日用左 / 用淨情況, 需同讀取 Firebase 數據時一齊用, 因為新增紀錄後會重新計算.
 	 */
 
 
@@ -214,15 +232,16 @@ public class Review_Main extends Fragment {
 
 					new Change_Amount().Change_Amount(dec.format(get_daily_amount), reviewmain_totalamount);
 
+					
 					// 設定每日銀碼字體顏色
 					if (get_daily_amount < 0){
-						reviewmain_totalamount.setTextColor(getResources().getColor(R.color.text_color_red));
+						reviewmain_totalamount.setTextColor(TextColor_Red);
 					}else if (get_daily_amount > 0){
-						reviewmain_totalamount.setTextColor(getResources().getColor(R.color.text_color_green));
+						reviewmain_totalamount.setTextColor(TextColor_Green);
 					}else {
-						reviewmain_totalamount.setTextColor(getResources().getColor(R.color.text_color_1));
+						reviewmain_totalamount.setTextColor(TextColor_Normal);
 					}
-
+					
 				}
 
 			}
