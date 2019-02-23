@@ -56,7 +56,6 @@
 				android:padding="5dp"
 				android:visibility="visible">
 
-
 				<TextView
 					android:id="@+id/recordmain_year_textview"
 					android:layout_width="match_parent"
@@ -170,37 +169,43 @@
 				android:id="@+id/recordmain_total_amount"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:orientation="horizontal"
-				android:paddingLeft="20dp"
-				android:paddingTop="10dp"
-				android:paddingRight="20dp"
-				android:paddingBottom="10dp"
+				android:orientation="vertical"
 				android:visibility="gone">
 
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_marginTop="10dp"
-					android:layout_marginBottom="10dp"
-					android:gravity="center"
-					android:text="@string/record_totalamount_text"
-					android:textColor="@color/text_color_1"
-					android:textSize="14sp"
-					android:textStyle="bold"
-					android:visibility="visible"/>
+				<View
+					android:background="?android:attr/dividerVertical"
+					android:layout_height="1dp"
+					android:layout_width="match_parent"
+					android:layout_below="@id/recordmain_scrollview"/>
 
-				<TextView
-					android:id="@+id/recordmain_total_amount_textview"
+				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginTop="10dp"
-					android:layout_marginBottom="10dp"
-					android:gravity="right"
-					android:text="$ 0.00"
-					android:textColor="@color/text_color_1"
-					android:textSize="14sp"
-					android:textStyle="bold"
-					android:visibility="visible"/>
+					android:padding="20dp"
+					android:orientation="horizontal">
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:gravity="center"
+						android:text="@string/record_totalamount_text"
+						android:textColor="@color/text_color_1"
+						android:textSize="14sp"
+						android:textStyle="bold"
+						android:visibility="visible"/>
+
+					<TextView
+						android:id="@+id/recordmain_total_amount_textview"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:gravity="right"
+						android:text="$ 0.00"
+						android:textColor="@color/text_color_1"
+						android:textSize="14sp"
+						android:textStyle="bold"
+						android:visibility="visible"/>
+
+				</LinearLayout>
 
 			</LinearLayout>
 
@@ -240,7 +245,7 @@
 				android:orientation="horizontal"
 				android:paddingLeft="20dp"
 				android:paddingTop="10dp"
-				android:paddingRight="20dp" 
+				android:paddingRight="20dp"
 				android:paddingBottom="10dp"
 				android:visibility="gone">
 
@@ -420,24 +425,22 @@
 		android:layout_height="wrap_content"
 		android:minHeight="80dp">
 
+		
 		<LinearLayout
+			android:id="@+id/del_btn"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_alignParentRight="true"
-			android:layout_marginStart="10dp"
-			android:layout_marginTop="15dp"
-			android:layout_marginEnd="10dp"
 			android:layout_marginRight="15dp"
+			android:layout_marginTop="15dp"
+			android:layout_alignParentRight="true"
 			android:background="@drawable/b001_cirle_btn"
-			android:padding="10dp"
-			android:visibility="gone">
+			android:padding="10dp">
 
 			<ImageView
-				android:id="@+id/clear_btn"
-				android:layout_width="25dp"
-				android:layout_height="25dp"
-				android:src="@mipmap/ic_save"
-				android:tint="@color/text_color_1" />
+				android:layout_width="20dp"
+				android:layout_height="20dp"
+				android:src="@mipmap/ic_delete"
+				android:tint="@color/text_color_1"/>
 
 		</LinearLayout>
 
@@ -455,7 +458,7 @@
 				android:layout_width="20dp"
 				android:layout_height="20dp"
 				android:src="@mipmap/ic_back_btn"
-				android:tint="@color/text_color_1" />
+				android:tint="@color/text_color_1"/>
 
 		</LinearLayout>
 
@@ -471,6 +474,8 @@
 		android:src="@mipmap/ic_plus_mark"
 		app:fabSize="mini"
 		android:layout_marginBottom="50dp"/>
+
+	
 
 </RelativeLayout>
 
