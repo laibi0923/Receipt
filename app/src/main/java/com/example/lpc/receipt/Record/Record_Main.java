@@ -24,6 +24,8 @@ public class Record_Main extends AppCompatActivity {
 	
 	private LinearLayout back_btn;
 
+	private LinearLayout del_btn;
+
     private EditText recordmain_name_edittext;
 	
 	private TextView recordmain_year_textview;
@@ -275,6 +277,9 @@ public class Record_Main extends AppCompatActivity {
 		
 		back_btn = (LinearLayout) findViewById(R.id.back_btn);
 		back_btn.setOnClickListener(View_Click_Listener);
+
+        del_btn = findViewById(R.id.del_btn);
+        del_btn.setVisibility(View.GONE);
 
         recordmain_name_edittext = (EditText) findViewById(R.id.recordmain_name_edittext);
         recordmain_name_edittext.setText("");
