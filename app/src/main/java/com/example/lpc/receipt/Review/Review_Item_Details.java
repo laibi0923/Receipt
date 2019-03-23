@@ -166,7 +166,7 @@ public class Review_Item_Details extends AppCompatActivity {
         back_btn = (LinearLayout) findViewById(R.id.back_btn);
 //        back_btn.setOnClickListener(View_Click_Listener);
 
-        del_btn = findViewById(R.id.del_btn);
+        del_btn = (LinearLayout) findViewById(R.id.del_btn);
 
         recordmain_name_edittext = (EditText) findViewById(R.id.recordmain_name_edittext);
         recordmain_name_edittext.setEnabled(false);

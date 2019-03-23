@@ -22,6 +22,7 @@ import com.example.lpc.receipt.Setting.Setting_Main;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import com.example.lpc.receipt.Record.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -148,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
 
 				case R.id.new_btn:
 					
-					Intent open_a001_activity = new Intent(MainActivity.this, Record_Main.class);
+					Intent open_a001_activity = new Intent(MainActivity.this, NewRecod_Main.class);
 
 					// 向當前 Fragment (Review_Main) 取 Calendar
                     FragmentStatePagerAdapter f = (FragmentStatePagerAdapter) mViewPager.getAdapter();

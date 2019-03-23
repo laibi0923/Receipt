@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical">
+
+	<LinearLayout
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:orientation="horizontal"
+		android:visibility="visible"
+		android:layout_weight="1.0">
+
+		<TableLayout
+			android:layout_height="match_parent"
+			android:layout_width="0dp"
+			android:stretchColumns="*"
+			android:layout_weight="3">
+
+			<TableRow
+				android:layout_weight="1">
+
+				<RelativeLayout
+					android:layout_height="match_parent"
+					android:layout_width="match_parent"
+					android:clickable="true"
+					android:background="?android:attr/selectableItemBackground"
+					android:gravity="center"
+					android:layout_weight="1">
+
+					<TextView
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:text="DEL"
+						android:gravity="center"
+						android:textColor="#FFFFFF"/>
+
+				</RelativeLayout>
+
+			</TableRow>
+
+			<View
+				android:background="?android:attr/dividerVertical"
+				android:layout_height="1dp"
+				android:layout_width="match_parent"/>
+
+			<TableRow
+				android:layout_weight="1">
+
+				<RelativeLayout
+					android:layout_height="match_parent"
+					android:layout_width="wrap_content"
+					android:clickable="true"
+					android:background="?android:attr/selectableItemBackground"
+					android:gravity="center"
+					android:layout_weight="1.0">
+
+					<TextView
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:text="1"
+						android:gravity="center"
+						android:textColor="#FFFFFF"
+						android:textSize="20sp"/>
+
+				</RelativeLayout>
+
+				<RelativeLayout
+					android:layout_height="match_parent"
+					android:layout_width="wrap_content"
+					android:clickable="true"
+					android:background="?android:attr/selectableItemBackground"
+					android:gravity="center"
+					android:layout_weight="1.0">
+
+					<TextView
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:text="2"
+						android:gravity="center"
+						android:textColor="#FFFFFF"
+						android:textSize="20sp"/>
+
+				</RelativeLayout>
+
+				<RelativeLayout
+					android:layout_height="match_parent"
+					android:layout_width="wrap_content"
+					android:clickable="true"
+					android:background="?android:attr/selectableItemBackground"
+					android:gravity="center"
+					android:layout_weight="1.0">
+
+					<TextView
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:text="3"
+						android:gravity="center"
+						android:textColor="#FFFFFF"
+						android:textSize="20sp"/>
+
+				</RelativeLayout>
+
+			</TableRow>
+
+			<TableRow
+				android:layout_weight="1">
+
+				<RelativeLayout
+					android:layout_height="match_parent"
+					android:layout_width="wrap_content"
+					android:clickable="true"
+					android:background="?android:attr/selectableItemBackground"
+					android:gravity="center"
+					android:layout_weight="1.0">
+
+					<TextView
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:text="4"
+						android:gravity="center"
+						android:textColor="#FFFFFF"
+						android:textSize="20sp"/>
+
+				</RelativeLayout>
+
+				<RelativeLayout
+					android:layout_height="match_parent"
+					android:layout_width="wrap_content"
+					android:clickable="true"
+					android:background="?android:attr/selectableItemBackground"
+					android:gravity="center"
+					android:layout_weight="1.0">
+
+					<TextView
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:text="5"
+						android:gravity="center"
+						android:textColor="#FFFFFF"
+						android:textSize="20sp"/>
+
+				</RelativeLayout>
+
+				<RelativeLayout
+					android:layout_height="match_parent"
+					android:layout_width="wrap_content"
+					android:clickable="true"
+					android:background="?android:attr/selectableItemBackground"
+					android:gravity="center"
+					android:layout_weight="1.0">
+
+					<TextView
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:text="6"
+						android:gravity="center"
+						android:textColor="#FFFFFF"
+						android:textSize="20sp"/>
+
+				</RelativeLayout>
+
+			</TableRow>
+
+			<TableRow
+				android:layout_weight="1">
+
+				<RelativeLayout
+					android:layout_height="match_parent"
+					android:layout_width="wrap_content"
+					android:clickable="true"
+					android:background="?android:attr/selectableItemBackground"
+					android:gravity="center"
+					android:layout_weight="1.0">
+
+					<TextView
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:text="7"
+						android:gravity="center"
+						android:textColor="#FFFFFF"
+						android:textSize="20sp"/>
+
+				</RelativeLayout>
+
+				<RelativeLayout
+					android:layout_height="match_parent"
+					android:layout_width="wrap_content"
+					android:clickable="true"
+					android:background="?android:attr/selectableItemBackground"
+					android:gravity="center"
+					android:layout_weight="1.0">
+
+					<TextView
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:text="8"
+						android:gravity="center"
+						android:textColor="#FFFFFF"
+						android:textSize="20sp"/>
+
+				</RelativeLayout>
+
+				<RelativeLayout
+					android:layout_height="match_parent"
+					android:layout_width="wrap_content"
+					android:clickable="true"
+					android:background="?android:attr/selectableItemBackground"
+					android:gravity="center"
+					android:layout_weight="1.0">
+
+					<TextView
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:text="9"
+						android:gravity="center"
+						android:textColor="#FFFFFF"
+						android:textSize="20sp"/>
+
+				</RelativeLayout>
+
+			</TableRow>
+
+			<TableRow
+				android:layout_weight="1">
+
+				<RelativeLayout
+					android:layout_height="match_parent"
+					android:layout_width="wrap_content"
+					android:clickable="true"
+					android:background="?android:attr/selectableItemBackground"
+					android:gravity="center"
+					android:layout_weight="1.0">
+
+					<TextView
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:text="00"
+						android:gravity="center"
+						android:textColor="#FFFFFF"
+						android:textSize="20sp"/>
+
+				</RelativeLayout>
+
+				<RelativeLayout
+					android:layout_height="match_parent"
+					android:layout_width="wrap_content"
+					android:clickable="true"
+					android:background="?android:attr/selectableItemBackground"
+					android:gravity="center"
+					android:layout_weight="1.0">
+
+					<TextView
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:text="0"
+						android:gravity="center"
+						android:textColor="#FFFFFF"
+						android:textSize="20sp"/>
+
+				</RelativeLayout>
+
+				<RelativeLayout
+					android:layout_height="match_parent"
+					android:layout_width="wrap_content"
+					android:clickable="true"
+					android:background="?android:attr/selectableItemBackground"
+					android:gravity="center"
+					android:layout_weight="1.0">
+
+					<TextView
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:text="."
+						android:gravity="center"
+						android:textColor="#FFFFFF"
+						android:textSize="20sp"/>
+
+				</RelativeLayout>
+
+			</TableRow>
+
+		</TableLayout>
+
+		<View
+			android:background="?android:attr/dividerHorizontal"
+			android:layout_height="match_parent"
+			android:layout_width="1dp"/>
+
+		<LinearLayout
+			android:layout_height="match_parent"
+			android:layout_width="0dp"
+			android:orientation="vertical"
+			android:layout_weight="1.0">
+
+			<RelativeLayout
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:clickable="true"
+				android:background="?android:attr/selectableItemBackground"
+				android:layout_weight="1.0"
+				android:gravity="center">
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:text="÷"
+					android:gravity="center"
+					android:textColor="#FFFFFF"
+					android:textSize="20sp"/>
+
+			</RelativeLayout>
+
+			<RelativeLayout
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:clickable="true"
+				android:background="?android:attr/selectableItemBackground"
+				android:layout_weight="1.0"
+				android:gravity="center">
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:text="×"
+					android:gravity="center"
+					android:textColor="#FFFFFF"
+					android:textSize="20sp"/>
+
+			</RelativeLayout>
+
+			<RelativeLayout
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:clickable="true"
+				android:background="?android:attr/selectableItemBackground"
+				android:layout_weight="1.0"
+				android:gravity="center">
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:text="-"
+					android:gravity="center"
+					android:textColor="#FFFFFF"
+					android:textSize="20sp"/>
+
+			</RelativeLayout>
+
+			<RelativeLayout
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:clickable="true"
+				android:background="?android:attr/selectableItemBackground"
+				android:layout_weight="1.0"
+				android:gravity="center">
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:text="+"
+					android:gravity="center"
+					android:textColor="#FFFFFF"
+					android:textSize="20sp"/>
+
+			</RelativeLayout>
+
+			<RelativeLayout
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:clickable="true"
+				android:background="?android:attr/selectableItemBackground"
+				android:layout_weight="1.0"
+				android:gravity="center">
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:text="="
+					android:gravity="center"
+					android:textColor="#FFFFFF"
+					android:textSize="20sp"/>
+
+			</RelativeLayout>
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+</LinearLayout>
+
