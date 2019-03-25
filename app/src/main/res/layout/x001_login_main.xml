@@ -15,14 +15,6 @@
 		android:orientation="vertical"
 		android:gravity="center">
 
-		<ImageView
-			android:layout_width="100dp"
-			android:layout_height="100dp"
-			android:layout_marginTop="10dp"
-			android:src="@mipmap/ic_calendar_mark"
-			android:tint="@color/text_color_1"
-			android:visibility="gone"/>
-
 		<TextView
 			android:id="@+id/login_errormsg"
 			android:layout_width="match_parent"

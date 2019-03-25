@@ -3,7 +3,8 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
-	android:orientation="vertical">
+	android:orientation="vertical"
+	android:background="@color/colorPrimary">
 
 	<LinearLayout
 		android:layout_height="wrap_content"
@@ -22,19 +23,20 @@
 				android:layout_weight="1">
 
 				<RelativeLayout
-					android:layout_height="match_parent"
+					android:id="@+id/numberpad_del"
 					android:layout_width="match_parent"
-					android:clickable="true"
+					android:layout_height="match_parent"
+					android:layout_weight="1"
 					android:background="?android:attr/selectableItemBackground"
-					android:gravity="center"
-					android:layout_weight="1">
+					android:clickable="true"
+					android:gravity="center">
 
-					<TextView
-						android:layout_height="wrap_content"
-						android:layout_width="wrap_content"
-						android:text="DEL"
-						android:gravity="center"
-						android:textColor="#FFFFFF"/>
+					<ImageView
+						android:layout_width="35dp"
+						android:layout_height="35dp"
+						android:src="@mipmap/ic_backspace"
+						android:tint="@color/text_color_1" />
+
 
 				</RelativeLayout>
 
@@ -49,56 +51,59 @@
 				android:layout_weight="1">
 
 				<RelativeLayout
-					android:layout_height="match_parent"
+					android:id="@+id/numberpad_1"
 					android:layout_width="wrap_content"
-					android:clickable="true"
+					android:layout_height="match_parent"
+					android:layout_weight="1.0"
 					android:background="?android:attr/selectableItemBackground"
-					android:gravity="center"
-					android:layout_weight="1.0">
+					android:clickable="true"
+					android:gravity="center">
 
 					<TextView
-						android:layout_height="wrap_content"
 						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:gravity="center"
 						android:text="1"
-						android:gravity="center"
 						android:textColor="#FFFFFF"
-						android:textSize="20sp"/>
+						android:textSize="20sp" />
 
 				</RelativeLayout>
 
 				<RelativeLayout
-					android:layout_height="match_parent"
+					android:id="@+id/numberpad_2"
 					android:layout_width="wrap_content"
-					android:clickable="true"
+					android:layout_height="match_parent"
+					android:layout_weight="1.0"
 					android:background="?android:attr/selectableItemBackground"
-					android:gravity="center"
-					android:layout_weight="1.0">
+					android:clickable="true"
+					android:gravity="center">
 
 					<TextView
-						android:layout_height="wrap_content"
 						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:gravity="center"
 						android:text="2"
-						android:gravity="center"
 						android:textColor="#FFFFFF"
-						android:textSize="20sp"/>
+						android:textSize="20sp" />
 
 				</RelativeLayout>
 
 				<RelativeLayout
-					android:layout_height="match_parent"
+					android:id="@+id/numberpad_3"
 					android:layout_width="wrap_content"
-					android:clickable="true"
+					android:layout_height="match_parent"
+					android:layout_weight="1.0"
 					android:background="?android:attr/selectableItemBackground"
-					android:gravity="center"
-					android:layout_weight="1.0">
+					android:clickable="true"
+					android:gravity="center">
 
 					<TextView
-						android:layout_height="wrap_content"
 						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:gravity="center"
 						android:text="3"
-						android:gravity="center"
 						android:textColor="#FFFFFF"
-						android:textSize="20sp"/>
+						android:textSize="20sp" />
 
 				</RelativeLayout>
 
@@ -108,56 +113,59 @@
 				android:layout_weight="1">
 
 				<RelativeLayout
-					android:layout_height="match_parent"
+					android:id="@+id/numberpad_4"
 					android:layout_width="wrap_content"
-					android:clickable="true"
+					android:layout_height="match_parent"
+					android:layout_weight="1.0"
 					android:background="?android:attr/selectableItemBackground"
-					android:gravity="center"
-					android:layout_weight="1.0">
+					android:clickable="true"
+					android:gravity="center">
 
 					<TextView
-						android:layout_height="wrap_content"
 						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:gravity="center"
 						android:text="4"
-						android:gravity="center"
 						android:textColor="#FFFFFF"
-						android:textSize="20sp"/>
+						android:textSize="20sp" />
 
 				</RelativeLayout>
 
 				<RelativeLayout
-					android:layout_height="match_parent"
+					android:id="@+id/numberpad_5"
 					android:layout_width="wrap_content"
-					android:clickable="true"
+					android:layout_height="match_parent"
+					android:layout_weight="1.0"
 					android:background="?android:attr/selectableItemBackground"
-					android:gravity="center"
-					android:layout_weight="1.0">
+					android:clickable="true"
+					android:gravity="center">
 
 					<TextView
-						android:layout_height="wrap_content"
 						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:gravity="center"
 						android:text="5"
-						android:gravity="center"
 						android:textColor="#FFFFFF"
-						android:textSize="20sp"/>
+						android:textSize="20sp" />
 
 				</RelativeLayout>
 
 				<RelativeLayout
-					android:layout_height="match_parent"
+					android:id="@+id/numberpad_6"
 					android:layout_width="wrap_content"
-					android:clickable="true"
+					android:layout_height="match_parent"
+					android:layout_weight="1.0"
 					android:background="?android:attr/selectableItemBackground"
-					android:gravity="center"
-					android:layout_weight="1.0">
+					android:clickable="true"
+					android:gravity="center">
 
 					<TextView
-						android:layout_height="wrap_content"
 						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:gravity="center"
 						android:text="6"
-						android:gravity="center"
 						android:textColor="#FFFFFF"
-						android:textSize="20sp"/>
+						android:textSize="20sp" />
 
 				</RelativeLayout>
 
@@ -167,56 +175,59 @@
 				android:layout_weight="1">
 
 				<RelativeLayout
-					android:layout_height="match_parent"
+					android:id="@+id/numberpad_7"
 					android:layout_width="wrap_content"
-					android:clickable="true"
+					android:layout_height="match_parent"
+					android:layout_weight="1.0"
 					android:background="?android:attr/selectableItemBackground"
-					android:gravity="center"
-					android:layout_weight="1.0">
+					android:clickable="true"
+					android:gravity="center">
 
 					<TextView
-						android:layout_height="wrap_content"
 						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:gravity="center"
 						android:text="7"
-						android:gravity="center"
 						android:textColor="#FFFFFF"
-						android:textSize="20sp"/>
+						android:textSize="20sp" />
 
 				</RelativeLayout>
 
 				<RelativeLayout
-					android:layout_height="match_parent"
+					android:id="@+id/numberpad_8"
 					android:layout_width="wrap_content"
-					android:clickable="true"
+					android:layout_height="match_parent"
+					android:layout_weight="1.0"
 					android:background="?android:attr/selectableItemBackground"
-					android:gravity="center"
-					android:layout_weight="1.0">
+					android:clickable="true"
+					android:gravity="center">
 
 					<TextView
-						android:layout_height="wrap_content"
 						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:gravity="center"
 						android:text="8"
-						android:gravity="center"
 						android:textColor="#FFFFFF"
-						android:textSize="20sp"/>
+						android:textSize="20sp" />
 
 				</RelativeLayout>
 
 				<RelativeLayout
-					android:layout_height="match_parent"
+					android:id="@+id/numberpad_9"
 					android:layout_width="wrap_content"
-					android:clickable="true"
+					android:layout_height="match_parent"
+					android:layout_weight="1.0"
 					android:background="?android:attr/selectableItemBackground"
-					android:gravity="center"
-					android:layout_weight="1.0">
+					android:clickable="true"
+					android:gravity="center">
 
 					<TextView
-						android:layout_height="wrap_content"
 						android:layout_width="wrap_content"
-						android:text="9"
+						android:layout_height="wrap_content"
 						android:gravity="center"
+						android:text="9"
 						android:textColor="#FFFFFF"
-						android:textSize="20sp"/>
+						android:textSize="20sp" />
 
 				</RelativeLayout>
 
@@ -226,56 +237,59 @@
 				android:layout_weight="1">
 
 				<RelativeLayout
-					android:layout_height="match_parent"
+					android:id="@+id/numberpad_00"
 					android:layout_width="wrap_content"
-					android:clickable="true"
+					android:layout_height="match_parent"
+					android:layout_weight="1.0"
 					android:background="?android:attr/selectableItemBackground"
-					android:gravity="center"
-					android:layout_weight="1.0">
+					android:clickable="true"
+					android:gravity="center">
 
 					<TextView
-						android:layout_height="wrap_content"
 						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:gravity="center"
 						android:text="00"
-						android:gravity="center"
 						android:textColor="#FFFFFF"
-						android:textSize="20sp"/>
+						android:textSize="20sp" />
 
 				</RelativeLayout>
 
 				<RelativeLayout
-					android:layout_height="match_parent"
+					android:id="@+id/numberpad_0"
 					android:layout_width="wrap_content"
-					android:clickable="true"
+					android:layout_height="match_parent"
+					android:layout_weight="1.0"
 					android:background="?android:attr/selectableItemBackground"
-					android:gravity="center"
-					android:layout_weight="1.0">
+					android:clickable="true"
+					android:gravity="center">
 
 					<TextView
-						android:layout_height="wrap_content"
 						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:gravity="center"
 						android:text="0"
-						android:gravity="center"
 						android:textColor="#FFFFFF"
-						android:textSize="20sp"/>
+						android:textSize="20sp" />
 
 				</RelativeLayout>
 
 				<RelativeLayout
-					android:layout_height="match_parent"
+					android:id="@+id/numberpad_dec"
 					android:layout_width="wrap_content"
-					android:clickable="true"
+					android:layout_height="match_parent"
+					android:layout_weight="1.0"
 					android:background="?android:attr/selectableItemBackground"
-					android:gravity="center"
-					android:layout_weight="1.0">
+					android:clickable="true"
+					android:gravity="center">
 
 					<TextView
-						android:layout_height="wrap_content"
 						android:layout_width="wrap_content"
-						android:text="."
+						android:layout_height="wrap_content"
 						android:gravity="center"
+						android:text="."
 						android:textColor="#FFFFFF"
-						android:textSize="20sp"/>
+						android:textSize="20sp" />
 
 				</RelativeLayout>
 

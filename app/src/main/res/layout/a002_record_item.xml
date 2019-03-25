@@ -30,7 +30,7 @@
 					android:layout_width="80dp"
 					android:layout_height="80dp"
 					android:layout_centerInParent="true"
-					android:src="@mipmap/ic_camera_btn"
+					android:src="@mipmap/ic_add"
 					android:tint="#9b9b9b"/>
 
 				<TextView
@@ -127,7 +127,7 @@
 			<ImageView
 				android:layout_width="20dp"
 				android:layout_height="20dp"
-				android:src="@mipmap/ic_question_mark"
+				android:src="@mipmap/ic_add"
 				android:tint="@color/text_color_1"
 				android:visibility="invisible"/>
 
@@ -176,7 +176,7 @@
 			<ImageView
 				android:layout_width="20dp"
 				android:layout_height="20dp"
-				android:src="@mipmap/ic_question_mark"
+				android:src="@mipmap/ic_add"
 				android:tint="@color/text_color_1"
 				android:visibility="invisible"/>
 
@@ -335,7 +335,7 @@
 			android:id="@+id/close_btn"
 			android:layout_width="20dp"
 			android:layout_height="20dp"
-			android:src="@mipmap/ic_back_btn"
+			android:src="@mipmap/ic_back"
 			android:tint="@color/text_color_1"/>
 
 	</LinearLayout>
