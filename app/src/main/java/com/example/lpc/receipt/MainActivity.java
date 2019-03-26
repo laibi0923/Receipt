@@ -13,16 +13,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.example.lpc.receipt.NewRecord.NewRecod_Main;
 import com.example.lpc.receipt.Public.Calendar_Selecter;
 import com.example.lpc.receipt.Public.Change_Date;
-import com.example.lpc.receipt.Record.Record_Main;
 import com.example.lpc.receipt.Review.Review_Main;
 import com.example.lpc.receipt.Setting.Setting_Main;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import com.example.lpc.receipt.Record.*;
 
 public class MainActivity extends AppCompatActivity {
 

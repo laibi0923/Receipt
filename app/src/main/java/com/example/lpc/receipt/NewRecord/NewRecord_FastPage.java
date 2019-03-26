@@ -1,4 +1,4 @@
-package com.example.lpc.receipt.Record;
+package com.example.lpc.receipt.NewRecord;
 
 import com.example.lpc.receipt.R;
 

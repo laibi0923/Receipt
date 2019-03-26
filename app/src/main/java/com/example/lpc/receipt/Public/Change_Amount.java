@@ -25,7 +25,8 @@ public class Change_Amount
 
                 double percen = in / 100;
 
-				Result = "$" + dec.format(percen);
+//				Result = "$" + dec.format(percen);
+                Result = String.valueOf(dec.format(percen));
 				
 				mEditText.setText(Result);
 				
@@ -33,7 +34,6 @@ public class Change_Amount
 
             }
         }
-
 		return Result;
 	}
 	

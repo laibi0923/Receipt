@@ -9,7 +9,7 @@
 	android:background="@color/colorPrimary">
 
 	<include layout="@layout/c001_newrecord_maincontent" />
-	
+
 	<include layout="@layout/c001_newrecord_bottomsheet" />
 
 </android.support.design.widget.CoordinatorLayout>

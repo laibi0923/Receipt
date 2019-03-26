@@ -1,4 +1,4 @@
-package com.example.lpc.receipt.Record;
+package com.example.lpc.receipt.NewRecord;
 import android.support.v7.app.*;
 import android.os.*;
 import com.example.lpc.receipt.R;

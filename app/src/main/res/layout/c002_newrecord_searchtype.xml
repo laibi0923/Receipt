@@ -7,17 +7,61 @@
 	android:background="@color/colorPrimary">
 
 	<LinearLayout
-		android:layout_height="wrap_content"
+		android:layout_height="50dp"
 		android:layout_width="match_parent"
 		android:orientation="horizontal"
-		android:padding="10dp">
+		android:gravity="center|left">
+
+		<RelativeLayout
+			android:layout_height="50dp"
+			android:layout_width="50dp"
+			android:layout_marginRight="10dp"
+			android:id="@+id/newrecord_bottomsheet_toggle">
+
+			<ImageView
+				android:id="@+id/newrecord_bottomsheet_toggle_img"
+				android:layout_width="35dp"
+				android:layout_height="35dp"
+				android:layout_centerInParent="true"
+				android:src="@mipmap/ic_back"
+				android:tint="@color/text_color_1" />
+
+		</RelativeLayout>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:layout_marginLeft="10dp"
+		android:layout_marginRight="10dp"
+		android:background="@drawable/a002_btn_normal_style"
+		android:orientation="horizontal"
+		android:gravity="center"
+		android:padding="5dp">
+
+		<ImageView
+			android:layout_width="35dp"
+			android:layout_height="35dp"
+			android:src="@mipmap/ic_search"
+			android:tint="@color/text_color_1"/>
 
 		<EditText
-			android:layout_height="wrap_content"
-			android:layout_width="match_parent"
-			android:ems="10"
+			android:layout_height="match_parent"
+			android:layout_width="wrap_content"
+			android:layout_weight="1"
+			android:background="@android:color/transparent"
+			android:layout_marginLeft="5dp"
 			android:hint="Search"
-			android:textColorHint="#FFFFFF"/>
+			android:textColorHint="@color/text_color_1"
+			android:textColor="@color/text_color_1"/>
+
+		<ImageView
+			android:layout_width="35dp"
+			android:layout_height="35dp"
+			android:src="@mipmap/ic_close"
+			android:tint="@color/text_color_1"/>
+
 
 	</LinearLayout>
 
