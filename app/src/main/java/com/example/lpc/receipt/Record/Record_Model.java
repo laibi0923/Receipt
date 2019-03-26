@@ -15,7 +15,7 @@ public class Record_Model{
 
 	public Record_Model(String recordName, long createTime, String type, String totalPrice, String exchange, String payMethod, String remarks, ArrayList<Record_Item_Model> zItem)
 	{
-		RecordName = recordName;
+		RecordName = recordName; 
 		CreateTime = createTime;
 		Type = type;
 		TotalPrice = totalPrice;

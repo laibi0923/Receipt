@@ -6,7 +6,7 @@ public class Record_Item_Model implements Serializable {
 
     private String product_no, product_name, product_price, product_discount, product_tax, product_final_price;
 
-	public Record_Item_Model(){}
+	public Record_Item_Model(){} 
 	
 	public Record_Item_Model(String product_no, String product_name, String product_price, String product_discount, String product_tax, String product_final_price)
 	{

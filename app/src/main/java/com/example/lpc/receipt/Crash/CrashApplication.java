@@ -1,6 +1,5 @@
 package com.example.lpc.receipt.Crash;
 
-
 import android.app.Application;  
 
 public class CrashApplication extends Application {  

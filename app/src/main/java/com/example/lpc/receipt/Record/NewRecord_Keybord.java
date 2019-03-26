@@ -6,6 +6,7 @@ import android.os.*;
 import android.widget.RelativeLayout;
 
 import com.example.lpc.receipt.R;
+import android.view.View.*;
 public class NewRecord_Keybord extends Fragment {
 
 	public Keyboard_Listener mKeyboard_Listener;
@@ -36,6 +37,7 @@ public class NewRecord_Keybord extends Fragment {
 
 		numberpad_del = v.findViewById(R.id.numberpad_del);
 		numberpad_del.setOnClickListener(NumberPad_OnclickListener);
+		numberpad_del.setOnLongClickListener(Numberpad_OnLongclickListener);
 
 		numberpad_1 = v.findViewById(R.id.numberpad_1);
 		numberpad_1.setOnClickListener(NumberPad_OnclickListener);
@@ -137,6 +139,23 @@ public class NewRecord_Keybord extends Fragment {
 			}
 
 		}
+	};
+	
+	private View.OnLongClickListener Numberpad_OnLongclickListener = new View.OnLongClickListener(){
+
+		@Override
+		public boolean onLongClick(View view)
+		{
+			// TODO: Implement this method
+			switch(view.getId()){
+				
+				case R.id.numberpad_del:
+					mKeyboard_Listener.SendContent("del_long");
+					break;
+			}
+			return false;
+		}
+		
 	};
 	
 	

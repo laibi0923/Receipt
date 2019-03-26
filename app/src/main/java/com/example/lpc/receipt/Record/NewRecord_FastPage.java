@@ -4,7 +4,9 @@ import com.example.lpc.receipt.R;
 
 import android.support.v4.app.*;
 import android.view.*;
-import android.os.*;public class NreRecord_FastPage extends Fragment
+import android.os.*;
+
+public class NewRecord_FastPage extends Fragment
 {
 
 	@Override

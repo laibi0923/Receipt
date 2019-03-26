@@ -9,11 +9,15 @@ import android.view.*;
 import android.widget.*;
 import com.example.lpc.receipt.*;
 import android.view.View.*;
+import android.view.inputmethod.*;
+import android.content.*;
 public class NewRecod_Main extends AppCompatActivity implements NewRecord_Keybord.Keyboard_Listener
 {
 	private RelativeLayout newrecord_close_btn;
+	
+	private LinearLayout newrecord_type_btn;
 
-	private EditText newrecord_amount_ed;
+	private EditText newrecord_itemname_ed, newrecord_amount_ed;
 	
 	private ViewPager mViewPager;
 
@@ -34,8 +38,13 @@ public class NewRecod_Main extends AppCompatActivity implements NewRecord_Keybor
 		
 		newrecord_close_btn = (RelativeLayout) findViewById(R.id.newrecord_close_btn);
 		newrecord_close_btn.setOnClickListener(Item_OnclickListener);
+		
+		newrecord_itemname_ed = (EditText) findViewById(R.id.newrecord_itemname_ed);
+		
+		newrecord_type_btn = (LinearLayout) findViewById(R.id.newrecord_type_btn);
+		newrecord_type_btn.setOnClickListener(Item_OnclickListener);
 
-		newrecord_amount_ed = findViewById(R.id.newrecord_amount_ed);
+		newrecord_amount_ed = (EditText) findViewById(R.id.newrecord_amount_ed);
 
 		mViewPager = (ViewPager) findViewById(R.id.newrecord_viewpage);
 		
@@ -88,29 +97,29 @@ public class NewRecod_Main extends AppCompatActivity implements NewRecord_Keybor
 			}
 		});
 
-		newrecord_keyboard_btn = findViewById(R.id.newrecord_keyboard_btn);
+		newrecord_keyboard_btn = (RelativeLayout) findViewById(R.id.newrecord_keyboard_btn);
 		newrecord_keyboard_btn.setOnClickListener(Item_OnclickListener);
-		newrecord_keyboard_img = findViewById(R.id.newrecord_keyboard_img);
+		newrecord_keyboard_img = (ImageView) findViewById(R.id.newrecord_keyboard_img);
 
-		newrecord_option1_btn = findViewById(R.id.newrecord_option1_btn);
+		newrecord_option1_btn = (RelativeLayout) findViewById(R.id.newrecord_option1_btn);
 		newrecord_option1_btn.setOnClickListener(Item_OnclickListener);
-		newrecord_option1_img = findViewById(R.id.newrecord_option1_img);
+		newrecord_option1_img = (ImageView) findViewById(R.id.newrecord_option1_img);
 
-		newrecord_option2_btn = findViewById(R.id.newrecord_option2_btn);
+		newrecord_option2_btn = (RelativeLayout) findViewById(R.id.newrecord_option2_btn);
 		newrecord_option2_btn.setOnClickListener(Item_OnclickListener);
-		newrecord_option2_img = findViewById(R.id.newrecord_option2_img);
+		newrecord_option2_img = (ImageView) findViewById(R.id.newrecord_option2_img);
 
-		newrecord_option3_btn = findViewById(R.id.newrecord_option3_btn);
+		newrecord_option3_btn = (RelativeLayout) findViewById(R.id.newrecord_option3_btn);
 		newrecord_option3_btn.setOnClickListener(Item_OnclickListener);
-		newrecord_option3_img = findViewById(R.id.newrecord_option3_img);
+		newrecord_option3_img = (ImageView) findViewById(R.id.newrecord_option3_img);
 
-		newrecord_option4_btn = findViewById(R.id.newrecord_option4_btn);
+		newrecord_option4_btn = (RelativeLayout) findViewById(R.id.newrecord_option4_btn);
 		newrecord_option4_btn.setOnClickListener(Item_OnclickListener);
-		newrecord_option4_img = findViewById(R.id.newrecord_option4_img);
+		newrecord_option4_img = (ImageView) findViewById(R.id.newrecord_option4_img);
 
-		newrecord_save_btn = findViewById(R.id.newrecord_save_btn);
+		newrecord_save_btn = (RelativeLayout) findViewById(R.id.newrecord_save_btn);
 		newrecord_save_btn.setOnClickListener(Item_OnclickListener);
-		newrecord_save_img = findViewById(R.id.newrecord_save_img);
+		newrecord_save_img = (ImageView) findViewById(R.id.newrecord_save_img);
 		
 	}
 
@@ -120,7 +129,7 @@ public class NewRecod_Main extends AppCompatActivity implements NewRecord_Keybor
 		newrecord_option2_img.setColorFilter(Color.parseColor("#2E2E2E"));
 		newrecord_option3_img.setColorFilter(Color.parseColor("#2E2E2E"));
 		newrecord_option4_img.setColorFilter(Color.parseColor("#2E2E2E"));
-		newrecord_save_img.setColorFilter(Color.parseColor("#2E2E2E"));
+		//newrecord_save_img.setColorFilter(Color.parseColor("#2E2E2E"));
 	}
 	
 	private View.OnClickListener Item_OnclickListener = new View.OnClickListener(){
@@ -135,6 +144,13 @@ public class NewRecod_Main extends AppCompatActivity implements NewRecord_Keybor
 				case R.id.newrecord_close_btn:
 					finish();
 					break;
+					
+				case R.id.newrecord_type_btn:
+					
+					Intent open_c002_activity = new Intent(NewRecod_Main.this, NewRecord_SearchType.class);
+					startActivityForResult(open_c002_activity, 733);
+					
+					break;
 
 				case R.id.newrecord_keyboard_btn:
 
@@ -146,7 +162,7 @@ public class NewRecod_Main extends AppCompatActivity implements NewRecord_Keybor
 				case R.id.newrecord_option1_btn:
 
 					mViewPager.setCurrentItem(1);
-					Clear_Icon_Tint();
+					Clear_Icon_Tint(); 
 					newrecord_option1_img.setColorFilter(Color.parseColor("#FFFFFF"));
 					break;
 
@@ -172,6 +188,18 @@ public class NewRecod_Main extends AppCompatActivity implements NewRecord_Keybor
 					break;
 
 				case R.id.newrecord_save_btn:
+					
+					if(newrecord_itemname_ed.getText().length() == 0){
+						
+						InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+						inputMethodManager.toggleSoftInputFromWindow(newrecord_itemname_ed.getApplicationWindowToken(),InputMethodManager.SHOW_FORCED, 0);
+						
+						Toast.makeText(getApplicationContext(), "Please Enter Item Name...", Toast.LENGTH_SHORT).show();
+						
+					}else{
+						
+					}
+					
 					break;
 			}
 
@@ -181,9 +209,17 @@ public class NewRecod_Main extends AppCompatActivity implements NewRecord_Keybor
 
 	@Override
 	public void SendContent(String Info) {
-		if (Info.equals("del")){
-			Toast.makeText(this, "del", Toast.LENGTH_SHORT).show();
-		}else {
+		
+		if (Info.equals("del")){	
+			int length = newrecord_amount_ed.getText().length();
+			
+			if(length > 0){
+				newrecord_amount_ed.getText().delete(length - 1, length);
+			}
+			
+		}else if(Info.equals("del_long")){
+			newrecord_amount_ed.setText("");
+		}else{
 			newrecord_amount_ed.append(Info);
 		}
 	}
@@ -215,16 +251,16 @@ public class NewRecod_Main extends AppCompatActivity implements NewRecord_Keybor
 					return new NewRecord_Keybord();
 					
 				case 1:
-					return new NreRecord_FastPage();
+					return new NewRecord_FastPage();
 
 				case 2:
-					return new NreRecord_FastPage();
+					return new NewRecord_FastPage();
 
 				case 3:
-					return new NreRecord_FastPage();
+					return new NewRecord_FastPage();
 
 				case 4:
-					return new NreRecord_FastPage();
+					return new NewRecord_FastPage();
 
 			}
 			

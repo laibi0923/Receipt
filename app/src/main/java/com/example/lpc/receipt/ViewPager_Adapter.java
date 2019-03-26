@@ -13,7 +13,7 @@ import android.view.*;
 public class ViewPager_Adapter extends FragmentStatePagerAdapter {
 
     private List<Long> DateList;
-
+ 
 
     public ViewPager_Adapter(FragmentManager fm, List<Long> DateList) {
         super(fm);

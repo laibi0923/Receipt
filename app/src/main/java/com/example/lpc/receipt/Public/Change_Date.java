@@ -5,7 +5,7 @@ import java.util.Calendar;
 
 public class Change_Date
 {
-	private long ms;
+	private long ms; 
 	
 	private String formateDateMask;
 	

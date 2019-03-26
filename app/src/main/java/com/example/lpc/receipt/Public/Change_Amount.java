@@ -10,7 +10,7 @@ public class Change_Amount
 	
 	public void Change_Amount(){}
 	
-	
+
 	public String Change_Amount(String Input_Amount, EditText mEditText){
 		
 		String Result = ""; 

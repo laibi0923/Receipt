@@ -12,7 +12,7 @@ import android.widget.TextView;
  
 import com.example.lpc.receipt.R;
 
-import java.util.List; 
+import java.util.List;  
 
 
 public class Record_Item_Adapter extends RecyclerView.Adapter<Record_Item_Adapter.ViewHolder> {
