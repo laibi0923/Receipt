@@ -50,12 +50,14 @@ public class NewRecod_Main extends AppCompatActivity implements NewRecord_Keybor
 		mChange_Amount = new Change_Amount();
 
 		Find_View();
+		
+		mBottomSheetBehavior.setState(mBottomSheetBehavior.STATE_EXPANDED);
 	}
 	
 	private void Find_View(){
 
 		// Main Content
-		newrecord_close_btn = findViewById(R.id.newrecord_close_btn);
+		newrecord_close_btn = (RelativeLayout) findViewById(R.id.newrecord_close_btn);
 		newrecord_close_btn.setOnClickListener(Item_OnclickListener);
 
 
@@ -83,6 +85,9 @@ public class NewRecod_Main extends AppCompatActivity implements NewRecord_Keybor
 			}
 		});
 
+		
+		 
+		
 		newrecord_bottomsheet_toggle = (RelativeLayout) findViewById(R.id.newrecord_bottomsheet_toggle);
 		newrecord_bottomsheet_toggle.setOnClickListener(Item_OnclickListener);
 

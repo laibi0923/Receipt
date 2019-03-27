@@ -4,7 +4,7 @@ package com.example.lpc.receipt.Crash;
 *
  *https://blog.csdn.net/qq_41673194/article/details/79999983
 */ 
- 
+  
 import java.io.File;  
 import java.io.FileOutputStream;  
 import java.io.PrintWriter;  

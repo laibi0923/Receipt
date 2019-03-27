@@ -6,7 +6,7 @@ import java.util.Calendar;
 public class Change_Date
 {
 	private long ms; 
-	
+	 
 	private String formateDateMask;
 	
 	private Calendar getDate_Calendar = Calendar.getInstance();

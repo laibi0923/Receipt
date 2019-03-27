@@ -10,7 +10,7 @@
 	app:behavior_hideable="false"
 	app:behavior_peekHeight="50dp"
 	app:layout_behavior="@string/bottom_sheet_behavior">
-
+ 
 	<View
 		android:background="?android:attr/dividerVertical"
 		android:layout_height="1dp"
@@ -38,7 +38,7 @@
 				android:layout_marginLeft="10dp"
 				android:gravity="center"
 				android:text="共 14 項目"
-				android:textColor="#FFFFFF" />
+				android:textColor="#FFFFFF"/>
 
 		</LinearLayout>
 
@@ -53,8 +53,8 @@
 				android:layout_width="35dp"
 				android:layout_height="35dp"
 				android:layout_centerInParent="true"
-				android:src="@mipmap/ic_collapse"
-				android:tint="@color/text_color_1" />
+				android:src="@mipmap/ic_expand"
+				android:tint="@color/text_color_1"/>
 
 		</RelativeLayout>
 

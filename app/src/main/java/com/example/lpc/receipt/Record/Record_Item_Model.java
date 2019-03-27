@@ -10,7 +10,7 @@ public class Record_Item_Model implements Serializable {
 	
 	public Record_Item_Model(String product_no, String product_name, String product_price, String product_discount, String product_tax, String product_final_price)
 	{
-		this.product_no = product_no;
+		this.product_no = product_no; 
 		this.product_name = product_name;
 		this.product_price = product_price;
 		this.product_discount = product_discount;

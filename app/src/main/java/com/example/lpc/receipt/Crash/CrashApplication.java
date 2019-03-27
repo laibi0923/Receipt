@@ -9,4 +9,4 @@ public class CrashApplication extends Application {
         CrashHandler crashHandler = CrashHandler.getInstance();  
         crashHandler.init(getApplicationContext());  
     }  
-} 
+}
