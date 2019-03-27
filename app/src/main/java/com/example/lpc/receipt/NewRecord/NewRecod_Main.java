@@ -208,11 +208,20 @@ public class NewRecod_Main extends AppCompatActivity implements NewRecord_Keybor
 						
 						InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 						inputMethodManager.toggleSoftInputFromWindow(newrecord_itemname_ed.getApplicationWindowToken(),InputMethodManager.SHOW_FORCED, 0);
+
+						newrecord_itemname_ed.requestFocus();
 						
 						Toast.makeText(getApplicationContext(), "Please Enter Item Name...", Toast.LENGTH_SHORT).show();
 						
 					}else{
-						
+
+						InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+						imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+
+						newrecord_itemname_ed.setText("");
+						newrecord_amount_ed.setText("");
+
+						mBottomSheetBehavior.setState(mBottomSheetBehavior.STATE_COLLAPSED);
 					}
 					
 					break;

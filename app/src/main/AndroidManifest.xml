@@ -42,7 +42,7 @@
 		
 		<activity
             android:name=".NewRecord.NewRecod_Main"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden|adjustPan" >
 
         </activity>
 

@@ -9,6 +9,8 @@
 	android:background="@color/colorPrimary"
 	app:behavior_hideable="false"
 	app:behavior_peekHeight="50dp"
+	android:paddingLeft="20dp"
+	android:paddingRight="20dp"
 	app:layout_behavior="@string/bottom_sheet_behavior">
  
 	<View
@@ -26,7 +28,6 @@
 			android:id="@+id/newrecord_totalcount_btn"
 			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
-			android:layout_marginLeft="10dp"
 			android:layout_weight="1"
 			android:gravity="left|center"
 			android:orientation="vertical">
@@ -45,7 +46,7 @@
 		<RelativeLayout
 			android:layout_height="50dp"
 			android:layout_width="50dp"
-			android:layout_marginRight="10dp"
+
 			android:id="@+id/newrecord_bottomsheet_toggle">
 
 			<ImageView
@@ -61,118 +62,119 @@
 	</LinearLayout>
 
 	<LinearLayout
-		android:layout_height="wrap_content"
+		android:layout_height="match_parent"
 		android:layout_width="match_parent"
+		android:layout_weight="1"
 		android:orientation="vertical">
 
 		<LinearLayout
 			android:layout_height="wrap_content"
 			android:layout_width="match_parent"
-			android:orientation="vertical"
+			android:layout_weight="1"
+			android:orientation="horizontal"
+			android:paddingTop="10dp"
+			android:paddingBottom="10dp"
 			android:gravity="center">
-
-			<LinearLayout
-				android:layout_height="match_parent"
-				android:layout_width="match_parent"
-				android:layout_weight="1"
-				android:orientation="vertical">
-
-				<EditText
-					android:layout_height="match_parent"
-					android:layout_width="match_parent"
-					android:background="@android:color/transparent"
-					android:textColor="#FFFFFF"
-					android:hint="名稱"
-					android:textColorHint="#FFFFFF"
-					android:singleLine="true"
-					android:gravity="center"
-					android:padding="15dp"
-					android:layout_marginLeft="10dp"
-					android:layout_marginRight="10dp"
-					android:id="@+id/newrecord_itemname_ed"/>
-
-			</LinearLayout>
-
-			<View
-				android:background="?android:attr/dividerVertical"
-				android:layout_height="1dp"
-				android:layout_width="match_parent"/>
 
 			<LinearLayout
 				android:layout_height="wrap_content"
 				android:layout_width="wrap_content"
-				android:padding="10dp"
+				android:background="@drawable/c001_cirle_background"
 				android:orientation="vertical"
 				android:gravity="center"
-				android:layout_marginTop="10dp"
 				android:id="@+id/newrecord_type_btn">
 
 				<ImageView
 					android:id="@+id/newrecord_type_img"
-					android:layout_width="100dp"
-					android:layout_height="100dp"
+					android:layout_width="120dp"
+					android:layout_height="120dp"
+					android:layout_margin="5dp"
 					android:src="@drawable/ic_food"/>
-
-				<TextView
-					android:layout_height="wrap_content"
-					android:layout_width="wrap_content"
-					android:text="未分類"
-					android:gravity="center"
-					android:layout_marginTop="10dp"
-					android:textColor="#FFFFFF"
-					android:id="@+id/newrecord_type_tv"/>
 
 			</LinearLayout>
 
 			<LinearLayout
-				android:layout_height="wrap_content"
+				android:layout_height="match_parent"
 				android:layout_width="match_parent"
-				android:orientation="horizontal"
+				android:paddingLeft="15dp"
+				android:layout_weight="1"
 				android:gravity="center"
-				android:paddingBottom="10dp">
-
-				<TextView
-					android:layout_height="match_parent"
-					android:layout_width="wrap_content"
-					android:text="HKD"
-					android:gravity="center"
-					android:textColor="#FFFFFF"
-					android:padding="10dp"
-					android:textSize="25sp"/>
+				android:orientation="vertical">
 
 				<EditText
 					android:layout_height="wrap_content"
-					android:layout_width="wrap_content"
+					android:layout_width="match_parent"
 					android:background="@android:color/transparent"
 					android:textColor="#FFFFFF"
-					android:textSize="25sp"
-					android:gravity="center"
-					android:enabled="false"
-					android:inputType="numberDecimal"
+					android:hint="物品名稱"
+					android:textColorHint="#FFFFFF"
 					android:singleLine="true"
+					android:gravity="center|left"
 					android:padding="10dp"
-					android:id="@+id/newrecord_amount_ed"
-					android:hint="0.00"
-					android:maxLength="14"
-					android:textColorHint="#FFFFFF"/>
+					android:textSize="15dp"
+					android:imeOptions="actionDone"
+					android:id="@+id/newrecord_itemname_ed"/>
+
+				<TextView
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:padding="10dp"
+					android:maxLines="3"
+					android:ellipsize="end"
+					android:hint="備註"
+					android:textColorHint="#7E7E7E"
+					android:textColor="#7E7E7E"/>
 
 			</LinearLayout>
 
+
 		</LinearLayout>
 
-	</LinearLayout>
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:paddingTop="10dp"
+			android:paddingBottom="10dp"
+			android:gravity="center"
+			android:orientation="horizontal">
 
-	<RelativeLayout
-		android:layout_height="wrap_content"
-		android:layout_width="match_parent"
-		android:background="#000000"
-		android:padding="10dp"
-		android:visibility="gone"/>
+			<TextView
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:text="HKD"
+				android:gravity="center"
+				android:textColor="#FFFFFF"
+				android:padding="10dp"/>
+
+			<EditText
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+
+				android:background="@android:color/transparent"
+				android:textColor="#FFFFFF"
+				android:textSize="25sp"
+				android:gravity="center|right"
+				android:enabled="false"
+				android:inputType="numberDecimal"
+				android:singleLine="true"
+				android:padding="10dp"
+				android:id="@+id/newrecord_amount_ed"
+				android:hint="0.00"
+				android:maxLength="14"
+				android:textColorHint="#FFFFFF"/>
+
+		</LinearLayout>
+
+
+
+	</LinearLayout>
 
 	<View
 		android:background="?android:attr/dividerVertical"
 		android:layout_height="1dp"
 		android:layout_width="match_parent"/>
+
 
 	<android.support.v4.view.ViewPager
 		android:layout_width="match_parent"
@@ -180,10 +182,7 @@
 		android:layout_weight="1"
 		android:id="@+id/newrecord_viewpage"/>
 
-	<View
-		android:background="?android:attr/dividerVertical"
-		android:layout_height="1dp"
-		android:layout_width="match_parent"/>
+
 
 	<LinearLayout
 		android:layout_height="wrap_content"
