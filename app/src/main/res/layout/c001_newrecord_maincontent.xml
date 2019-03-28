@@ -10,7 +10,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:orientation="vertical"
-		android:paddingLeft="20dp"
+		android:paddingLeft="20dp" 
 		android:paddingRight="20dp">
 
 		<LinearLayout
@@ -24,14 +24,14 @@
 			<RelativeLayout
 				android:layout_width="50dp"
 				android:layout_height="50dp"
-				android:visibility="invisible">
+				android:id="@+id/newrecord_close_btn">
 
 				<ImageView
 					android:layout_width="35dp"
 					android:layout_height="35dp"
 					android:layout_centerInParent="true"
 					android:tint="@color/text_color_1"
-					android:src="@mipmap/ic_close"/>
+					android:src="@mipmap/ic_back"/>
 
 			</RelativeLayout>
 
@@ -52,16 +52,16 @@
 			</LinearLayout>
 
 			<RelativeLayout
-				android:id="@+id/newrecord_close_btn"
 				android:layout_width="50dp"
-				android:layout_height="50dp">
+				android:layout_height="50dp"
+				android:id="@+id/newrecord_addrecord_btn">
 
 				<ImageView
 					android:layout_width="35dp"
 					android:layout_height="35dp"
 					android:layout_centerInParent="true"
 					android:tint="@color/text_color_1"
-					android:src="@mipmap/ic_close"/>
+					android:src="@mipmap/ic_add"/>
 
 			</RelativeLayout>
 
@@ -150,7 +150,6 @@
 			android:layout_height="1dp"
 			android:layout_width="match_parent"/>
 
-
 		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
@@ -171,7 +170,6 @@
 					android:src="@drawable/ic_food"/>
 
 			</LinearLayout>
-
 
 			<LinearLayout
 				android:layout_height="wrap_content"
@@ -245,6 +243,77 @@
 
 			</LinearLayout>
 
+			<LinearLayout
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:layout_weight="1"
+				android:paddingLeft="10dp"
+				android:orientation="vertical">
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:layout_width="match_parent"
+					android:text="Item Name"
+					android:textColor="#FFFFFF"/>
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:layout_width="match_parent"
+					android:textSize="13dp"
+					android:text="TYPE"
+					android:textColor="#7E7E7E"/>
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:layout_width="match_parent"
+					android:gravity="center|right"
+					android:textSize="13dp"
+					android:singleLine="true"
+					android:ellipsize="end"
+					android:text="$47.66"
+					android:textColor="@color/text_color_1"/>
+
+			</LinearLayout>
+
+			<RelativeLayout
+				android:layout_width="20dp"
+				android:layout_height="match_parent">
+
+				<ImageView
+					android:layout_width="20dp"
+					android:layout_height="20dp"
+					android:tint="@color/text_color_1"
+					android:src="@mipmap/ic_delete"/>
+
+			</RelativeLayout>
+
+		</LinearLayout>
+
+		<View
+			android:background="?android:attr/dividerVertical"
+			android:layout_height="1dp"
+			android:layout_width="match_parent"/>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:gravity="center"
+			android:paddingTop="15dp"
+			android:paddingBottom="15dp">
+
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:background="@drawable/c001_cirle_background">
+
+				<ImageView
+					android:layout_height="50dp"
+					android:layout_width="50dp"
+					android:layout_margin="5dp"
+					android:src="@drawable/ic_food"/>
+
+			</LinearLayout>
 
 			<LinearLayout
 				android:layout_height="wrap_content"
@@ -318,6 +387,77 @@
 
 			</LinearLayout>
 
+			<LinearLayout
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:layout_weight="1"
+				android:paddingLeft="10dp"
+				android:orientation="vertical">
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:layout_width="match_parent"
+					android:text="Item Name"
+					android:textColor="#FFFFFF"/>
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:layout_width="match_parent"
+					android:textSize="13dp"
+					android:text="TYPE"
+					android:textColor="#7E7E7E"/>
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:layout_width="match_parent"
+					android:gravity="center|right"
+					android:textSize="13dp"
+					android:singleLine="true"
+					android:ellipsize="end"
+					android:text="$47.66"
+					android:textColor="@color/text_color_1"/>
+
+			</LinearLayout>
+
+			<RelativeLayout
+				android:layout_width="20dp"
+				android:layout_height="match_parent">
+
+				<ImageView
+					android:layout_width="20dp"
+					android:layout_height="20dp"
+					android:tint="@color/text_color_1"
+					android:src="@mipmap/ic_delete"/>
+
+			</RelativeLayout>
+
+		</LinearLayout>
+
+		<View
+			android:background="?android:attr/dividerVertical"
+			android:layout_height="1dp"
+			android:layout_width="match_parent"/>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:gravity="center"
+			android:paddingTop="15dp"
+			android:paddingBottom="15dp">
+
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:background="@drawable/c001_cirle_background">
+
+				<ImageView
+					android:layout_height="50dp"
+					android:layout_width="50dp"
+					android:layout_margin="5dp"
+					android:src="@drawable/ic_food"/>
+
+			</LinearLayout>
 
 			<LinearLayout
 				android:layout_height="wrap_content"
@@ -391,7 +531,6 @@
 
 			</LinearLayout>
 
-
 			<LinearLayout
 				android:layout_height="wrap_content"
 				android:layout_width="wrap_content"
@@ -437,157 +576,6 @@
 			</RelativeLayout>
 
 		</LinearLayout>
-
-		<View
-			android:background="?android:attr/dividerVertical"
-			android:layout_height="1dp"
-			android:layout_width="match_parent"/>
-
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="horizontal"
-			android:gravity="center"
-			android:paddingTop="15dp"
-			android:paddingBottom="15dp">
-
-			<LinearLayout
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:background="@drawable/c001_cirle_background">
-
-				<ImageView
-					android:layout_height="50dp"
-					android:layout_width="50dp"
-					android:layout_margin="5dp"
-					android:src="@drawable/ic_food"/>
-
-			</LinearLayout>
-
-
-			<LinearLayout
-				android:layout_height="wrap_content"
-				android:layout_width="wrap_content"
-				android:layout_weight="1"
-				android:paddingLeft="10dp"
-				android:orientation="vertical">
-
-				<TextView
-					android:layout_height="wrap_content"
-					android:layout_width="match_parent"
-					android:text="Item Name"
-					android:textColor="#FFFFFF"/>
-
-				<TextView
-					android:layout_height="wrap_content"
-					android:layout_width="match_parent"
-					android:textSize="13dp"
-					android:text="TYPE"
-					android:textColor="#7E7E7E"/>
-
-				<TextView
-					android:layout_height="wrap_content"
-					android:layout_width="match_parent"
-					android:gravity="center|right"
-					android:textSize="13dp"
-					android:singleLine="true"
-					android:ellipsize="end"
-					android:text="$47.66"
-					android:textColor="@color/text_color_1"/>
-
-			</LinearLayout>
-
-			<RelativeLayout
-				android:layout_width="20dp"
-				android:layout_height="match_parent">
-
-				<ImageView
-					android:layout_width="20dp"
-					android:layout_height="20dp"
-					android:tint="@color/text_color_1"
-					android:src="@mipmap/ic_delete"/>
-
-			</RelativeLayout>
-
-		</LinearLayout>
-
-		<View
-			android:background="?android:attr/dividerVertical"
-			android:layout_height="1dp"
-			android:layout_width="match_parent"/>
-
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="horizontal"
-			android:gravity="center"
-			android:paddingTop="15dp"
-			android:paddingBottom="15dp">
-
-			<LinearLayout
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:background="@drawable/c001_cirle_background">
-
-				<ImageView
-					android:layout_height="50dp"
-					android:layout_width="50dp"
-					android:layout_margin="5dp"
-					android:src="@drawable/ic_food"/>
-
-			</LinearLayout>
-
-
-			<LinearLayout
-				android:layout_height="wrap_content"
-				android:layout_width="wrap_content"
-				android:layout_weight="1"
-				android:paddingLeft="10dp"
-				android:orientation="vertical">
-
-				<TextView
-					android:layout_height="wrap_content"
-					android:layout_width="match_parent"
-					android:text="Item Name"
-					android:textColor="#FFFFFF"/>
-
-				<TextView
-					android:layout_height="wrap_content"
-					android:layout_width="match_parent"
-					android:textSize="13dp"
-					android:text="TYPE"
-					android:textColor="#7E7E7E"/>
-
-				<TextView
-					android:layout_height="wrap_content"
-					android:layout_width="match_parent"
-					android:gravity="center|right"
-					android:textSize="13dp"
-					android:singleLine="true"
-					android:ellipsize="end"
-					android:text="$47.66"
-					android:textColor="@color/text_color_1"/>
-
-			</LinearLayout>
-
-			<RelativeLayout
-				android:layout_width="20dp"
-				android:layout_height="match_parent">
-
-				<ImageView
-					android:layout_width="20dp"
-					android:layout_height="20dp"
-					android:tint="@color/text_color_1"
-					android:src="@mipmap/ic_delete"/>
-
-			</RelativeLayout>
-
-		</LinearLayout>
-
-
-
-
-
 
 		<View
 			android:background="?android:attr/dividerVertical"

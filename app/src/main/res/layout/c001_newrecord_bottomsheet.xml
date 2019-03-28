@@ -6,20 +6,14 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:orientation="vertical"
-	android:background="@color/colorPrimary"
+	android:background="@color/colorPrimary" 
 	app:behavior_hideable="false"
-	app:behavior_peekHeight="50dp"
-	android:paddingLeft="20dp"
-	android:paddingRight="20dp"
+	app:behavior_peekHeight="1000dp"
+	android:elevation="10dp"
 	app:layout_behavior="@string/bottom_sheet_behavior">
- 
-	<View
-		android:background="?android:attr/dividerVertical"
-		android:layout_height="1dp"
-		android:layout_width="match_parent"/>
 
 	<LinearLayout
-		android:layout_height="50dp"
+		android:layout_height="60dp"
 		android:layout_width="match_parent"
 		android:orientation="horizontal"
 		android:gravity="center">
@@ -46,7 +40,6 @@
 		<RelativeLayout
 			android:layout_height="50dp"
 			android:layout_width="50dp"
-
 			android:id="@+id/newrecord_bottomsheet_toggle">
 
 			<ImageView
@@ -60,6 +53,11 @@
 		</RelativeLayout>
 
 	</LinearLayout>
+
+	<View
+		android:background="?android:attr/dividerVertical"
+		android:layout_height="1dp"
+		android:layout_width="match_parent"/>
 
 	<LinearLayout
 		android:layout_height="match_parent"
@@ -127,7 +125,6 @@
 
 			</LinearLayout>
 
-
 		</LinearLayout>
 
 		<LinearLayout
@@ -150,7 +147,6 @@
 			<EditText
 				android:layout_height="wrap_content"
 				android:layout_width="wrap_content"
-
 				android:background="@android:color/transparent"
 				android:textColor="#FFFFFF"
 				android:textSize="25sp"
@@ -166,8 +162,6 @@
 
 		</LinearLayout>
 
-
-
 	</LinearLayout>
 
 	<View
@@ -175,14 +169,11 @@
 		android:layout_height="1dp"
 		android:layout_width="match_parent"/>
 
-
 	<android.support.v4.view.ViewPager
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_weight="1"
 		android:id="@+id/newrecord_viewpage"/>
-
-
 
 	<LinearLayout
 		android:layout_height="wrap_content"

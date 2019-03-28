@@ -18,10 +18,21 @@ import android.content.*;
 
 import java.text.DecimalFormat;
 
-public class NewRecod_Main extends AppCompatActivity implements NewRecord_Keybord.Keyboard_Listener {
+public class NewRecod_Main extends AppCompatActivity implements NewRecord_Keybord.Keyboard_Listener
+{
+
+	@Override
+	public void SendContent(String Info)
+	{
+		// TODO: Implement this method
+	}
+	
 
 	private RelativeLayout newrecord_close_btn;
+	
+	private RelativeLayout newrecord_addrecord_btn;
 
+	/*
 	private BottomSheetBehavior mBottomSheetBehavior;
 
 	private RelativeLayout newrecord_bottomsheet_toggle;
@@ -36,8 +47,10 @@ public class NewRecod_Main extends AppCompatActivity implements NewRecord_Keybor
 
 	private RelativeLayout newrecord_keyboard_btn, newrecord_option1_btn, newrecord_option2_btn, newrecord_option3_btn, newrecord_option4_btn,newrecord_save_btn;
 
+	
+	
 	private ImageView newrecord_keyboard_img, newrecord_option1_img, newrecord_option2_img, newrecord_option3_img, newrecord_option4_img;
-
+*/
 	private Change_Amount mChange_Amount;
 
 	@Override
@@ -51,7 +64,7 @@ public class NewRecod_Main extends AppCompatActivity implements NewRecord_Keybor
 
 		Find_View();
 		
-		mBottomSheetBehavior.setState(mBottomSheetBehavior.STATE_EXPANDED);
+		//mBottomSheetBehavior.setState(mBottomSheetBehavior.STATE_EXPANDED);
 	}
 	
 	private void Find_View(){
@@ -60,8 +73,11 @@ public class NewRecod_Main extends AppCompatActivity implements NewRecord_Keybor
 		newrecord_close_btn = (RelativeLayout) findViewById(R.id.newrecord_close_btn);
 		newrecord_close_btn.setOnClickListener(Item_OnclickListener);
 
-
-
+		newrecord_addrecord_btn = (RelativeLayout) findViewById(R.id.newrecord_addrecord_btn);
+		newrecord_addrecord_btn.setOnClickListener(Item_OnclickListener);
+		
+		
+/*
 		//	BottomSheet 部份
 		mBottomSheetBehavior = BottomSheetBehavior.from(findViewById(R.id.bottomSheetLayout));
 		mBottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
@@ -131,6 +147,7 @@ public class NewRecod_Main extends AppCompatActivity implements NewRecord_Keybor
 		newrecord_save_btn = (RelativeLayout) findViewById(R.id.newrecord_save_btn);
 		newrecord_save_btn.setOnClickListener(Item_OnclickListener);
 		
+		*/
 	}
 
 
@@ -149,7 +166,14 @@ public class NewRecod_Main extends AppCompatActivity implements NewRecord_Keybor
 					finish();
 
 					break;
+					
+					
+				case R.id.newrecord_addrecord_btn:
+					
+					new Record_BottomSheetDialog().show(getSupportFragmentManager(), "");
+					break;
 				
+					/*
 				case R.id.newrecord_bottomsheet_toggle:
 
 					if(mBottomSheetBehavior.getState() == mBottomSheetBehavior.STATE_COLLAPSED){
@@ -225,12 +249,14 @@ public class NewRecod_Main extends AppCompatActivity implements NewRecord_Keybor
 					}
 					
 					break;
+					*/
 			}
 
 		}
 		
 	};
 
+	/*
 
 	@Override
 	public void SendContent(String Info) {
@@ -249,7 +275,7 @@ public class NewRecod_Main extends AppCompatActivity implements NewRecord_Keybor
 			mChange_Amount.Change_Amount(newrecord_amount_ed.getText().toString() + Info, newrecord_amount_ed);
 		}
 	}
-
+*/
 
 
 	// ViewPager Adapter
@@ -297,7 +323,7 @@ public class NewRecod_Main extends AppCompatActivity implements NewRecord_Keybor
 	}
 
 
-
+/*
 	// ViewPager PagerChangeListener
 	private ViewPager.OnPageChangeListener ViewPager_OnPageChangeListener = new ViewPager.OnPageChangeListener() {
 		@Override
@@ -356,7 +382,7 @@ public class NewRecod_Main extends AppCompatActivity implements NewRecord_Keybor
 		newrecord_option4_img.setColorFilter(Color.parseColor("#3f4447"));
 	}
 
-
+*/
 
 	// 管理 Amount EditText 輸入後所顯示格式
 	private TextWatcher Amount_TextWatcher = new TextWatcher() {
