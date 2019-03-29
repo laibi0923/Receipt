@@ -22,17 +22,32 @@ public class NewRecod_Main extends AppCompatActivity implements NewRecord_Keybor
 {
 
 	@Override
-	public void SendContent(String Info)
-	{
-		// TODO: Implement this method
+	public void SendContent(String Info) {
+
+		if (Info.equals("del")){
+			int length = mRecord_BottomSheetDialog.newrecord_amount_ed.getText().length();
+
+			if(length > 0){
+				mRecord_BottomSheetDialog.newrecord_amount_ed.getText().delete(length - 1, length);
+			}
+
+		}else if(Info.equals("del_long")){
+			mRecord_BottomSheetDialog.newrecord_amount_ed.setText("");
+		}else{
+			mRecord_BottomSheetDialog.newrecord_amount_ed.setText(mRecord_BottomSheetDialog.newrecord_amount_ed.getText().toString() +  Info);
+//			mChange_Amount.Change_Amount(newrecord_amount_ed.getText().toString() + Info, newrecord_amount_ed);
+		}
 	}
 	
+
 
 	private RelativeLayout newrecord_close_btn;
 	
 	private RelativeLayout newrecord_addrecord_btn;
 
 	private Change_Amount mChange_Amount;
+	
+	private Record_BottomSheetDialog mRecord_BottomSheetDialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +93,10 @@ public class NewRecod_Main extends AppCompatActivity implements NewRecord_Keybor
 					
 				case R.id.newrecord_addrecord_btn:
 					
-					new Record_BottomSheetDialog().show(getSupportFragmentManager(), "");
+					mRecord_BottomSheetDialog = new Record_BottomSheetDialog();
+					
+					mRecord_BottomSheetDialog.show(getSupportFragmentManager(), "");
+					
 					break;
 				
 

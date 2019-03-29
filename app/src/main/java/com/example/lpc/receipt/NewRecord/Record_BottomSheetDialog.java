@@ -15,18 +15,20 @@ import android.util.*;
 import android.view.*;
 import com.example.lpc.receipt.*;
 import android.widget.*;
+import android.graphics.drawable.*;
+import android.support.v4.content.*;
 
 
 
-public class Record_BottomSheetDialog extends BottomSheetDialogFragment implements NewRecord_Keybord.Keyboard_Listener{
+public class Record_BottomSheetDialog extends BottomSheetDialogFragment {
+	
+	private LinearLayout bottomSheetLayout;
 
-	private RelativeLayout newrecord_bottomsheet_toggle;
-
-	private ImageView newrecord_bottomsheet_toggle_img;
+	private RelativeLayout newrecord_bottomsheet_close;
 
 	private LinearLayout newrecord_type_btn;
 
-	private EditText newrecord_itemname_ed, newrecord_amount_ed;
+	public EditText newrecord_itemname_ed, newrecord_amount_ed;
 
 	private ViewPager mViewPager;
 
@@ -45,6 +47,7 @@ public class Record_BottomSheetDialog extends BottomSheetDialogFragment implemen
 		super.onStart();
 		
 		BottomSheetDialog mBottomSheetDialog = (BottomSheetDialog) getDialog();
+		
 		
 		FrameLayout bottomsheet = (FrameLayout) mBottomSheetDialog.getDelegate().findViewById(android.support.design.R.id.design_bottom_sheet);
 		
@@ -89,28 +92,40 @@ public class Record_BottomSheetDialog extends BottomSheetDialogFragment implemen
 		this.TopOffset = topOffset;
 	}
 
-
-	@Nullable
 	@Override
-	public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+	public void onActivityCreated(Bundle savedInstanceState)
+	{
+		// TODO: Implement this method
+		super.onActivityCreated(savedInstanceState);
+		
+		((View) getView().getParent()).setBackgroundColor(Color.TRANSPARENT);
+	}
+	
+	
+	
+	
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	{
+		// TODO: Implement this method
+		View v = LayoutInflater.from(getContext()).inflate(R.layout.c001_newrecord_bottomsheet, null);
 
-		View v = inflater.inflate(R.layout.c001_newrecord_bottomsheet, container, false);
+		//((View) v.getParent()).setBackgroundColor(ContextCompat.getColor(getContext(), android.R.color.transparent));
 
 		setTopOffset(150);
 
 		Find_View(v);
-
+		
 		return v;
 	}
 
+	
 
 
 	private void Find_View(View v){
-
-		newrecord_bottomsheet_toggle = v.findViewById(R.id.newrecord_bottomsheet_toggle);
-		newrecord_bottomsheet_toggle.setOnClickListener(Item_OnclickListener);
-
-		newrecord_bottomsheet_toggle_img = v.findViewById(R.id.newrecord_bottomsheet_toggle_img);
+		
+		newrecord_bottomsheet_close = v.findViewById(R.id.newrecord_bottomsheet_close);
+		newrecord_bottomsheet_close.setOnClickListener(Item_OnclickListener);
 
 		newrecord_itemname_ed = v.findViewById(R.id.newrecord_itemname_ed);
 
@@ -160,6 +175,12 @@ public class Record_BottomSheetDialog extends BottomSheetDialogFragment implemen
 		public void onClick(View view) {
 			// TODO: Implement this method
 			switch (view.getId()){
+				
+				case R.id.newrecord_bottomsheet_close:
+					
+					dismiss();
+					
+					break;
 
 
 				case R.id.newrecord_type_btn:
@@ -234,24 +255,7 @@ public class Record_BottomSheetDialog extends BottomSheetDialogFragment implemen
 	};
 
 
-	@Override
-	public void SendContent(String Info) {
-
-		if (Info.equals("del")){
-			int length = newrecord_amount_ed.getText().length();
-
-			if(length > 0){
-				newrecord_amount_ed.getText().delete(length - 1, length);
-			}
-
-		}else if(Info.equals("del_long")){
-			newrecord_amount_ed.setText("");
-		}else{
-			newrecord_amount_ed.setText(newrecord_amount_ed.getText().toString() +  Info);
-//			mChange_Amount.Change_Amount(newrecord_amount_ed.getText().toString() + Info, newrecord_amount_ed);
-		}
-	}
-
+	
 
 
 	// ViewPager Adapter
