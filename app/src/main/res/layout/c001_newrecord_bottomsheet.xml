@@ -15,8 +15,8 @@
 		android:layout_width="match_parent"
 		android:orientation="horizontal"
 		android:gravity="center"
-		android:layout_marginLeft="20dp"
-		android:layout_marginRight="20dp">
+		android:paddingLeft="20dp"
+		android:paddingRight="20dp">
 
 		<LinearLayout
 			android:id="@+id/newrecord_totalcount_btn"
@@ -55,16 +55,17 @@
 	</LinearLayout>
 
 	<View
-		android:background="#2F2F2F"
+		android:background="@color/line_bg_color"
 		android:layout_height="1dp"
 		android:layout_width="match_parent"/>
 
 	<LinearLayout
 		android:layout_height="match_parent"
 		android:layout_width="match_parent"
+		android:background="@color/content_bg_color"
 		android:orientation="vertical"
-		android:layout_marginLeft="20dp"
-		android:layout_marginRight="20dp"
+		android:paddingLeft="20dp"
+		android:paddingRight="20dp"
 		android:layout_weight="1.0">
 
 		<LinearLayout
@@ -164,7 +165,7 @@
 	</LinearLayout>
 
 	<View
-		android:background="#2f2f2f"
+		android:background="@color/line_bg_color"
 		android:layout_height="1dp"
 		android:layout_width="match_parent"/>
 
@@ -172,21 +173,23 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_weight="1"
+		android:background="@color/content_bg_color"
 		android:id="@+id/newrecord_viewpage"/>
 
 	<View
-		android:background="#2f2f2f"
+		android:background="@color/line_bg_color"
 		android:layout_height="1dp"
 		android:layout_width="match_parent"/>
 
 	<LinearLayout
-		android:layout_height="wrap_content"
+		android:layout_height="50dp"
 		android:layout_width="match_parent"
+		android:background="@color/main_bg_color"
 		android:orientation="horizontal"
 		android:padding="5dp"
 		android:gravity="center"
-		android:layout_marginLeft="20dp"
-		android:layout_marginRight="20dp">
+		android:paddingLeft="20dp"
+		android:paddingRight="20dp">
 
 		<RelativeLayout
 			android:id="@+id/newrecord_keyboard_btn"

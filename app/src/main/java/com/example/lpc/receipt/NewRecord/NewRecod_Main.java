@@ -12,6 +12,7 @@ import android.view.*;
 import android.widget.*;
 import com.example.lpc.receipt.*;
 import com.example.lpc.receipt.Public.Change_Amount;
+import com.example.lpc.receipt.Public.FullScreencall;
 
 import android.view.inputmethod.*;
 import android.content.*;
@@ -50,6 +51,12 @@ public class NewRecod_Main extends AppCompatActivity implements NewRecord_Keybor
 	private Record_BottomSheetDialog mRecord_BottomSheetDialog;
 
 	@Override
+	protected void onResume() {
+		super.onResume();
+		new FullScreencall().FullScreencall(this);
+	}
+
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO: Implement this method
 		super.onCreate(savedInstanceState);
@@ -61,6 +68,7 @@ public class NewRecod_Main extends AppCompatActivity implements NewRecord_Keybor
 		Find_View();
 
 	}
+
 	
 	private void Find_View() {
 

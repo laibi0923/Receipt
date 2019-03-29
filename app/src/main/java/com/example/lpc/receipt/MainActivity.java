@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import com.example.lpc.receipt.NewRecord.NewRecod_Main;
 import com.example.lpc.receipt.Public.Calendar_Selecter;
 import com.example.lpc.receipt.Public.Change_Date;
+import com.example.lpc.receipt.Public.FullScreencall;
 import com.example.lpc.receipt.Review.Review_Main;
 import com.example.lpc.receipt.Setting.Setting_Main;
 
@@ -47,6 +48,12 @@ public class MainActivity extends AppCompatActivity {
 	public long Select_Date_parseLong;
 	
 	private Change_Date mChange_Date;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        new FullScreencall().FullScreencall(this);
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -92,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.a000_activity_main);
 		
 		mChange_Date = new Change_Date();

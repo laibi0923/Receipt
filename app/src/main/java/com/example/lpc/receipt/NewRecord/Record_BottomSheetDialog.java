@@ -1,6 +1,7 @@
 package com.example.lpc.receipt.NewRecord;
 import android.app.*;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Point;
@@ -14,13 +15,15 @@ import android.support.v4.view.ViewPager;
 import android.util.*;
 import android.view.*;
 import com.example.lpc.receipt.*;
+import com.example.lpc.receipt.Public.FullScreencall;
+
 import android.widget.*;
 import android.graphics.drawable.*;
 import android.support.v4.content.*;
 
 
 
-public class Record_BottomSheetDialog extends BottomSheetDialogFragment {
+public class Record_BottomSheetDialog extends BottomSheetDialogFragment implements View.OnClickListener{
 	
 	private LinearLayout bottomSheetLayout;
 
@@ -63,6 +66,17 @@ public class Record_BottomSheetDialog extends BottomSheetDialogFragment {
 		}
 	}
 
+
+
+	@Override
+	public void onDismiss(DialogInterface dialog) {
+		super.onDismiss(dialog);
+
+		new FullScreencall().FullScreencall(getActivity());
+	}
+
+
+
 	private int getHeight(){
 
 		int height = 1920;
@@ -84,29 +98,34 @@ public class Record_BottomSheetDialog extends BottomSheetDialogFragment {
 		return height;
 	}
 
+
+
 	public int getTopOffset(){
 		return TopOffset;
 	}
+
+
 
 	public void setTopOffset(int topOffset){
 		this.TopOffset = topOffset;
 	}
 
+
+
 	@Override
-	public void onActivityCreated(Bundle savedInstanceState)
-	{
+	public void onActivityCreated(Bundle savedInstanceState) {
+
 		// TODO: Implement this method
 		super.onActivityCreated(savedInstanceState);
 		
 		((View) getView().getParent()).setBackgroundColor(Color.TRANSPARENT);
 	}
-	
-	
-	
+
+
 	
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-	{
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
 		// TODO: Implement this method
 		View v = LayoutInflater.from(getContext()).inflate(R.layout.c001_newrecord_bottomsheet, null);
 
@@ -121,16 +140,15 @@ public class Record_BottomSheetDialog extends BottomSheetDialogFragment {
 
 	
 
-
 	private void Find_View(View v){
 		
 		newrecord_bottomsheet_close = v.findViewById(R.id.newrecord_bottomsheet_close);
-		newrecord_bottomsheet_close.setOnClickListener(Item_OnclickListener);
+		newrecord_bottomsheet_close.setOnClickListener(this);
 
 		newrecord_itemname_ed = v.findViewById(R.id.newrecord_itemname_ed);
 
 		newrecord_type_btn = v.findViewById(R.id.newrecord_type_btn);
-		newrecord_type_btn.setOnClickListener(Item_OnclickListener);
+		newrecord_type_btn.setOnClickListener(this);
 
 		newrecord_amount_ed = v.findViewById(R.id.newrecord_amount_ed);
 //		newrecord_amount_ed.addTextChangedListener(Amount_TextWatcher);
@@ -144,88 +162,87 @@ public class Record_BottomSheetDialog extends BottomSheetDialogFragment {
 		mViewPager.addOnPageChangeListener(ViewPager_OnPageChangeListener);
 
 		newrecord_keyboard_btn = v.findViewById(R.id.newrecord_keyboard_btn);
-		newrecord_keyboard_btn.setOnClickListener(Item_OnclickListener);
+		newrecord_keyboard_btn.setOnClickListener(this);
 		newrecord_keyboard_img = v.findViewById(R.id.newrecord_keyboard_img);
 
 		newrecord_option1_btn = v.findViewById(R.id.newrecord_option1_btn);
-		newrecord_option1_btn.setOnClickListener(Item_OnclickListener);
+		newrecord_option1_btn.setOnClickListener(this);
 		newrecord_option1_img = v.findViewById(R.id.newrecord_option1_img);
 
 		newrecord_option2_btn = v. findViewById(R.id.newrecord_option2_btn);
-		newrecord_option2_btn.setOnClickListener(Item_OnclickListener);
+		newrecord_option2_btn.setOnClickListener(this);
 		newrecord_option2_img = v.findViewById(R.id.newrecord_option2_img);
 
 		newrecord_option3_btn = v.findViewById(R.id.newrecord_option3_btn);
-		newrecord_option3_btn.setOnClickListener(Item_OnclickListener);
+		newrecord_option3_btn.setOnClickListener(this);
 		newrecord_option3_img = v.findViewById(R.id.newrecord_option3_img);
 
 		newrecord_option4_btn = v.findViewById(R.id.newrecord_option4_btn);
-		newrecord_option4_btn.setOnClickListener(Item_OnclickListener);
+		newrecord_option4_btn.setOnClickListener(this);
 		newrecord_option4_img = v.findViewById(R.id.newrecord_option4_img);
 
 		newrecord_save_btn = v.findViewById(R.id.newrecord_save_btn);
-		newrecord_save_btn.setOnClickListener(Item_OnclickListener);
+		newrecord_save_btn.setOnClickListener(this);
 
 	}
+	
 
 
-	private View.OnClickListener Item_OnclickListener = new View.OnClickListener() {
+	@Override
+	public void onClick(View v) {
 
-		@Override
-		public void onClick(View view) {
-			// TODO: Implement this method
-			switch (view.getId()){
-				
-				case R.id.newrecord_bottomsheet_close:
-					
-					dismiss();
-					
-					break;
+		switch (v.getId()){
+
+			case R.id.newrecord_bottomsheet_close:
+
+				dismiss();
+
+				break;
 
 
-				case R.id.newrecord_type_btn:
+			case R.id.newrecord_type_btn:
 
-					Intent open_c002_activity = new Intent(getActivity(), NewRecord_SearchType.class);
-					startActivityForResult(open_c002_activity, 733);
+				Intent open_c002_activity = new Intent(getActivity(), NewRecord_SearchType.class);
+				startActivityForResult(open_c002_activity, 733);
 
-					break;
+				break;
 
-				case R.id.newrecord_keyboard_btn:
+			case R.id.newrecord_keyboard_btn:
 
-					mViewPager.setCurrentItem(0);
-					Clear_Icon_Tint();
-					newrecord_keyboard_img.setColorFilter(Color.parseColor("#FFFFFF"));
-					break;
+				mViewPager.setCurrentItem(0);
+				Clear_Icon_Tint();
+				newrecord_keyboard_img.setColorFilter(Color.parseColor("#FFFFFF"));
+				break;
 
-				case R.id.newrecord_option1_btn:
+			case R.id.newrecord_option1_btn:
 
-					mViewPager.setCurrentItem(1);
-					Clear_Icon_Tint();
-					newrecord_option1_img.setColorFilter(Color.parseColor("#FFFFFF"));
-					break;
+				mViewPager.setCurrentItem(1);
+				Clear_Icon_Tint();
+				newrecord_option1_img.setColorFilter(Color.parseColor("#FFFFFF"));
+				break;
 
-				case R.id.newrecord_option2_btn:
+			case R.id.newrecord_option2_btn:
 
-					mViewPager.setCurrentItem(2);
-					Clear_Icon_Tint();
-					newrecord_option2_img.setColorFilter(Color.parseColor("#FFFFFF"));
-					break;
+				mViewPager.setCurrentItem(2);
+				Clear_Icon_Tint();
+				newrecord_option2_img.setColorFilter(Color.parseColor("#FFFFFF"));
+				break;
 
-				case R.id.newrecord_option3_btn:
+			case R.id.newrecord_option3_btn:
 
-					mViewPager.setCurrentItem(3);
-					Clear_Icon_Tint();
-					newrecord_option3_img.setColorFilter(Color.parseColor("#FFFFFF"));
-					break;
+				mViewPager.setCurrentItem(3);
+				Clear_Icon_Tint();
+				newrecord_option3_img.setColorFilter(Color.parseColor("#FFFFFF"));
+				break;
 
-				case R.id.newrecord_option4_btn:
+			case R.id.newrecord_option4_btn:
 
-					mViewPager.setCurrentItem(4);
-					Clear_Icon_Tint();
-					newrecord_option4_img.setColorFilter(Color.parseColor("#FFFFFF"));
-					break;
+				mViewPager.setCurrentItem(4);
+				Clear_Icon_Tint();
+				newrecord_option4_img.setColorFilter(Color.parseColor("#FFFFFF"));
+				break;
 
-				case R.id.newrecord_save_btn:
+			case R.id.newrecord_save_btn:
 
 //					if(newrecord_itemname_ed.getText().length() == 0){
 //
@@ -247,15 +264,13 @@ public class Record_BottomSheetDialog extends BottomSheetDialogFragment {
 //						mBottomSheetBehavior.setState(mBottomSheetBehavior.STATE_COLLAPSED);
 //					}
 
-					break;
-
-			}
+				break;
 
 		}
-	};
+		
+	}
 
 
-	
 
 
 	// ViewPager Adapter
@@ -301,6 +316,7 @@ public class Record_BottomSheetDialog extends BottomSheetDialogFragment {
 		}
 
 	}
+
 
 
 	// ViewPager PagerChangeListener
@@ -349,6 +365,8 @@ public class Record_BottomSheetDialog extends BottomSheetDialogFragment {
 
 		}
 	};
+
+
 
 	// 當按下該輸入方式時使用
 	private void Clear_Icon_Tint(){

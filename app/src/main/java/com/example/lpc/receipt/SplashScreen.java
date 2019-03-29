@@ -4,6 +4,8 @@ import android.os.*;
 import android.support.v7.app.*;
 import android.view.*;
 import com.example.lpc.receipt.*;
+import com.example.lpc.receipt.Public.FullScreencall;
+
 import java.util.*;
 
 public class SplashScreen extends AppCompatActivity{
@@ -13,10 +15,19 @@ public class SplashScreen extends AppCompatActivity{
     private long delay = 1000;
     private int i = 0;
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        new FullScreencall().FullScreencall(this);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         setContentView(R.layout.a000_welcome_page);
 
         Timer timer = new Timer();

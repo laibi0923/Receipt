@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#191D20</color>
+    <color name="colorPrimary">#232323</color>
     <color name="colorPrimaryDark">#191D20</color>
     <color name="colorAccent">#59F1B4</color>
 
@@ -8,5 +8,9 @@
     <color name="text_color_2">#8C8C8C</color>
 	<color name="text_color_red">#F23F3F</color>
 	<color name="text_color_green">#59F1B4</color>
+
+    <color name="main_bg_color">#292929</color>
+    <color name="content_bg_color">@color/colorPrimary</color>
+    <color name="line_bg_color">#2F2F2F</color>
 	
 </resources>
