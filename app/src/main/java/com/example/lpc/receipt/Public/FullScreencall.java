@@ -7,6 +7,7 @@ import android.view.View;
 
 public class FullScreencall {
 
+	/*
     public void FullScreencall(Activity activity) {
 
         if(Build.VERSION.SDK_INT > 11 && Build.VERSION.SDK_INT < 19) {
@@ -24,6 +25,6 @@ public class FullScreencall {
 
         }
     }
-
+*/
 
 }

@@ -53,7 +53,7 @@ public class NewRecod_Main extends AppCompatActivity implements NewRecord_Keybor
 	@Override
 	protected void onResume() {
 		super.onResume();
-		new FullScreencall().FullScreencall(this);
+		//new FullScreencall().FullScreencall(this);
 	}
 
 	@Override

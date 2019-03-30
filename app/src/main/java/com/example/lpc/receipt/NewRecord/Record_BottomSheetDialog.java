@@ -20,6 +20,8 @@ import com.example.lpc.receipt.Public.FullScreencall;
 import android.widget.*;
 import android.graphics.drawable.*;
 import android.support.v4.content.*;
+import android.view.inputmethod.*;
+import android.view.View.*;
 
 
 
@@ -72,7 +74,7 @@ public class Record_BottomSheetDialog extends BottomSheetDialogFragment implemen
 	public void onDismiss(DialogInterface dialog) {
 		super.onDismiss(dialog);
 
-		new FullScreencall().FullScreencall(getActivity());
+		//new FullScreencall().FullScreencall(getActivity());
 	}
 
 
@@ -131,7 +133,7 @@ public class Record_BottomSheetDialog extends BottomSheetDialogFragment implemen
 
 		//((View) v.getParent()).setBackgroundColor(ContextCompat.getColor(getContext(), android.R.color.transparent));
 
-		setTopOffset(150);
+		setTopOffset(100);
 
 		Find_View(v);
 		
@@ -243,26 +245,33 @@ public class Record_BottomSheetDialog extends BottomSheetDialogFragment implemen
 				break;
 
 			case R.id.newrecord_save_btn:
+				
+				
 
-//					if(newrecord_itemname_ed.getText().length() == 0){
-//
-//						InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-//						inputMethodManager.toggleSoftInputFromWindow(newrecord_itemname_ed.getApplicationWindowToken(),InputMethodManager.SHOW_FORCED, 0);
-//
-//						newrecord_itemname_ed.requestFocus();
-//
-//						Toast.makeText(getApplicationContext(), "Please Enter Item Name...", Toast.LENGTH_SHORT).show();
+					if(newrecord_itemname_ed.getText().length() == 0){
 
-//					}else{
+						InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+						inputMethodManager.toggleSoftInputFromWindow(newrecord_itemname_ed.getApplicationWindowToken(),InputMethodManager.SHOW_FORCED, 0);
 
-//						InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-//						imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-//
-//						newrecord_itemname_ed.setText("");
-//						newrecord_amount_ed.setText("");
-//
-//						mBottomSheetBehavior.setState(mBottomSheetBehavior.STATE_COLLAPSED);
-//					}
+						newrecord_itemname_ed.requestFocus();
+
+						Toast.makeText(getActivity(), "Please Enter Item Name...", Toast.LENGTH_SHORT).show();
+
+					}else if(newrecord_amount_ed.getText().length() == 0){
+						
+						InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+						imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
+						
+						Toast.makeText(getActivity(), "Please Input Amount...", Toast.LENGTH_SHORT).show();
+						
+					}else{
+
+						InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+						imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
+						
+						Show_Save_Dialog();
+
+					}
 
 				break;
 
@@ -378,5 +387,68 @@ public class Record_BottomSheetDialog extends BottomSheetDialogFragment implemen
 	}
 
 
+	public void Show_Save_Dialog(){
+		
+		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+		
+        
+		
+        View view = View.inflate(getActivity(), R.layout.c001_save_dialog, null);
+		
+        builder.setView(view);
+		
+        builder.setCancelable(true);
+		
+		TextView savedialog_name_tv = view.findViewById(R.id.savedialog_name_tv);
+		savedialog_name_tv.setText(newrecord_itemname_ed.getText().toString());
+		
+		TextView savedialog_amount_tv = view.findViewById(R.id.savedialog_amount_tv);
+		savedialog_amount_tv.setText(newrecord_amount_ed.getText().toString());
+		
+		RelativeLayout savedialog_savebtn = view.findViewById(R.id.savedialog_savebtn);
+		
+		RelativeLayout savedialog_cnxbtn = view.findViewById(R.id.savedialog_cnxbtn);
+		
+		RelativeLayout savedialog_nextbtn = view.findViewById(R.id.savedialog_nextbtn);
+		
+		
+		final AlertDialog dialog = builder.create();
+		
+		savedialog_savebtn.setOnClickListener(new View.OnClickListener(){
+
+				@Override
+				public void onClick(View p1)
+				{
+					// TODO: Implement this method
+					dialog.dismiss();
+					dismiss();
+				}
+			});
+        
+		savedialog_cnxbtn.setOnClickListener(new View.OnClickListener(){
+
+				@Override
+				public void onClick(View p1)
+				{
+					// TODO: Implement this method
+					  dialog.dismiss();
+				}
+			});
+			
+		savedialog_nextbtn.setOnClickListener(new View.OnClickListener(){
+
+				@Override
+				public void onClick(View p1)
+				{
+					// TODO: Implement this method
+					
+					newrecord_amount_ed.setText("");
+					newrecord_itemname_ed.setText("");
+					dialog.dismiss();
+				}
+			});
+		
+        dialog.show(); 
+	}
 
 }

@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        new FullScreencall().FullScreencall(this);
+        //new FullScreencall().FullScreencall(this);
     }
 
     @Override
