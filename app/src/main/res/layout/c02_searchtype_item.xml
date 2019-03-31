@@ -25,18 +25,20 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/searchtype_name"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="center|left"
                 android:textColor="@color/text_color_1"
                 android:text="Title"/>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/searchtype_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="center|left"
                 android:textColor="@color/text_color_2"
                 android:text="Content"/>
 

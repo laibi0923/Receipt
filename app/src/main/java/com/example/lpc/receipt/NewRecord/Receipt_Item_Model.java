@@ -4,8 +4,10 @@ public class Receipt_Item_Model {
 
     public String ItemName, ItemType, ItemPrice;
 
-    public Receipt_Item_Model(String item_Name, String item_Type, String itemName) {
+    public Receipt_Item_Model(String itemName, String itemType, String itemPrice) {
         ItemName = itemName;
+        ItemType = itemType;
+        ItemPrice = itemPrice;
     }
 
     public String getItemName() {

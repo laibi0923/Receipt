@@ -58,13 +58,10 @@
 
 	</LinearLayout>
 
-	<include layout="@layout/c02_searchtype_item" />
-
-	<include layout="@layout/c02_searchtype_item" />
-
-	<include layout="@layout/c02_searchtype_item" />
-
-	<include layout="@layout/c02_searchtype_item" />
+	<android.support.v7.widget.RecyclerView
+		android:id="@+id/searchtype_recyclerview"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
 
 </LinearLayout>
 
