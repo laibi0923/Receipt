@@ -6,28 +6,20 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.*;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.*;
 import android.view.*;
 import com.example.lpc.receipt.*;
-import com.example.lpc.receipt.Public.FullScreencall;
 
 import android.widget.*;
-import android.graphics.drawable.*;
-import android.support.v4.content.*;
 import android.view.inputmethod.*;
-import android.view.View.*;
 
 
+public class BottomSheetDialog extends BottomSheetDialogFragment implements View.OnClickListener{
 
-public class Record_BottomSheetDialog extends BottomSheetDialogFragment implements View.OnClickListener{
-	
-	private LinearLayout bottomSheetLayout;
+	private TextView newrecord_totalcount_tv;
 
 	private RelativeLayout newrecord_bottomsheet_close;
 
@@ -51,7 +43,7 @@ public class Record_BottomSheetDialog extends BottomSheetDialogFragment implemen
 		// TODO: Implement this method
 		super.onStart();
 		
-		BottomSheetDialog mBottomSheetDialog = (BottomSheetDialog) getDialog();
+		android.support.design.widget.BottomSheetDialog mBottomSheetDialog = (android.support.design.widget.BottomSheetDialog) getDialog();
 		
 		
 		FrameLayout bottomsheet = (FrameLayout) mBottomSheetDialog.getDelegate().findViewById(android.support.design.R.id.design_bottom_sheet);
@@ -129,7 +121,7 @@ public class Record_BottomSheetDialog extends BottomSheetDialogFragment implemen
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 		// TODO: Implement this method
-		View v = LayoutInflater.from(getContext()).inflate(R.layout.c001_newrecord_bottomsheet, null);
+		View v = LayoutInflater.from(getContext()).inflate(R.layout.c01_record_bottomsheet, null);
 
 		//((View) v.getParent()).setBackgroundColor(ContextCompat.getColor(getContext(), android.R.color.transparent));
 
@@ -143,6 +135,9 @@ public class Record_BottomSheetDialog extends BottomSheetDialogFragment implemen
 	
 
 	private void Find_View(View v){
+
+		newrecord_totalcount_tv = v.findViewById(R.id.newrecord_totalcount_tv);
+		newrecord_totalcount_tv.setText("共" + ((NewRecod_Main) getActivity()).receipt_list.size() + "個項目");
 		
 		newrecord_bottomsheet_close = v.findViewById(R.id.newrecord_bottomsheet_close);
 		newrecord_bottomsheet_close.setOnClickListener(this);
@@ -204,7 +199,7 @@ public class Record_BottomSheetDialog extends BottomSheetDialogFragment implemen
 
 			case R.id.newrecord_type_btn:
 
-				Intent open_c002_activity = new Intent(getActivity(), NewRecord_SearchType.class);
+				Intent open_c002_activity = new Intent(getActivity(), SearchType.class);
 				startActivityForResult(open_c002_activity, 733);
 
 				break;
@@ -245,33 +240,31 @@ public class Record_BottomSheetDialog extends BottomSheetDialogFragment implemen
 				break;
 
 			case R.id.newrecord_save_btn:
-				
-				
 
-					if(newrecord_itemname_ed.getText().length() == 0){
+				if(newrecord_itemname_ed.getText().length() == 0){
 
-						InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-						inputMethodManager.toggleSoftInputFromWindow(newrecord_itemname_ed.getApplicationWindowToken(),InputMethodManager.SHOW_FORCED, 0);
+					InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+					inputMethodManager.toggleSoftInputFromWindow(newrecord_itemname_ed.getApplicationWindowToken(),InputMethodManager.SHOW_FORCED, 0);
 
-						newrecord_itemname_ed.requestFocus();
+					newrecord_itemname_ed.requestFocus();
 
-						Toast.makeText(getActivity(), "Please Enter Item Name...", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getActivity(), "Please Enter Item Name...", Toast.LENGTH_SHORT).show();
 
-					}else if(newrecord_amount_ed.getText().length() == 0){
-						
-						InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-						imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
-						
-						Toast.makeText(getActivity(), "Please Input Amount...", Toast.LENGTH_SHORT).show();
-						
-					}else{
+				}else if(newrecord_amount_ed.getText().length() == 0){
 
-						InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-						imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
-						
-						Show_Save_Dialog();
+					InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+					imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
 
-					}
+					Toast.makeText(getActivity(), "Please Input Amount...", Toast.LENGTH_SHORT).show();
+
+				}else{
+
+					InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+					imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
+
+					Show_Save_Dialog();
+
+				}
 
 				break;
 
@@ -306,19 +299,19 @@ public class Record_BottomSheetDialog extends BottomSheetDialogFragment implemen
 					return null;
 
 				case 0:
-					return new NewRecord_Keybord();
+					return new Keybord_Fragment();
 
 				case 1:
-					return new NewRecord_FastPage();
+					return new FastPage_Fragment();
 
 				case 2:
-					return new NewRecord_FastPage();
+					return new FastPage_Fragment();
 
 				case 3:
-					return new NewRecord_FastPage();
+					return new FastPage_Fragment();
 
 				case 4:
-					return new NewRecord_FastPage();
+					return new FastPage_Fragment();
 
 			}
 
@@ -390,10 +383,8 @@ public class Record_BottomSheetDialog extends BottomSheetDialogFragment implemen
 	public void Show_Save_Dialog(){
 		
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-		
-        
-		
-        View view = View.inflate(getActivity(), R.layout.c001_save_dialog, null);
+
+        View view = View.inflate(getActivity(), R.layout.c01_record_savedialog, null);
 		
         builder.setView(view);
 		
@@ -420,6 +411,9 @@ public class Record_BottomSheetDialog extends BottomSheetDialogFragment implemen
 				public void onClick(View p1)
 				{
 					// TODO: Implement this method
+					((NewRecod_Main) getActivity()).NewReceipt_Data(newrecord_itemname_ed.getText().toString(), "", newrecord_amount_ed.getText().toString());
+					newrecord_amount_ed.setText("");
+					newrecord_itemname_ed.setText("");
 					dialog.dismiss();
 					dismiss();
 				}
@@ -441,7 +435,8 @@ public class Record_BottomSheetDialog extends BottomSheetDialogFragment implemen
 				public void onClick(View p1)
 				{
 					// TODO: Implement this method
-					
+					((NewRecod_Main) getActivity()).NewReceipt_Data(newrecord_itemname_ed.getText().toString(), "", newrecord_amount_ed.getText().toString());
+					newrecord_totalcount_tv.setText("共" + ((NewRecod_Main) getActivity()).receipt_list.size() + "個項目");
 					newrecord_amount_ed.setText("");
 					newrecord_itemname_ed.setText("");
 					dialog.dismiss();

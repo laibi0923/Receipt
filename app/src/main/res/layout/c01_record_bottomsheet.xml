@@ -11,7 +11,7 @@
 	app:layout_behavior="@string/bottom_sheet_behavior">
 
 	<LinearLayout
-		android:layout_height="50dp"
+		android:layout_height="wrap_content"
 		android:layout_width="match_parent"
 		android:orientation="horizontal"
 		android:gravity="center"
@@ -32,7 +32,7 @@
 				android:layout_height="wrap_content"
 				android:layout_marginLeft="10dp"
 				android:gravity="center"
-				android:text="共 14 項目"
+				android:text="共 0 項目"
 				android:textColor="#FFFFFF"/>
 
 		</LinearLayout>

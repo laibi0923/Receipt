@@ -69,13 +69,15 @@
 
 		</LinearLayout>
 
-		<include layout="@layout/c001_newrecord_maincontent" />
+		<include layout="@layout/c01_record_maincontent" />
 
 	</LinearLayout>
 
 
 
+
 	<LinearLayout
+		android:id="@+id/newrecord_savereceipt_btn"
 		android:layout_width="match_parent"
 		android:layout_height="50dp"
 		android:background="@color/main_bg_color"
@@ -83,14 +85,27 @@
 		android:layout_alignParentBottom="true"
 		android:orientation="vertical">
 
+		<View
+			android:background="@color/line_bg_color"
+			android:layout_height="1dp"
+			android:layout_width="match_parent"/>
+
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
+			android:layout_weight="1"
 			android:textColor="@color/text_color_1"
 			android:gravity="center"
 			android:text="保存"/>
 
+		<View
+			android:background="@color/line_bg_color"
+			android:layout_height="1dp"
+			android:layout_width="match_parent"/>
+
+
 	</LinearLayout>
+
 
 
 </RelativeLayout>

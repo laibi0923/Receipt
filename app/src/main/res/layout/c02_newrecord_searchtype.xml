@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical"
+	android:background="@color/colorPrimary">
+
+	<LinearLayout
+		android:layout_height="50dp"
+		android:layout_width="match_parent"
+		android:orientation="horizontal"
+		android:gravity="center|left"
+		android:paddingLeft="10dp"
+		android:paddingRight="10dp"
+		android:background="@color/main_bg_color">
+
+		<RelativeLayout
+			android:id="@+id/searchtype_back_btn"
+			android:layout_width="40dp"
+			android:layout_height="40dp">
+
+			<ImageView
+				android:layout_width="35dp"
+				android:layout_height="35dp"
+				android:layout_centerInParent="true"
+				android:src="@mipmap/ic_back"
+				android:tint="@color/text_color_1" />
+
+		</RelativeLayout>
+
+
+		<EditText
+			android:id="@+id/searchtype_search_ed"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:background="@android:color/transparent"
+			android:hint="SEARCH"
+			android:textColor="@color/text_color_1"
+			android:textColorHint="@color/text_color_2"
+			android:textSize="15dp" />
+
+
+		<RelativeLayout
+			android:id="@+id/searchtype_clear_btn"
+			android:layout_width="40dp"
+			android:layout_height="40dp">
+
+			<ImageView
+				android:layout_width="30dp"
+				android:layout_height="30dp"
+				android:layout_centerInParent="true"
+				android:src="@mipmap/ic_close"
+				android:tint="@color/text_color_1" />
+
+		</RelativeLayout>
+
+	</LinearLayout>
+
+	<include layout="@layout/c02_searchtype_item" />
+
+	<include layout="@layout/c02_searchtype_item" />
+
+	<include layout="@layout/c02_searchtype_item" />
+
+	<include layout="@layout/c02_searchtype_item" />
+
+</LinearLayout>
+

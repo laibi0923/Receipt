@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		android:layout_marginLeft="30dp"
+		android:layout_marginRight="30dp">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="300dp"
+			android:orientation="vertical"
+			android:gravity="center">
+
+			<LinearLayout
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:orientation="horizontal"
+				android:layout_weight="1.0"
+				android:gravity="center"
+				android:layout_marginTop="50dp">
+
+				<EditText
+					android:layout_height="wrap_content"
+					android:layout_width="match_parent"
+					android:background="@android:color/transparent"
+					android:padding="10dp"
+					android:hint="名稱"
+					android:textColor="#FFFFFF"
+					android:textColorHint="#FFFFFF"
+					android:imeOptions="actionDone"
+					android:gravity="center"/>
+
+			</LinearLayout>
+
+			<LinearLayout
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:orientation="horizontal"
+				android:paddingTop="10dp"
+				android:paddingBottom="10dp">
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:text="種類"
+					android:padding="10dp"
+					android:textColor="#FFFFFF"/>
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:text="收入"
+					android:padding="10dp"
+					android:layout_weight="1.0"
+					android:gravity="right|center"
+					android:textColor="#FFFFFF"/>
+
+			</LinearLayout>
+
+			<LinearLayout
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:orientation="horizontal"
+				android:paddingTop="10dp"
+				android:paddingBottom="10dp">
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:text="總額"
+					android:padding="10dp"
+					android:textColor="#FFFFFF"/>
+
+				<TextView
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"
+					android:text="$ 10,0000"
+					android:padding="10dp"
+					android:layout_weight="1.0"
+					android:gravity="right|center"
+					android:textColor="#FFFFFF"/>
+
+			</LinearLayout>
+
+		</LinearLayout>
+
+		<View
+			android:background="?android:attr/dividerVertical"
+			android:layout_height="1dp"
+			android:layout_width="match_parent"/>
+
+		<android.support.v7.widget.RecyclerView
+			android:id="@+id/newrecord_recycleview"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_marginBottom="200dp"/>
+
+	</LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>
+

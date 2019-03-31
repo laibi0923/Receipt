@@ -60,7 +60,7 @@
         </activity>
 
         <activity
-            android:name=".NewRecord.NewRecord_SearchType"
+            android:name=".NewRecord.SearchType"
             android:windowSoftInputMode="stateHidden|adjustResize" >
 
         </activity>

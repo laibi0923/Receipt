@@ -9,7 +9,8 @@
 
         <!--<item name="android:windowLightStatusBar">true</item>-->
 
-        <item name="android:navigationBarColor">@color/main_bg_color</item>
+		<!--底部導航欄-->
+        <!--<item name="android:navigationBarColor">@color/main_bg_color</item>-->
 		
     </style>
 	

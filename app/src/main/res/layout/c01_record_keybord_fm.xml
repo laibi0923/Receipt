@@ -333,12 +333,14 @@
 		<View
 			android:background="#2f2f2f"
 			android:layout_height="match_parent"
-			android:layout_width="1dp"/>
+			android:layout_width="1dp"
+			android:visibility="gone"/>
 
 		<LinearLayout
 			android:layout_height="match_parent"
 			android:layout_width="0dp"
 			android:orientation="vertical"
+			android:visibility="gone"
 			android:layout_weight="1.0">
 
 			<RelativeLayout

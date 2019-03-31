@@ -6,8 +6,8 @@ import android.os.*;
 import android.widget.RelativeLayout;
 
 import com.example.lpc.receipt.R;
-import android.view.View.*;
-public class NewRecord_Keybord extends Fragment {
+
+public class Keybord_Fragment extends Fragment {
 
 	public Keyboard_Listener mKeyboard_Listener;
 
@@ -30,7 +30,7 @@ public class NewRecord_Keybord extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		// TODO: Implement this method
-		View v = inflater.inflate(R.layout.c001_newrecord_keybord, container, false);
+		View v = inflater.inflate(R.layout.c01_record_keybord_fm, container, false);
 		Find_View(v);
 		return v;
 	}
