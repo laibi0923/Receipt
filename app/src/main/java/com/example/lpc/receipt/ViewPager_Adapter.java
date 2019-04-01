@@ -16,7 +16,7 @@ public class ViewPager_Adapter extends FragmentStatePagerAdapter {
 
     public ViewPager_Adapter(FragmentManager fm, List<Long> DateList) {
         super(fm);
-        this.DateList = DateList;
+        this.DateList = DateList; 
     }
 
     @Override

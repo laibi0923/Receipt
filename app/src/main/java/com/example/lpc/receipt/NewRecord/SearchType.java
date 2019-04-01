@@ -10,6 +10,8 @@ import android.widget.RelativeLayout;
 import com.example.lpc.receipt.R;
 
 import java.util.ArrayList;
+import android.support.v7.widget.*;
+import android.view.inputmethod.*;
 
 public class SearchType extends AppCompatActivity implements View.OnClickListener {
 
@@ -34,26 +36,32 @@ public class SearchType extends AppCompatActivity implements View.OnClickListene
 		Find_View();
 
 		add_Data();
+		
+		InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
+		inputMethodManager.toggleSoftInputFromWindow(searchtype_search_ed.getApplicationWindowToken(),InputMethodManager.SHOW_FORCED, 0);
+		
 	}
 	
 
 	private void Find_View(){
 
-		searchtype_back_btn = findViewById(R.id.searchtype_back_btn);
+		searchtype_back_btn = (RelativeLayout) findViewById(R.id.searchtype_back_btn);
 		searchtype_back_btn.setOnClickListener(this);
 
-		searchtype_clear_btn = findViewById(R.id.searchtype_clear_btn);
+		searchtype_clear_btn = (RelativeLayout) findViewById(R.id.searchtype_clear_btn);
 		searchtype_clear_btn.setOnClickListener(this);
 
-		searchtype_search_ed = findViewById(R.id.searchtype_search_ed);
+		searchtype_search_ed = (EditText) findViewById(R.id.searchtype_search_ed);
 
 		Type_list = new ArrayList<>();
 		mSearchType_Adapter = new SearchType_Adapter(this, Type_list);
 
-		SearchType_RecyclerView  = findViewById(R.id.searchtype_recyclerview);
+		SearchType_RecyclerView  = (RecyclerView) findViewById(R.id.searchtype_recyclerview);
 		SearchType_RecyclerView.setLayoutManager(new LinearLayoutManager(this));
-		SearchType_RecyclerView.setNestedScrollingEnabled(false);
+		SearchType_RecyclerView.addItemDecoration(new DividerItemDecoration(SearchType_RecyclerView.getContext(), DividerItemDecoration.VERTICAL));
+		//SearchType_RecyclerView.setNestedScrollingEnabled(false);
 		SearchType_RecyclerView.setAdapter(mSearchType_Adapter);
+		
 
 	}
 
@@ -67,6 +75,8 @@ public class SearchType extends AppCompatActivity implements View.OnClickListene
 
 		mSearchType_Adapter.notifyDataSetChanged();
 	}
+	
+	
 
 	@Override
 	public void onClick(View v) {

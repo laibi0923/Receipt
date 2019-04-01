@@ -14,7 +14,7 @@ public class Review_Item_Model {
     public String getItem_Name() {
         return Item_Name; 
     }
-
+ 
     public void setItem_Name(String item_Name) {
         Item_Name = item_Name;
     }

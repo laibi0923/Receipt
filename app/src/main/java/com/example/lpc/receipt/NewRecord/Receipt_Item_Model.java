@@ -17,7 +17,7 @@ public class Receipt_Item_Model {
     public void setItemName(String itemName) {
         ItemName = itemName;
     }
-
+ 
     public String getItemType() {
         return ItemType;
     }

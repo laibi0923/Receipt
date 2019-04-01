@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.example.lpc.receipt.Public.Change_Date;
 import com.example.lpc.receipt.R;
 
-import java.util.List;
+import java.util.List; 
 import java.util.*;
 import com.example.lpc.receipt.Record.*; 
  

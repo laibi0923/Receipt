@@ -11,7 +11,6 @@ import com.example.lpc.receipt.R;
 
 public class Statustics_Circle
 {
-
 	private Context context;
 	private DisplayMetrics displayMetrics;
 

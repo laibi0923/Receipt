@@ -13,7 +13,6 @@ public class Change_Date
 
 	public Change_Date(){} 
 	
-	
 	public String parseToDateString(Long ms, String dateformat_mask){
 
 		String DateStringRest = "";

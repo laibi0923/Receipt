@@ -8,7 +8,7 @@ package com.example.lpc.receipt.Crash;
 import java.io.File;  
 import java.io.FileOutputStream;  
 import java.io.PrintWriter;  
-import java.io.StringWriter;  
+import java.io.StringWriter; 
 import java.io.Writer;  
 import java.lang.Thread.UncaughtExceptionHandler;  
 import java.lang.reflect.Field;  

@@ -14,7 +14,7 @@ import com.example.lpc.receipt.Record.Record_Item_Adapter;
 
 import java.util.ArrayList;
 import java.util.List;
-
+ 
 public class Receipt_Adapter extends RecyclerView.Adapter<Receipt_Adapter.Receipt_ViewHolder> {
 
     private List<Receipt_Item_Model> mData;

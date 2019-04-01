@@ -14,7 +14,8 @@ import com.example.lpc.receipt.Record.Record_Item_Adapter;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import android.widget.*;
+ 
 public class SearchType_Adapter extends RecyclerView.Adapter<SearchType_Adapter.SearchType_ViewHolder> {
 
     private List<SearchType_Item_Model> mData;
@@ -70,7 +71,7 @@ public class SearchType_Adapter extends RecyclerView.Adapter<SearchType_Adapter.
 
         @Override
         public void onClick(View v) {
-
+			if (mClickListener != null) mClickListener.onItemClick(v, getAdapterPosition());
         }
     }
 

@@ -17,7 +17,7 @@ public class SearchType_Item_Model {
 
     public void setSearchtype_name(String searchtype_name) {
         this.searchtype_name = searchtype_name;
-    }
+    } 
 
     public String getSearchtype_content() {
         return searchtype_content;

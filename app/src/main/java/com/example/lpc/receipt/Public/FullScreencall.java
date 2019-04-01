@@ -12,7 +12,7 @@ public class FullScreencall {
 
         if(Build.VERSION.SDK_INT > 11 && Build.VERSION.SDK_INT < 19) {
 
-            // lower api
+            // lower api 
             View v = activity.getWindow().getDecorView();
             v.setSystemUiVisibility(View.GONE);
 

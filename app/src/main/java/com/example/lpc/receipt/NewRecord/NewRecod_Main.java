@@ -101,7 +101,7 @@ public class NewRecod_Main extends AppCompatActivity implements Keybord_Fragment
 		receipt_list = new ArrayList<>();
 		Receipt_Adapter = new Receipt_Adapter(this, receipt_list);
 
-		mRecyclerView  = findViewById(R.id.newrecord_recycleview);
+		mRecyclerView  = (RecyclerView) findViewById(R.id.newrecord_recycleview);
 		mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 		mRecyclerView.setNestedScrollingEnabled(false);
 		mRecyclerView.setAdapter(Receipt_Adapter);
