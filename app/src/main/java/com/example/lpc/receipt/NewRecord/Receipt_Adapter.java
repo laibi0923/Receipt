@@ -46,6 +46,8 @@ public class Receipt_Adapter extends RecyclerView.Adapter<Receipt_Adapter.Receip
 
         holder.viewholder_itemprice.setText(mData.get(position).getItemPrice());
 
+        holder.viewholder_itemremarks.setText(mData.get(position).getItemRemarks());
+
     }
 
     @Override
@@ -64,7 +66,7 @@ public class Receipt_Adapter extends RecyclerView.Adapter<Receipt_Adapter.Receip
 
         private ImageView viewholder_itemtypeimg;
 
-        private TextView viewholder_itemname, viewholder_itemtype, viewholder_itemprice;
+        private TextView viewholder_itemname, viewholder_itemtype, viewholder_itemprice, viewholder_itemremarks;
 
 
         public Receipt_ViewHolder(View itemView) {
@@ -75,6 +77,8 @@ public class Receipt_Adapter extends RecyclerView.Adapter<Receipt_Adapter.Receip
             viewholder_itemtype = itemView.findViewById(R.id.viewholder_itemtype);
 
             viewholder_itemprice = itemView.findViewById(R.id.viewholder_itemprice);
+
+            viewholder_itemremarks = itemView.findViewById(R.id.viewholder_itemremarks);
 
             itemView.setOnClickListener(this);
         }

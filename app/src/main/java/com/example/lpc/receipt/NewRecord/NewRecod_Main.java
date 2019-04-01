@@ -142,11 +142,11 @@ public class NewRecod_Main extends AppCompatActivity implements Keybord_Fragment
 
 
 
-	public void NewReceipt_Data(String Item_Name, String Item_Type, String Item_Price){
+	public void NewReceipt_Data(String Item_Name, String Item_Type, String Item_Price, String Item_Remarks){
 
-		Receipt_Item_Model modle = new Receipt_Item_Model(Item_Name, Item_Type, Item_Price);
+		Receipt_Item_Model modle = new Receipt_Item_Model(Item_Name, Item_Type, Item_Price, Item_Remarks);
 
-		receipt_list. add(modle);
+		receipt_list.add(modle);
 
 		Receipt_Adapter.notifyDataSetChanged();
 

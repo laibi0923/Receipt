@@ -395,14 +395,16 @@ public class BottomSheetDialog extends BottomSheetDialogFragment implements View
 		
 		TextView savedialog_amount_tv = view.findViewById(R.id.savedialog_amount_tv);
 		savedialog_amount_tv.setText(newrecord_amount_ed.getText().toString());
+
+        final EditText savedialog_remarks = view.findViewById(R.id.savedialog_remarks);
 		
 		RelativeLayout savedialog_savebtn = view.findViewById(R.id.savedialog_savebtn);
 		
 		RelativeLayout savedialog_cnxbtn = view.findViewById(R.id.savedialog_cnxbtn);
 		
 		RelativeLayout savedialog_nextbtn = view.findViewById(R.id.savedialog_nextbtn);
-		
-		
+
+
 		final AlertDialog dialog = builder.create();
 		
 		savedialog_savebtn.setOnClickListener(new View.OnClickListener(){
@@ -411,9 +413,10 @@ public class BottomSheetDialog extends BottomSheetDialogFragment implements View
 				public void onClick(View p1)
 				{
 					// TODO: Implement this method
-					((NewRecod_Main) getActivity()).NewReceipt_Data(newrecord_itemname_ed.getText().toString(), "", newrecord_amount_ed.getText().toString());
+                    ((NewRecod_Main) getActivity()).NewReceipt_Data(newrecord_itemname_ed.getText().toString(), "", newrecord_amount_ed.getText().toString(), savedialog_remarks.getText().toString());
 					newrecord_amount_ed.setText("");
 					newrecord_itemname_ed.setText("");
+					savedialog_remarks.setText("");
 					dialog.dismiss();
 					dismiss();
 				}
@@ -435,10 +438,11 @@ public class BottomSheetDialog extends BottomSheetDialogFragment implements View
 				public void onClick(View p1)
 				{
 					// TODO: Implement this method
-					((NewRecod_Main) getActivity()).NewReceipt_Data(newrecord_itemname_ed.getText().toString(), "", newrecord_amount_ed.getText().toString());
+					((NewRecod_Main) getActivity()).NewReceipt_Data(newrecord_itemname_ed.getText().toString(), "", newrecord_amount_ed.getText().toString(), savedialog_remarks.getText().toString());
 					newrecord_totalcount_tv.setText("共" + ((NewRecod_Main) getActivity()).receipt_list.size() + "個項目");
 					newrecord_amount_ed.setText("");
 					newrecord_itemname_ed.setText("");
+                    savedialog_remarks.setText("");
 					dialog.dismiss();
 				}
 			});

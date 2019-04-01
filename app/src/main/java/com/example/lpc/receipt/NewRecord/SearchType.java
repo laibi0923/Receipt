@@ -12,6 +12,7 @@ import com.example.lpc.receipt.R;
 import java.util.ArrayList;
 import android.support.v7.widget.*;
 import android.view.inputmethod.*;
+import android.widget.Toast;
 
 public class SearchType extends AppCompatActivity implements View.OnClickListener {
 
@@ -55,6 +56,7 @@ public class SearchType extends AppCompatActivity implements View.OnClickListene
 
 		Type_list = new ArrayList<>();
 		mSearchType_Adapter = new SearchType_Adapter(this, Type_list);
+		mSearchType_Adapter.setClickListener(SearchRecyclerview_ItemClickListener);
 
 		SearchType_RecyclerView  = (RecyclerView) findViewById(R.id.searchtype_recyclerview);
 		SearchType_RecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -68,10 +70,18 @@ public class SearchType extends AppCompatActivity implements View.OnClickListene
 
 	private void add_Data(){
 
-		for (int i = 0; i < 30; i++){
-			SearchType_Item_Model modle = new SearchType_Item_Model("Type Titile" + i , "Type Content" + i);
-			Type_list.add(modle);
-		}
+		Type_list.add(new SearchType_Item_Model("未分類" , "未指定類別"));
+		Type_list.add(new SearchType_Item_Model("服飾" , "?"));
+		Type_list.add(new SearchType_Item_Model("食費" , "早餐 午餐 晚餐 零食"));
+		Type_list.add(new SearchType_Item_Model("租金" , "?"));
+		Type_list.add(new SearchType_Item_Model("旅遊" , "?"));
+		Type_list.add(new SearchType_Item_Model("交通" , "?"));
+		Type_list.add(new SearchType_Item_Model("教育" , "?"));
+		Type_list.add(new SearchType_Item_Model("帳單" , "?"));
+		Type_list.add(new SearchType_Item_Model("薪金" , "?"));
+		Type_list.add(new SearchType_Item_Model("日用品" , "?"));
+		Type_list.add(new SearchType_Item_Model("保險" , "?"));
+		Type_list.add(new SearchType_Item_Model("維修" , "?"));
 
 		mSearchType_Adapter.notifyDataSetChanged();
 	}
@@ -99,6 +109,21 @@ public class SearchType extends AppCompatActivity implements View.OnClickListene
 
 
 	}
+
+
+
+
+	private SearchType_Adapter.ItemClickListener SearchRecyclerview_ItemClickListener = new SearchType_Adapter.ItemClickListener(){
+
+		@Override
+		public void onItemClick(View view, int position) {
+
+			Toast.makeText(view.getContext(), mSearchType_Adapter.get_SearchType_Name(position) + "", Toast.LENGTH_SHORT).show();
+
+		}
+	};
+
+
 
 
 }

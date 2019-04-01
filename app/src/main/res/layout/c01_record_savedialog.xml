@@ -63,6 +63,19 @@
 
 		</LinearLayout>
 
+		<EditText
+			android:id="@+id/savedialog_remarks"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="@android:color/transparent"
+			android:padding="10dp"
+			android:textColor="@color/text_color_1"
+			android:textColorHint="@color/text_color_2"
+			android:textSize="15dp"
+			android:gravity="center"
+			android:maxLines="4"
+			android:hint="Remarks"/>
+
 		<TextView
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"

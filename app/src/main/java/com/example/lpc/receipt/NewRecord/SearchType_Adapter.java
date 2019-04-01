@@ -22,7 +22,7 @@ public class SearchType_Adapter extends RecyclerView.Adapter<SearchType_Adapter.
 
     private LayoutInflater mInflater;
 
-    private Record_Item_Adapter.ItemClickListener mClickListener;
+    private ItemClickListener mClickListener;
 
     public SearchType_Adapter(Context context, List<SearchType_Item_Model> mData) {
         this.mData = mData;
@@ -76,5 +76,22 @@ public class SearchType_Adapter extends RecyclerView.Adapter<SearchType_Adapter.
     }
 
 
+    // allows clicks events to be caught
+    public void setClickListener(ItemClickListener itemClickListener) {
+        this.mClickListener = itemClickListener;
+    }
+
+    // parent activity will implement this method to respond to click events
+    public interface ItemClickListener {
+        void onItemClick(View view, int position);
+    }
+
+    public String get_SearchType_Name(int id){
+        return mData.get(id).getSearchtype_name();
+    }
+
+    public String get_SearchType_Content(int id){
+        return mData.get(id).getSearchtype_content();
+    }
 
 }
