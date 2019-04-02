@@ -125,7 +125,7 @@ public class BottomSheetDialog extends BottomSheetDialogFragment implements View
 
 		//((View) v.getParent()).setBackgroundColor(ContextCompat.getColor(getContext(), android.R.color.transparent));
 
-		setTopOffset(100);
+		setTopOffset(80);
 
 		Find_View(v);
 		

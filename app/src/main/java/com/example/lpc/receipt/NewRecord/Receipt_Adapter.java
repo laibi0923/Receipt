@@ -42,9 +42,9 @@ public class Receipt_Adapter extends RecyclerView.Adapter<Receipt_Adapter.Receip
         // 放數據入 ViewHolder
         holder.viewholder_itemname.setText(mData.get(position).getItemName());
 
-        holder.viewholder_itemtype.setText(mData.get(position).getItemType());
+//        holder.viewholder_itemtype.setText(mData.get(position).getItemType());
 
-        holder.viewholder_itemprice.setText(mData.get(position).getItemPrice());
+        holder.viewholder_itemprice.setText("$" + mData.get(position).getItemPrice());
 
         holder.viewholder_itemremarks.setText(mData.get(position).getItemRemarks());
 
@@ -74,7 +74,7 @@ public class Receipt_Adapter extends RecyclerView.Adapter<Receipt_Adapter.Receip
 
             viewholder_itemname = itemView.findViewById(R.id.viewholder_itemname);
 
-            viewholder_itemtype = itemView.findViewById(R.id.viewholder_itemtype);
+//            viewholder_itemtype = itemView.findViewById(R.id.viewholder_itemtype);
 
             viewholder_itemprice = itemView.findViewById(R.id.viewholder_itemprice);
 

@@ -5,26 +5,48 @@
 	android:layout_height="match_parent"
 	android:orientation="vertical">
 
+
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:orientation="vertical"
-		android:layout_marginLeft="30dp"
-		android:layout_marginRight="30dp">
+		android:orientation="vertical">
 
 		<LinearLayout
 			android:layout_width="match_parent"
-			android:layout_height="300dp"
+			android:layout_height="50dp"
+			android:gravity="center"
+			android:background="@color/main_bg_color">
+
+
+			<EditText
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:background="@android:color/transparent"
+				android:padding="10dp"
+				android:hint="名稱"
+				android:singleLine="true"
+				android:textColor="@color/text_color_1"
+				android:textColorHint="@color/text_color_2"
+				android:imeOptions="actionDone"
+				android:textSize="15dp"
+				android:gravity="center"/>
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
 			android:orientation="vertical"
 			android:gravity="center">
 
 			<LinearLayout
 				android:layout_height="wrap_content"
 				android:layout_width="match_parent"
+				android:minHeight="250dp"
 				android:orientation="horizontal"
+				android:background="#636363"
 				android:layout_weight="1.0"
-				android:gravity="center"
-				android:layout_marginTop="50dp">
+				android:gravity="center">
 
 				<EditText
 					android:layout_height="wrap_content"
@@ -36,6 +58,7 @@
 					android:textColor="#FFFFFF"
 					android:textColorHint="#FFFFFF"
 					android:imeOptions="actionDone"
+					android:visibility="invisible"
 					android:gravity="center"/>
 
 			</LinearLayout>
@@ -44,6 +67,8 @@
 				android:layout_height="wrap_content"
 				android:layout_width="match_parent"
 				android:orientation="horizontal"
+				android:layout_marginLeft="30dp"
+				android:layout_marginRight="30dp"
 				android:paddingTop="10dp"
 				android:paddingBottom="10dp">
 
@@ -69,6 +94,8 @@
 				android:layout_height="wrap_content"
 				android:layout_width="match_parent"
 				android:orientation="horizontal"
+				android:layout_marginLeft="30dp"
+				android:layout_marginRight="30dp"
 				android:paddingTop="10dp"
 				android:paddingBottom="10dp">
 

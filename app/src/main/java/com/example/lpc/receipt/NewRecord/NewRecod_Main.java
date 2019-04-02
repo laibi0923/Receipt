@@ -3,6 +3,7 @@ import android.content.Context;
 import android.os.*;
 import android.support.annotation.NonNull;
 import android.support.v7.app.*;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.*;
@@ -103,6 +104,7 @@ public class NewRecod_Main extends AppCompatActivity implements Keybord_Fragment
 
 		mRecyclerView  = (RecyclerView) findViewById(R.id.newrecord_recycleview);
 		mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+		mRecyclerView.addItemDecoration(new DividerItemDecoration(mRecyclerView.getContext(), DividerItemDecoration.VERTICAL));
 		mRecyclerView.setNestedScrollingEnabled(false);
 		mRecyclerView.setAdapter(Receipt_Adapter);
 	}
