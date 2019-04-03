@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
+<ScrollView
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:orientation="vertical">
-
 
 	<LinearLayout
 		android:layout_width="match_parent"
@@ -16,7 +15,6 @@
 			android:layout_height="50dp"
 			android:gravity="center"
 			android:background="@color/main_bg_color">
-
 
 			<EditText
 				android:layout_height="wrap_content"
@@ -97,7 +95,8 @@
 				android:layout_marginLeft="30dp"
 				android:layout_marginRight="30dp"
 				android:paddingTop="10dp"
-				android:paddingBottom="10dp">
+				android:paddingBottom="10dp"
+				android:gravity="center">
 
 				<TextView
 					android:layout_height="wrap_content"
@@ -109,11 +108,12 @@
 				<TextView
 					android:layout_height="wrap_content"
 					android:layout_width="wrap_content"
-					android:text="$ 10,0000"
+					android:text="$ 0.00"
 					android:padding="10dp"
 					android:layout_weight="1.0"
 					android:gravity="right|center"
-					android:textColor="#FFFFFF"/>
+					android:textColor="#FFFFFF"
+					android:textSize="18sp"/>
 
 			</LinearLayout>
 
@@ -132,5 +132,5 @@
 
 	</LinearLayout>
 
-</android.support.v4.widget.NestedScrollView>
+</ScrollView>
 

@@ -1,99 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:gravity="center|top">
+	<LinearLayout
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:orientation="vertical"
+		android:layout_marginLeft="40dp"
+		android:gravity="center"
+		android:layout_marginTop="20dp"
+		android:layout_marginBottom="20dp"
+		android:layout_marginRight="40dp">
 
+		<LinearLayout
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:orientation="horizontal"
+			android:gravity="center">
 
+			<ImageView
+				android:id="@+id/viewholder_itemtypeimg"
+				android:layout_height="30dp"
+				android:layout_width="30dp"
+				android:src="@drawable/ic_food"/>
 
+			<TextView
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:text="未分類"
+				android:layout_weight="1.0"
+				android:layout_marginLeft="10dp"
+				android:textColor="#7e7e7e"
+				android:gravity="left|center"/>
 
-        <LinearLayout
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:paddingRight="10dp"
-            android:orientation="vertical">
+			<TextView
+				android:id="@+id/viewholder_itemprice"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:ellipsize="end"
+				android:gravity="center|left"
+				android:singleLine="true"
+				android:text="$47.66"
+				android:textColor="@color/text_color_1"
+				android:textSize="20sp"/>
 
-            <TextView
-                android:id="@+id/viewholder_itemname"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:text="Item Name"
-                android:textSize="18dp"
-                android:textColor="#FFFFFF"/>
+		</LinearLayout>
 
+		<LinearLayout
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/viewholder_itemprice"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:gravity="center|left"
-                android:singleLine="true"
-                android:text="$47.66"
-                android:textColor="@color/text_color_1"/>
+			<TextView
+				android:id="@+id/viewholder_itemname"
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:text="Item Name"
+				android:textSize="14dp"
+				android:textColor="#FFFFFF"
+				android:paddingTop="5dp"/>
 
+		</LinearLayout>
 
+		<LinearLayout
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:orientation="horizontal"
+			android:paddingTop="5dp">
 
-            <TextView
-                android:id="@+id/viewholder_itemremarks"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:ellipsize="end"
-                android:maxLines="3"
-                android:textSize="13dp"
-                android:text="sahfkljkldjklsajskajkldjkljsakdjkljsklakldjklsjakldjlkjsalkjdjslak
-dsjakljdkljlaksjlkdjljsalkd
-dkjsakljdlkjkslaj
-dkjsalkdjlkasjlkd"
-                android:textColor="#7E7E7E"/>
+			<TextView
+				android:id="@+id/viewholder_itemremarks"
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:ellipsize="end"
+				android:maxLines="3"
+				android:textSize="13dp"
+				android:textColor="#7E7E7E"
+				android:textColorHint="#7e7e7e"
+				android:hint="未有任何備註"/>
 
-        </LinearLayout>
+		</LinearLayout>
 
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/viewholder_itemtypeimg"
-                android:layout_height="50dp"
-                android:layout_width="50dp"
-                android:layout_margin="5dp"
-                android:src="@drawable/ic_food"/>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="20dp"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_centerInParent="true"
-                android:src="@mipmap/ic_delete"
-                android:tint="@color/text_color_1" />
-
-        </LinearLayout>
-
-
-    </LinearLayout>
-
-
-
+	</LinearLayout>
 
 </LinearLayout>
+
