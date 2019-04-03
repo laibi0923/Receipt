@@ -27,4 +27,8 @@
     <string name="record_tax_text">稅項</string>
     <string name="record_next_text">完成</string>
 
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
 </resources>

@@ -199,7 +199,7 @@ public class BottomSheetDialog extends BottomSheetDialogFragment implements View
 
 			case R.id.newrecord_type_btn:
 
-				Intent open_c002_activity = new Intent(getActivity(), SearchType.class);
+				Intent open_c002_activity = new Intent(getActivity(), SearchType_Main.class);
 				startActivityForResult(open_c002_activity, 733);
 
 				break;

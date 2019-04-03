@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 
+import com.example.lpc.receipt.Public.FullScreencall;
 import com.example.lpc.receipt.R;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import android.support.v7.widget.*;
 import android.view.inputmethod.*;
 import android.widget.Toast;
 
-public class SearchType extends AppCompatActivity implements View.OnClickListener {
+public class SearchType_Main extends AppCompatActivity implements View.OnClickListener {
 
 	private RelativeLayout searchtype_back_btn, searchtype_clear_btn;
 
@@ -25,6 +26,18 @@ public class SearchType extends AppCompatActivity implements View.OnClickListene
 	private SearchType_Adapter mSearchType_Adapter;
 
 	private ArrayList<SearchType_Item_Model> Type_list;
+
+
+	@Override
+	public void onWindowFocusChanged(boolean hasFocus) {
+		super.onWindowFocusChanged(hasFocus);
+
+		if (hasFocus) {
+			new FullScreencall(this).Hide_SystemUI();
+		}
+
+	}
+
 
 
 	@Override

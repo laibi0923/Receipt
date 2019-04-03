@@ -6,6 +6,8 @@ import android.support.v7.app.*;
 import android.view.*;
 import android.view.inputmethod.*;
 import android.widget.*;
+
+import com.example.lpc.receipt.Public.FullScreencall;
 import com.example.lpc.receipt.Register.*;
 import com.google.android.gms.tasks.*;
 import com.google.firebase.auth.*;
@@ -27,6 +29,17 @@ public class LoginActivity extends AppCompatActivity
 	FirebaseAuth mFirebaseAuth;
 	
 	FirebaseUser mFirebaseUser;
+
+	@Override
+	public void onWindowFocusChanged(boolean hasFocus) {
+		super.onWindowFocusChanged(hasFocus);
+
+		if (hasFocus) {
+			new FullScreencall(this).Hide_SystemUI();
+		}
+
+	}
+
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)

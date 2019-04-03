@@ -17,7 +17,7 @@
 
 		<LinearLayout
 			android:layout_width="match_parent"
-			android:layout_height="80dp"
+			android:layout_height="100dp"
 			android:paddingLeft="30dp"
 			android:paddingRight="30dp"
 			android:gravity="center"
@@ -70,6 +70,25 @@
 		</LinearLayout>
 
 
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:paddingLeft="30dp"
+		android:paddingRight="30dp"
+		android:gravity="center"
+		android:orientation="horizontal"
+		android:background="@color/main_bg_color">
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="收入"
+			android:paddingBottom="30dp"
+			android:textColor="@color/text_color_2"/>
+
+	</LinearLayout>
+
+
 
 
 
@@ -79,7 +98,7 @@
 
 
 
-
+	<!--Save Button Area-->
 	<LinearLayout
 		android:id="@+id/newrecord_savereceipt_btn"
 		android:layout_width="match_parent"

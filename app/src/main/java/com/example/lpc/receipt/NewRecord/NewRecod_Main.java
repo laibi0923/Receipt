@@ -10,6 +10,7 @@ import android.view.*;
 import android.widget.*;
 import com.example.lpc.receipt.*;
 import com.example.lpc.receipt.Public.Change_Amount;
+import com.example.lpc.receipt.Public.FullScreencall;
 import com.example.lpc.receipt.Record.Record_Item_Adapter;
 
 import java.util.ArrayList;
@@ -32,6 +33,20 @@ public class NewRecod_Main extends AppCompatActivity implements Keybord_Fragment
 	private Receipt_Adapter Receipt_Adapter;
 
 	public ArrayList<Receipt_Item_Model> receipt_list;
+
+
+	@Override
+	public void onWindowFocusChanged(boolean hasFocus) {
+		super.onWindowFocusChanged(hasFocus);
+
+		if (hasFocus) {
+			new FullScreencall(this).Hide_SystemUI();
+		}
+
+	}
+
+
+
 
 	@Override
 	public void SendContent(String Info) {

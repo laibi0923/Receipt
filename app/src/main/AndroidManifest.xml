@@ -3,100 +3,53 @@
     package="com.example.lpc.receipt">
 
     <application
-        android:allowBackup="true" 
+        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".SplashScreen"
-            android:windowSoftInputMode="stateHidden" >
-
+            android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
-
         <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="stateHidden|adjustResize" >
-
-        </activity>
-
+            android:windowSoftInputMode="stateHidden|adjustResize"></activity>
         <activity
             android:name=".Register.Register_Main"
-            android:windowSoftInputMode="stateAlwaysVisible|adjustNothing" >
-
-        </activity>
-
+            android:windowSoftInputMode="stateAlwaysVisible|adjustNothing"></activity>
         <activity
             android:name=".LoginActivity"
-            android:windowSoftInputMode="stateVisible|adjustResize" >
-
-        </activity>
-		
-		<activity
+            android:windowSoftInputMode="stateVisible|adjustResize"></activity>
+        <activity
             android:name=".NewRecord.NewRecod_Main"
-            android:windowSoftInputMode="stateHidden|adjustPan" >
-
-        </activity>
-
+            android:windowSoftInputMode="stateHidden|adjustPan"></activity>
         <activity
             android:name=".Record.Record_Main"
-            android:windowSoftInputMode="stateHidden|adjustResize" >
-
-        </activity>
-
-
+            android:windowSoftInputMode="stateHidden|adjustResize"></activity>
         <activity
             android:name=".Record.Record_Item"
-            android:windowSoftInputMode="stateHidden|adjustResize" >
-
-        </activity>
-
+            android:windowSoftInputMode="stateHidden|adjustResize"></activity>
         <activity
-            android:name=".NewRecord.SearchType"
-            android:windowSoftInputMode="stateHidden|adjustResize" >
-
-        </activity>
-
-        <activity android:name=".Record.Record_Remark"
-            android:windowSoftInputMode="stateHidden|adjustResize" >
-
-        </activity>
-
-        <activity android:name=".Review.Review_Item_Details"
-            android:windowSoftInputMode="stateHidden|adjustResize" >
-
-        </activity>
-
+            android:name=".NewRecord.SearchType_Main"
+            android:windowSoftInputMode="stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Record.Record_Remark"
+            android:windowSoftInputMode="stateHidden|adjustResize"></activity>
+        <activity
+            android:name=".Review.Review_Item_Details"
+            android:windowSoftInputMode="stateHidden|adjustResize"></activity>
         <activity
             android:name=".Record.Record_Payment"
-            android:windowSoftInputMode="stateHidden|adjustResize" >
-
-        </activity>
-
-        <activity android:name=".Public.Calendar_Selecter">
-
-        </activity>
-
-        <activity
-            android:name=".Setting.Setting_Main">
-
-        </activity>
-
-
-        <activity
-            android:name=".Setting.Statustics_Main">
-
-        </activity>
-
-
+            android:windowSoftInputMode="stateHidden|adjustResize"></activity>
+        <activity android:name=".Public.Calendar_Selecter"></activity>
+        <activity android:name=".Setting.Setting_Main"></activity>
+        <activity android:name=".Setting.Statustics_Main"></activity>
     </application>
 
 </manifest>

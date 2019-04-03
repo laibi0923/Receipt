@@ -15,11 +15,19 @@ public class SplashScreen extends AppCompatActivity{
     private long delay = 1000;
     private int i = 0;
 
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+
+        if (hasFocus) {
+            new FullScreencall(this).Hide_SystemUI();
+        }
+
+    }
 
     @Override
     protected void onResume() {
         super.onResume();
-        //new FullScreencall().FullScreencall(this);
     }
 
     @Override

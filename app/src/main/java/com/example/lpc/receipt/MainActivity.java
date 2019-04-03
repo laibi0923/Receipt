@@ -50,10 +50,15 @@ public class MainActivity extends AppCompatActivity {
 	private Change_Date mChange_Date;
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        //new FullScreencall().FullScreencall(this);
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+
+//        if (hasFocus) {
+//          new FullScreencall(this).Hide_SystemUI();
+//        }
+
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
